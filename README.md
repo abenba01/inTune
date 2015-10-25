@@ -42,4 +42,6 @@ Algorithms
 
 A music filtering algorithm which incorporates user input with previously existing data. Algorithm will also incorporate the geolocation, weather and time data.
 
-
+#Comments by Ming
+* I like this
+* You fell into the trap that I didn't want you to fall into.  You listed "Geolocation" and "Data/screen scraping".  But for _what_?  What will you be data scraping?  I see that you mentioned in algorithms "We will be using geolocation, weather data and time of day for our service" --what you should have wrote for features: "Determine your modd by geolocation, weather data, and time of day for server".  Now that would be fantastic!
