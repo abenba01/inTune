@@ -17,3 +17,11 @@ h3{
 
 	background-color: #E0E4CC;
 }
+#song_panel{
+	width: 70%;
+	margin: auto;
+}
+.song {
+	position: relative;
+	right: 0px;
+}
