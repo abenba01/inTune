@@ -1,0 +1,23 @@
+.container{
+
+	width: 940px;
+	display: block;
+ 	margin-left: auto;
+  	margin-right: auto;
+
+}
+
+h3{
+
+	color: #FA6900;
+
+}
+
+.container-fluid{
+
+	background-color: #E0E4CC;
+}
+#song_panel{
+	width: 70%;
+	margin: auto;
+}
