@@ -21,6 +21,20 @@ h3{
 	width: 100%;
 	height: 17%;
 }
+
+#header{
+
+	opacity: 0.4;
+	color: #FC912D;
+	font-size: 20px;
+
+}
+
+#bubble_container{
+
+	background-color: #FCFBE3;
+
+}
 /*
 #song_panel{
 	width: 70%;
