@@ -1,7 +1,7 @@
 // Javascript file for Spotify elements of inTune
 // will deal with authentication of user, playing music, and creating playlists
 
-
+//app info https://developer.spotify.com/my-applications/#!/applications/2577a2b352e34b2f8d877f89c4495d21
 
 //authorize 
 //1. request authorization
@@ -33,18 +33,26 @@
 //    /api/token with new token to get back new access token)
 
 function authorize () {
-	$.ajax({type: "GET",
-            crossDomain : true,
-            url: url,
-            headers: {
-            	'Authorization' : 'Bearer ' + accessToken
-            contentType: "application/json",
-            success: function(data) {
-            	console.log(data.id);
 
-            	pullSongs(input,data.id);
-            }
+
+	var spotify_url = 'https://accounts.spotify.com/authorize';
+	var client_id = "2577a2b352e34b2f8d877f89c4495d21";
+	var response_type = "code";
+	var redirect_uri = "blank"; //TODO add later too spotify app info page and find actual page
+	var state; //probably will not be using
+	var scope = "playlist-modify-private" + "%20" + "playlist-modify-public" + "%20" + 
+	            "user-follow-read" + "%20" + "user-library-read" + "%20" + "user-read-email"
+	            + "%20" + "user-read-private"; //TODO look at scopes needed as group
+	var show_dialog = "false";
+
+	var request_auth_url = spotify_url + "?client_id=" + client_id + "&response_type=" + response_type + 
+	          "&redirect_uri=" + redirect_uri + "&scope=" + scope;
+
+	//GET request for authorization sent to /authorize endpoint 
+	$.ajax({type: "GET",
+            //crossDomain : true,
+            url: request_auth_url,
     	});
 
-	
+
 }
