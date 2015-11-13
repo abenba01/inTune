@@ -1,16 +1,23 @@
-.container{
+#login_button{
 
-	width: 940px;
-	display: block;
- 	margin-left: auto;
-  	margin-right: auto;
+	border-style: none;
+	background-color: #69D2E7;
+}
+
+#h3text{
+
+	color: #F38630;
 
 }
 
-h3{
+#h1text{
 
 	color: #FA6900;
+}
 
+#link{
+
+	color: #F38630;
 }
 
 #bubble_footer{
@@ -24,7 +31,7 @@ h3{
 
 #header{
 
-	opacity: 0.4;
+	opacity: 0.6;
 	color: #FC912D;
 	font-size: 20px;
 
@@ -32,7 +39,13 @@ h3{
 
 #bubble_container{
 
-	background-color: #FCFBE3;
+	background-color: #FCFBE3; /*a very pretty cream color*/
+
+}
+
+#fullbody{
+
+	background-color: #FCFDE5; /*a very pretty cream color*/
 
 }
 /*
