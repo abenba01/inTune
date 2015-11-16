@@ -31,27 +31,34 @@
 //	 -JSON: access_token (string), token_type (string) always Bearer, expires_in (int), 
 //	  refresh_token (string) can be sent in place of auth code (when expires send POST to 
 //    /api/token with new token to get back new access token)
-
-function authorize () {
-
-
-	var spotify_url = 'https://accounts.spotify.com/authorize';
 	var client_id = "2577a2b352e34b2f8d877f89c4495d21";
+	var client_secret = "824c3ece961849b58efd3561a572033f";
+	var redirect_uri = "http://localhost:8888/callback" //TODO add later too spotify app info page and find actual page
+
+
+	var spotify_url_auth = 'https://accounts.spotify.com/authorize';
 	var response_type = "code";
-	var redirect_uri = "blank"; //TODO add later too spotify app info page and find actual page
 	var state; //probably will not be using
 	var scope = "playlist-modify-private" + "%20" + "playlist-modify-public" + "%20" + 
 	            "user-follow-read" + "%20" + "user-library-read" + "%20" + "user-read-email"
 	            + "%20" + "user-read-private"; //TODO look at scopes needed as group
 	var show_dialog = "false";
 
-	var request_auth_url = spotify_url + "?client_id=" + client_id + "&response_type=" + response_type + 
+	var request_auth_url = spotify_url_auth + "?client_id=" + client_id + "&response_type=" + response_type + 
 	          "&redirect_uri=" + redirect_uri + "&scope=" + scope;
 
 	//GET request for authorization sent to /authorize endpoint 
-	$.ajax({type: "GET",
+	var response;
+	$.ajax({method: "GET",
             //crossDomain : true,
             url: request_auth_url,
+            success: function (data) {
+				alert (data);
+				response = code;
+			},
+			headers: {
+            	'Authorization' : 'Bearer ' + accessToken
+            }
     	});
 
 
