@@ -17,3 +17,6 @@ Goals
 	-Geolocation
 	-Weather scraping
 	-Begin server side development with heroku 
+	
+#Comments By Ming
+* Forget the design and style for now, get the important thing accomplished first --namely Spotify authorization.
