@@ -46,9 +46,13 @@
     	request.send(null);
     	var results = JSON.parse(request.responseText);
     	console.log(results);
-    	console.log("hi");
 	};
 
 	getMyLocation();
+
+
+//https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
+//http://home.openweathermap.org/
+//https://developers.google.com/maps/documentation/javascript/geocoding
 
 
