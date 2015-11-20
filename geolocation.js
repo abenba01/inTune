@@ -36,6 +36,22 @@
   		});
 	}
 
+	function getWeather(){
+		
+    	openWeatherMapKey = '4ec6865ce305a9b9db6f2f8de2296691'; 
+   		var requestString = "api.openweathermap.org/data/2.5/weather?lat=" + myLat + "&lon=" + myLng + "&cluster=yes&format=json" + "&APPID=" + openWeatherMapKey;
+   		$.ajax({type: "GET",
+   			crossDomain:true,
+   			url: requestString,
+   			contentType: "application/json"
+   			success: function(data){
+   				
+   				//var results = JSON.parse(data);
+   				console.log(data); 
+   			}
+   		}})
+	};
+/*
 	//this should work but seems to break the same origin policy
 	function getWeather(){
 		
@@ -49,7 +65,7 @@
 	};
 
 	getMyLocation();
-
+*/
 
 //https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
 //http://home.openweathermap.org/

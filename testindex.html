@@ -1,5 +1,10 @@
-//Hi this is our server
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title> Meso </title>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+<script>
 	var myLat = 0;
 	var myLng = 0;
 	var address_info = "";
@@ -8,32 +13,14 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						geocodeLatLng();
+						getWeather();
 					});
 				}
 				else {
 					alert("Geolocation is not supported by your web browser. Time to upgrade!");
 				}
 	}
-				
-	//returns addresses based on coords, might not need if get weather JSON has address info
-	function geocodeLatLng(geocoder) {
-  		var geocoder = new google.maps.Geocoder;
-  		var Lat = parseFloat(myLat);
-		var Lng = parseFloat(myLng);
- 		var latlng = {lat: Lat, lng: Lng};
-  		geocoder.geocode({'location': latlng}, function(results, status) {
-    		if (status === google.maps.GeocoderStatus.OK) {
-     			if (results[0]) {
- 					console.log(results[1].address_components[0].long_name);
-      			}else{
-      				alert('No results found');
-     			}
-    		}else{
-				alert('Geocoder failed due to: ' + status);
-    		}
-  		});
-	}
+				//https://developers.google.com/maps/documentation/javascript/geocoding
 
 	function getWeather(){
 		
@@ -48,5 +35,15 @@
    				//var results = JSON.parse(data);
    				console.log(data); 
    			}
-   		});
+   		}})
 	};
+
+getMyLocation();
+    
+
+</script>
+</head>
+<body>
+	<h1> TEST_GEOLOCATION </h1>
+</body>
+</html>
