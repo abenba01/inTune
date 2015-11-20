@@ -1,6 +1,5 @@
 	
 	
-	//seem familiar? 
 	var myLat = 0;
 	var myLng = 0;
 	var address_info = "";
@@ -10,6 +9,7 @@
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
 						geocodeLatLng();
+						getWeather();
 					});
 				}
 				else {
@@ -43,14 +43,17 @@
    		$.ajax({type: "GET",
    			crossDomain:true,
    			url: requestString,
-   			contentType: "application/json"
+   			contentType: "application/json",
    			success: function(data){
    				
    				//var results = JSON.parse(data);
    				console.log(data); 
    			}
-   		}})
+   		});
 	};
+
+	getMyLocation();
+
 /*
 	//this should work but seems to break the same origin policy
 	function getWeather(){
