@@ -2,7 +2,7 @@
 var canvas = document.getElementById('bubble_cvs');
 var ctx = canvas.getContext('2d');
 var raf;
-var bubbles = new Array();
+var bubbles = new Object;
 
 var band_names = [
 "Nickleback", "The Strokes", "The Killers", "Father John Misty", "Future", 
@@ -39,9 +39,9 @@ function addBubble(name, x_start, y_start) {
 }
 function draw() {
 	ctx.clearRect(0,0, canvas.width, canvas.height);
-	for (var i = 0; i < bubbles.length; i++) {
-		bubbles[i].draw();
-		var bubble = bubbles[i];
+	for (var key in bubbles) {
+		bubbles[key].draw();
+		var bubble = bubbles[key];
 		bubble.x += bubble.vx;
 		bubble.y += bubble.vy;
 		bubble.vy *= bubble.ay;
@@ -88,8 +88,9 @@ console.log(rand_num_within_window());
 console.log(rand_num_within_window());
 
 for (var i = 0; i < num_of_bubbles; i ++) {
-	bubbles[i] = addBubble(band_names[i], rand_num_within_window(), 100);
-	bubbles[i].draw();
+	var name = band_names[i];
+	bubbles[name] =  addBubble(name, rand_num_within_window(), 100);
+	bubbles[name].draw();
 }
 
 
@@ -104,7 +105,11 @@ for (var i = 0; i < num_of_bubbles; i ++) {
 
 
 
-
+//onclick
+	//check if click is on a bubble
+		//if it is { 
+			//delete that bubble
+			//create a new div element that looks identical to bubble in bottom bar 
 
 
 
