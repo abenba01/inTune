@@ -107,7 +107,6 @@ for (var i = 0; i < num_of_bubbles; i ++) {
 	var name = band_names[i];
 	bubbles[name] =  addBubble(name, rand_x_in_cvs(), rand_y_in_cvs());
 	bubbles[name].draw();
-	console.log(bubbles[name].x, bubbles[name].y);
 }
 
 canvas.addEventListener('mouseover', function(e){
@@ -121,8 +120,6 @@ canvas.addEventListener("mouseout",function(e){
 canvas.addEventListener("click", function(e) {
 	var click_x = e.clientX - rect.left;
 	var click_y = e.clientY - rect.top;
-	console.log("click processed with x,y :");
-	console.log(click_x, click_y);
 	for (var key in bubbles) {
 		var bubble = bubbles[key];
 		if (
@@ -131,8 +128,6 @@ canvas.addEventListener("click", function(e) {
 			click_x >= (bubble.x -bubble.radius) && 
 			click_y <= (bubble.y +bubble.radius) && 
 			click_y >= (bubble.y -bubble.radius) ) {
-			console.log(bubble.text);
-			console.log("clicked");
 			bubble.pop = true;
 		}
 	}
