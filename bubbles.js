@@ -60,13 +60,6 @@ function draw() {
 
 
 
-canvas.addEventListener('mouseover', function(e){
-	raf = window.requestAnimationFrame(draw);
-});
-
-canvas.addEventListener("mouseout",function(e){
-	window.cancelAnimationFrame(raf);
-});
 
 
 
@@ -93,7 +86,31 @@ for (var i = 0; i < num_of_bubbles; i ++) {
 	bubbles[name].draw();
 }
 
+canvas.addEventListener('mouseover', function(e){
+	raf = window.requestAnimationFrame(draw);
+});
 
+canvas.addEventListener("mouseout",function(e){
+	window.cancelAnimationFrame(raf);
+});
+
+canvas.addEventListener("click", function(e) {
+	var click_x = e.clientX;
+	var click_y = e.clientY;
+	console.log("click processed with x,y :");
+	console.log(click_x, click_y);
+	for (var key in bubbles) {
+		var bubble = bubbles[key];
+		if (click_x <= (bubble.x + bubble.radius) && 
+			click_x >= (bubble.x -bubble.radius) && 
+			click_y <= (bubble.y +bubble.radius) && 
+			click_y >= (bubble.y -bubble.radius) ) {
+			console.log(bubble.text);
+			console.log("clicked");
+			delete bubbles[key];
+		}
+	}
+});
 
 
 //create array of balls
