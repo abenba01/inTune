@@ -22,6 +22,7 @@ function addBubble(name, x_start, y_start) {
 	ay: getRand(0.99, 1),
 	radius: 50,
 	color: "#71D1EA",
+	pop: false,
 	draw: function() {
 		  ctx.beginPath();
 		  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
@@ -33,6 +34,7 @@ function addBubble(name, x_start, y_start) {
 		  ctx.font =  textSize + "px Arial";
 		  ctx.textAlign = "center";
 		  ctx.fillText(this.text, this.x, this.y + textSize/3);
+		  
 	}
 	};
 	return ball;
@@ -42,6 +44,14 @@ function draw() {
 	for (var key in bubbles) {
 		bubbles[key].draw();
 		var bubble = bubbles[key];
+		if(bubble.pop == true) {
+			if (bubble.radius <= 3){
+				delete bubbles[key];
+				continue;
+			} else {
+				bubble.radius *= 0.5;
+			}
+		}
 		bubble.x += bubble.vx;
 		bubble.y += bubble.vy;
 		bubble.vy *= bubble.ay;
@@ -107,12 +117,20 @@ canvas.addEventListener("click", function(e) {
 			click_y >= (bubble.y -bubble.radius) ) {
 			console.log(bubble.text);
 			console.log("clicked");
-			delete bubbles[key];
+			bubble.pop = true;
 		}
 	}
 });
-
-
+/*
+function pop_bubble(key) {
+	var bubble = bubbles[key];
+	if(bubble.radius > 3) {
+		bubble.radius *= .5;
+		pop_bubble(key);
+	} else {
+		delete bubbles[key];
+	}
+}*/
 //create array of balls
 
 //animate balls
