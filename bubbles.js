@@ -1,6 +1,8 @@
 
 var canvas = document.getElementById('bubble_cvs');
+canvas.width = window.innerWidth; 
 var ctx = canvas.getContext('2d');
+var rect = canvas.getBoundingClientRect();
 var raf;
 var bubbles = new Object;
 
@@ -9,17 +11,18 @@ var band_names = [
 "Drake", "Fetty Wap", "Sun Kil Moon", "MGMT", "One Direction", "Miley Cyrus", 
 "The Weeknd", "Adele"
 ];
+
 var num_of_bubbles = band_names.length;
 
-canvas.width = window.innerWidth; 
+
 function addBubble(name, x_start, y_start) {
 	var ball = {
 	text: name,
 	x: x_start,
 	y: y_start,
-	vx: getRand(-2,9),
-	vy: getRand(-2,9),
-	ay: getRand(0.99, 1),
+	vx: getRand(-7,7),
+	vy: getRand(-7,7),
+	ay: getRand(-0.5,0.5),
 	radius: 50,
 	color: "#71D1EA",
 	pop: false,
@@ -29,7 +32,14 @@ function addBubble(name, x_start, y_start) {
 		  ctx.closePath();
 		  ctx.fillStyle = this.color;
 		  ctx.fill();
-		  var textSize = (this.radius*2 / this.text.length);
+		  var textSize;
+		  if (this.text.length >= 5) {
+		  	textSize = (this.radius / (this.text.length*0.30) );
+
+		  } else {
+		  	textSize = (this.radius / (this.text.length*.55) );
+
+		  }
 		  ctx.fillStyle = "#FDFEFF";
 		  ctx.font =  textSize + "px Arial";
 		  ctx.textAlign = "center";
@@ -54,12 +64,12 @@ function draw() {
 		}
 		bubble.x += bubble.vx;
 		bubble.y += bubble.vy;
-		bubble.vy *= bubble.ay;
-		bubble.vy += getRand(0, 0.5);
-		if (bubble.y + bubble.vy > canvas.height || bubble.y + bubble.vy < 0) {
+		/*bubble.vy *= 0.99;
+		bubble.vy += bubble.ay;*/
+		if (bubble.y + bubble.vy + bubble.radius > canvas.height || bubble.y - bubble.radius + bubble.vy < 0) {
 			bubble.vy = -bubble.vy;
 		}
-		if (bubble.x + bubble.vx > canvas.width || bubble.x + bubble.vx < 0) {
+		if (bubble.x + bubble.vx + bubble.radius > rect.right || bubble.x - bubble.radius + bubble.vx < 0) {
 			bubble.vx = -bubble.vx;
 		}	
 	}
@@ -73,9 +83,16 @@ function draw() {
 
 
 
-function rand_num_within_window () {
-	var num = Math.floor((Math.random() * (window.innerWidth/100))*100 + 1);
-	return num;
+function rand_x_in_cvs () {
+	var min = rect.left +100;
+	var max = rect.right - 100;
+	return Math.floor( Math.random() * (max-min) ) + min;
+}
+
+function rand_y_in_cvs () {
+	var min = rect.top +100;
+	var max = rect.bottom - 100;
+	return Math.floor( Math.random() * (max-min) ) + min;
 }
 
 function rand_velocity_modifier () {
@@ -86,14 +103,11 @@ function getRand (max, min) {
 	return Math.random() * (max - min) + min;
 }
 
-console.log(rand_num_within_window());
-console.log(rand_num_within_window());
-console.log(rand_num_within_window());
-
 for (var i = 0; i < num_of_bubbles; i ++) {
 	var name = band_names[i];
-	bubbles[name] =  addBubble(name, rand_num_within_window(), 100);
+	bubbles[name] =  addBubble(name, rand_x_in_cvs(), rand_y_in_cvs());
 	bubbles[name].draw();
+	console.log(bubbles[name].x, bubbles[name].y);
 }
 
 canvas.addEventListener('mouseover', function(e){
@@ -105,13 +119,15 @@ canvas.addEventListener("mouseout",function(e){
 });
 
 canvas.addEventListener("click", function(e) {
-	var click_x = e.clientX;
-	var click_y = e.clientY;
+	var click_x = e.clientX - rect.left;
+	var click_y = e.clientY - rect.top;
 	console.log("click processed with x,y :");
 	console.log(click_x, click_y);
 	for (var key in bubbles) {
 		var bubble = bubbles[key];
-		if (click_x <= (bubble.x + bubble.radius) && 
+		if (
+
+			click_x <= (bubble.x + bubble.radius) && 
 			click_x >= (bubble.x -bubble.radius) && 
 			click_y <= (bubble.y +bubble.radius) && 
 			click_y >= (bubble.y -bubble.radius) ) {
