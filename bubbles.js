@@ -1,59 +1,111 @@
 
-function addBubble(name, x_start, y_start) {
 var canvas = document.getElementById('bubble_cvs');
 var ctx = canvas.getContext('2d');
 var raf;
+var bubbles = new Array();
 
+var band_names = [
+"Nickleback", "The Strokes", "The Killers", "Father John Misty", "Future", 
+"Drake", "Fetty Wap", "Sun Kil Moon", "MGMT", "One Direction", "Miley Cyrus", 
+"The Weeknd", "Adele"
+];
+var num_of_bubbles = band_names.length;
 
 canvas.width = window.innerWidth; 
-
-var ball = {
-  text: name,
-  x: x_start,
-  y: y_start,
-  vx: 5,
-  vy: 2,
-  radius: 50,
-  color: "#71D1EA",
-  draw: function() {
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
-    ctx.closePath();
-    ctx.fillStyle = this.color;
-    ctx.fill();
-    var textSize = (this.radius*2 / this.text.length) *2;
-    ctx.fillStyle = "#FDFEFF";
-    ctx.font =  textSize + "px Arial";
-    ctx.textAlign = "center";
-    ctx.fillText(this.text, this.x, this.y + textSize/4);
-  }
-};
-
+function addBubble(name, x_start, y_start) {
+	var ball = {
+	text: name,
+	x: x_start,
+	y: y_start,
+	vx: getRand(-2,9),
+	vy: getRand(-2,9),
+	ay: getRand(0.99, 1),
+	radius: 50,
+	color: "#71D1EA",
+	draw: function() {
+		  ctx.beginPath();
+		  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
+		  ctx.closePath();
+		  ctx.fillStyle = this.color;
+		  ctx.fill();
+		  var textSize = (this.radius*2 / this.text.length);
+		  ctx.fillStyle = "#FDFEFF";
+		  ctx.font =  textSize + "px Arial";
+		  ctx.textAlign = "center";
+		  ctx.fillText(this.text, this.x, this.y + textSize/3);
+	}
+	};
+	return ball;
+}
 function draw() {
-  ctx.clearRect(0,0, canvas.width, canvas.height);
-  ball.draw();
-  ball.x += ball.vx;
-  ball.y += ball.vy;
-  raf = window.requestAnimationFrame(draw);
-  ball.vy *= .99;
-ball.vy += .25;
-  if (ball.y + ball.vy > canvas.height || ball.y + ball.vy < 0) {
-  ball.vy = -ball.vy;
+	ctx.clearRect(0,0, canvas.width, canvas.height);
+	for (var i = 0; i < bubbles.length; i++) {
+		bubbles[i].draw();
+		var bubble = bubbles[i];
+		bubble.x += bubble.vx;
+		bubble.y += bubble.vy;
+		bubble.vy *= bubble.ay;
+		bubble.vy += getRand(0, 0.5);
+		if (bubble.y + bubble.vy > canvas.height || bubble.y + bubble.vy < 0) {
+			bubble.vy = -bubble.vy;
+		}
+		if (bubble.x + bubble.vx > canvas.width || bubble.x + bubble.vx < 0) {
+			bubble.vx = -bubble.vx;
+		}	
+	}
+	raf = window.requestAnimationFrame(draw);
 }
-if (ball.x + ball.vx > canvas.width || ball.x + ball.vx < 0) {
-  ball.vx = -ball.vx;
-}
-}
+
+
+
+
 
 canvas.addEventListener('mouseover', function(e){
-  raf = window.requestAnimationFrame(draw);
+	raf = window.requestAnimationFrame(draw);
 });
 
 canvas.addEventListener("mouseout",function(e){
-  window.cancelAnimationFrame(raf);
+	window.cancelAnimationFrame(raf);
 });
 
-ball.draw(); 
+
+
+function rand_num_within_window () {
+	var num = Math.floor((Math.random() * (window.innerWidth/100))*100 + 1);
+	return num;
 }
 
-addBubble("hello", 100, 100);
+function rand_velocity_modifier () {
+	return Math.floor(Math.random()*5) +1;
+}
+
+function getRand (max, min) {
+	return Math.random() * (max - min) + min;
+}
+
+console.log(rand_num_within_window());
+console.log(rand_num_within_window());
+console.log(rand_num_within_window());
+
+for (var i = 0; i < num_of_bubbles; i ++) {
+	bubbles[i] = addBubble(band_names[i], rand_num_within_window(), 100);
+	bubbles[i].draw();
+}
+
+
+
+
+//create array of balls
+
+//animate balls
+	//clear rect
+	//process each ball in array
+
+
+
+
+
+
+
+
+
