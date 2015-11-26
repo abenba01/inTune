@@ -13,8 +13,8 @@ var ball = {
   y: y_start,
   vx: 5,
   vy: 2,
-  radius: 25,
-  color: 'blue',
+  radius: 50,
+  color: "#71D1EA",
   draw: function() {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
@@ -22,7 +22,7 @@ var ball = {
     ctx.fillStyle = this.color;
     ctx.fill();
     var textSize = (this.radius*2 / this.text.length) *2;
-    ctx.fillStyle = "red";
+    ctx.fillStyle = "#FDFEFF";
     ctx.font =  textSize + "px Arial";
     ctx.textAlign = "center";
     ctx.fillText(this.text, this.x, this.y + textSize/4);
