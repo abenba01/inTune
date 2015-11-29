@@ -17,6 +17,7 @@ var raf;
 //establish key value pair objects for main and footer
 var bubbles = new Object;
 var footer_bubbles = new Object;
+var num_in_footer = 0;
 
 //variable to store all band names 
 var band_names = [
@@ -24,6 +25,8 @@ var band_names = [
 "Drake", "Fetty Wap", "Sun Kil Moon", "MGMT", "One Direction", "Miley Cyrus", 
 "The Weeknd", "Adele"
 ];
+
+//var band_names = ["1", "2"];
 
 var num_of_bubbles = band_names.length;
 
@@ -42,6 +45,7 @@ function addBubble(name, x_start, y_start) {
 	radius: 50,
 	color: "#71D1EA",
 	pop: false,
+	placed: false,
 	in_footer: false,
 	//draws bubble on canvas 
 	draw: function() {
@@ -116,6 +120,34 @@ function draw() {
 		if (bubble.x + bubble.vx + bubble.radius > rect.right || bubble.x - bubble.radius + bubble.vx < 0) {
 			bubble.vx = -bubble.vx;
 		}	
+
+		//collision with other bubbles doesn't work great. needs to start with //bubbles that don't overlap
+		/*
+		for(var other_key in bubbles) {
+			var o_bubble = bubbles[other_key];
+			if (key == other_key) {continue;}
+			var next_y_u = bubble.y + bubble.vy - bubble.radius;
+			var next_y_d = bubble.y + bubble.vy + bubble.radius;
+			var next_x_l = bubble.x + bubble.vx - bubble.radius;
+			var next_x_r = bubble.x + bubble.vx + bubble.radius;
+			if (next_x_r <= (o_bubble.x + o_bubble.radius) && 
+				next_x_r >= (o_bubble.x -o_bubble.radius)  && 
+				next_y_d <= (o_bubble.y +o_bubble.radius) && 
+				next_y_d >= (o_bubble.y -o_bubble.radius)) {
+				bubble.vy = -bubble.vy;
+				bubble.vx = -bubble.vx;
+			}
+			if (next_x_l <= (o_bubble.x + o_bubble.radius) && 
+				next_x_l >= (o_bubble.x -o_bubble.radius)  && 
+				next_y_u <= (o_bubble.y +o_bubble.radius) && 
+				next_y_u >= (o_bubble.y -o_bubble.radius)) {
+				bubble.vy = -bubble.vy;
+				bubble.vx = -bubble.vx;
+			}
+		}
+		*/
+
+
 	}
 
 	//draws bubbles in footer and then udpates attributes based on required 
@@ -128,18 +160,27 @@ function draw() {
 		//until they are the proper size
 		if(bubble.radius < 50 && bubble.pop) {
 			bubble.radius *= 2;
+		
 		//otherwise theres some fancy stuff here to make the bubles bounce and 
 		//settle in the right place but it doesnt work yet :(
-		} else {
-			if (bubble.vx < 1 && bubble.vx > -1 && bubble.x > (canvas.width *.80) - (100 * Object.keys(footer_bubbles).length) ){ 
-				bubble.vx = 0;
-				bubble.x = footer_canvas.width - (100 * Object.keys(footer_bubbles).length - 50);
+		} else if (!bubble.placed){
+			console.log("bubble not placed");
+			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (canvas.width *.73) - (100 * num_in_footer)){ 
+				//bubble.vx = 0;
+				//bubble.x = footer_canvas.width - (100 * num_in_footer) - 50;
+				num_in_footer++;
+				bubble.placed = true;
 			}
 			bubble.x += bubble.vx;
-			bubble.vx *= 0.9;
-			bubble.vx += 0.9;
-			if(bubble.x + bubble.vx + bubble.radius > footer_canvas.width) {
-				bubble.vx = -bubble.vx;
+			bubble.vx *= 0.93;
+			bubble.vx += 1;
+			if(bubble.x + bubble.vx + bubble.radius > footer_canvas.width - 100*num_in_footer) {
+				
+				if (bubble.	placed){
+					bubble.vx = 0;
+				} else {
+					bubble.vx = -bubble.vx;
+				}
 			}
 		}
 	}
@@ -150,7 +191,7 @@ function draw() {
 
 //bubble is added to footer with default overidden to footer defaults 
 function push_to_footer(key) {
-	footer_bubbles[key] = addBubble(key, 100 + 100*Object.keys(footer_bubbles).length, footer_rect.height/2);
+	footer_bubbles[key] = addBubble(key, 100, footer_rect.height/2);
 	footer_bubbles[key].in_footer = true;
 	footer_bubbles[key].pop = true;
 	footer_bubbles[key].radius = 3.125;
@@ -164,14 +205,14 @@ function push_to_footer(key) {
 function rand_x_in_cvs () {
 	var min = rect.left +100;
 	var max = rect.right - 100;
-	return Math.floor( Math.random() * (max-min) ) + min;
+	return Math.floor( Math.random() * ((max-min)/10))*10 + min;
 }
 
 //gets a random y value withihn main canvas
 function rand_y_in_cvs () {
 	var min = rect.top +100;
 	var max = rect.bottom - 100;
-	return Math.floor( Math.random() * (max-min) ) + min;
+	return Math.floor( Math.random() * ((max-min)/10))*10 + min;
 }
 
 //gets random velocity modifier (outdated)
@@ -188,6 +229,7 @@ function getRand (max, min) {
 for (var i = 0; i < num_of_bubbles; i ++) {
 	var name = band_names[i];
 	bubbles[name] =  addBubble(name, rand_x_in_cvs(), rand_y_in_cvs());
+	console.log(bubbles[name].x, bubbles[name].y);
 	bubbles[name].draw();
 }
 
