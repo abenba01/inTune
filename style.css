@@ -58,6 +58,18 @@
 #bubble_cvs{
 	
 }
+
+#dropdown{
+	background-color: #F38630;
+	color: #FFFFFF;
+}
+
+
+div.btn-group li.text a{
+	color: #FFFFFF;
+}
+
+
 /*
 #song_panel{
 	width: 70%;
