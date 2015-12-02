@@ -5,13 +5,25 @@ function fetchArtistPlaylist(artist,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
     $("#all_results").empty();
     info("Creating the playlist ...");
-    $.getJSON(url, { 
+    console.log(artist);
+    var artists = ['Vampire Weekend', 'Drake'];
+    var tracks = "";
+    var params = {
+    	 
             'api_key': config.apiKey,
-            'track_id': "TRTLKZV12E5AC92E11", 
-            //'artist': artist,
             'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 
             'limit' : true,
-            'variety' : 1, 'results': 12, 'type':'song-radio',  }) 
+            'variety' : 1, 'results': 12, 'type':'artist-radio',  
+        };
+        if (tracks != "") {
+        	params.track_id = tracks;
+        } if (artists != "") {
+        	params.artist = artists;
+        }
+
+
+    //var tracks = ['TRTLKZV12E5AC92E11'];
+    $.getJSON(url, params) 
         .done(function(data) {
         	console.log(data.response);
             info("");
