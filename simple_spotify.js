@@ -13,7 +13,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             'api_key': config.apiKey,
             'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 
             'limit' : true,
-            'variety' : 1, 'results': 12, 'type':'artist-radio',  
+            'variety' : 1, 'results': 50, 'type':'artist-radio',  
         };
         if (tracks != "") {
         	params.track_id = tracks;
