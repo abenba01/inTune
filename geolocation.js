@@ -5,7 +5,10 @@
 	var myLat = 0;
 	var myLng = 0;
 	var address_info = "";
-
+	var data;
+	var results;
+	var openWeatherMapKey = '4ec6865ce305a9b9db6f2f8de2296691'; 
+ 		
 	var amsterdam = new Object();
 		amsterdam['rain'] = 'http://i.imgur.com/9vBBFuF.jpg';
 		amsterdam['cloudy_fall'] = 'http://i.imgur.com/9LwtY0h.jpg';
@@ -66,7 +69,7 @@
 		weather['partly_cloudy'] = 'http://i.imgur.com/rSBnpjS.jpg'
 		weather['overcast'] = 'http://i.imgur.com/JCUCRn3.jpg';
 		weather['sunset_clear'] = 'http://i.imgur.com/EgNhNve.jpg';
-		weather['fog'] = 'http://i.imgur.com/R2m1Fmg.jpg';
+		weather['fog'] = "http://i.imgur.com/R2m1Fmg.jpg";
 		weather['rain'] = 'http://i.imgur.com/reHMzYe.jpg';
 		weather['rain_spring'] = 'http://i.imgur.com/TUXs0db.jpg';
 		weather['snow'] = 'http://i.imgur.com/M7BkXwP.jpg';
@@ -77,7 +80,6 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						//geocodeLatLng();
 						getWeather();
 					});
 				}
@@ -87,13 +89,8 @@
 	}
 				
 	function getWeather(){
-		
-		var data;
-		var results;
-    	var openWeatherMapKey = '4ec6865ce305a9b9db6f2f8de2296691'; 
-   		var requestString = "http://api.openweathermap.org/data/2.5/weather?lat=" + myLat + "&lon=" + myLng + "&cluster=yes&format=json" + "&APPID=" + openWeatherMapKey;
- 		
  		request = new XMLHttpRequest();
+ 		var requestString = "http://api.openweathermap.org/data/2.5/weather?lat=" + myLat + "&lon=" + myLng + "&cluster=yes&format=json" + "&APPID=" + openWeatherMapKey;
    		request.open("GET", requestString, true);
     	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     	request.send(null);
@@ -102,13 +99,21 @@
 						data = request.responseText;
 						results = JSON.parse(data);
 						console.log(results);
+						console.log(today.format("H:MM"));
+						console.log(results['sys'].sunrise + " - " + time);
+						function setMood(){
+							if(results['name'] == 'Medford' && results['weather'][0].main == 'Mist' && time > 0){
+									document.body.style.backgroundImage = "url('" + weather['fog'] + "')";
+							}
+						}
+						setMood();
 					}else if(request.readyState === 4 & request.status !== 200){
 						alert("Whoops, something is wrong with your data!");
 					}
 		}
 	}
 
-	getMyLocation();
+	
 
 	
 
