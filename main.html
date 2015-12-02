@@ -8,6 +8,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src ="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="centering.js"></script>
+
 	<script type="text/javascript" src = "spotify_en_tools.js"></script>   
     <script type="text/javascript" src = "simple_spotify.js"></script>
 
@@ -73,30 +75,11 @@
 	</div>
 	<div class="col-md-6 col-md-offset-3">
 		<div class="panel panel-default center-block" id="song_panel">
-			<div class="panel-heading" id="list_text">Up next...</div>
-			<div class="list-group">
-				<button type="button" class="list-group-item" id="list_text">Song Name
-					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
-				</button>
-				<button type="button" class="list-group-item" id="list_text">Song Name
-					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
-				</button>
-				<button type="button" class="list-group-item" id="list_text">Song Name
-					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
-				</button>
-				<button type="button" class="list-group-item" id="list_text">Song Name
-					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
-				</button>
-				<button type="button" class="list-group-item" id="list_text">Song Name
-					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
-				</button>
-				<button type="button" class="list-group-item" id="list_text">Song Name
-					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
-				</button>
-			</div>
-		</div> 
-	</div>
-	    <div id='seed' class='centered'>
+
+	    <div id ='seed' id='song_panel' class='centered'>
+	    	<script>
+			center();
+			</script>
         <span> Seed artist:
             <input title="Artist" type="text"  size=34 id="artist" name="artist" value='God is an Astronaut'/>
         </span>
@@ -107,5 +90,7 @@
         Powered by <a href="http://the.echonest.com">The Echo Nest</a> and <a href="http://spotify.com">Spotify</a>. 
     </div>
     </div>
+    	</div> 
+	</div>
 </body>
 <html>

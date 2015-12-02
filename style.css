@@ -1,17 +1,17 @@
-.all_buttons, #getstarted_button{
+#all_buttons, #getstarted_button{
 
 	box-shadow: 2px 2px 2px #888888;
 	border-style: none;
 	background-color: #69D2E7;
 }
 
-.h3text{
+#h3text{
 
 	color: #F38630;
 
 }
 
-.h1text{
+#h1text{
 
 	color: #FA6900;
 }
@@ -55,9 +55,6 @@
 	background-color: #FCFDE5; /*a very pretty cream color*/
 
 }
-#bubble_cvs{
-	
-}
 
 #dropdown{
 	background-color: #F38630;
@@ -71,6 +68,17 @@ div.btn-group li.text a{
 
 #song_panel{
 	opacity: 0.7;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-style: none;
+
+}
+
+#upnext{
+	background-color: #69D2E7;
+	color: #FFFFFF;
 }
 
 #list_text{
