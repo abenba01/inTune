@@ -1,3 +1,5 @@
+jQuery.ajaxSettings.traditional = true; 
+
 //Establish canvas and context for main and footer
 var canvas = document.getElementById('bubble_cvs');
 var footer_canvas = document.getElementById('footer_cvs');
@@ -26,6 +28,44 @@ var band_names = [
 "The Weeknd", "Adele"
 ];
 
+var band_names2 = [];
+
+var config = getConfig(); 
+
+function getBandNames() {
+	
+	var url = config.echoNestHost + 'api/v4/artist/top_hottt';
+	$("#all_results").empty();
+    $.getJSON(url, { 
+    	'api_key' : config.apiKey,
+    	//'genre'   : ,
+        'bucket'  : [ 'id:' + config.spotifySpace],
+        'limit'   : true,
+        'results' : 15, 
+    }) 
+        .done(function(data) {
+        	console.log(data);
+            if (! ('artists' in data.response)) {
+                console.log("Can't find any artists!");
+            } else {
+            	var counter = 0;
+            	for (artist of data.response.artists){
+            		//console.log(artist.name);	
+            		band_names2[counter] = artist.name;
+            		counter++;
+            	}
+                console.log(band_names2);
+                //makeBubbles();
+            }   
+
+        })
+        .error( function() {
+            console.log("Whoops, had some trouble getting band names!");
+        }) ;
+
+}
+
+//getBandNames();
 //var band_names = ["1", "2"];
 
 var num_of_bubbles = band_names.length;
@@ -86,6 +126,7 @@ function addBubble(name, x_start, y_start) {
 
 //main function that controls animation 
 function draw() {
+
 	//clears both canvases before each redraw
 	main_ctx.clearRect(0,0, canvas.width, canvas.height);
 	footer.clearRect(0,0, footer_canvas.width, footer_canvas.height);
@@ -226,12 +267,12 @@ function getRand (max, min) {
 }
 
 //adds bubbles from band names
-for (var i = 0; i < num_of_bubbles; i ++) {
-	var name = band_names[i];
-	bubbles[name] =  addBubble(name, rand_x_in_cvs(), rand_y_in_cvs());
-	console.log(bubbles[name].x, bubbles[name].y);
-	bubbles[name].draw();
-}
+	for (var i = 0; i < num_of_bubbles; i ++) {
+		var name = band_names[i];
+		bubbles[name] =  addBubble(name, rand_x_in_cvs(), rand_y_in_cvs());
+		console.log(bubbles[name].x, bubbles[name].y);
+		bubbles[name].draw();
+	}
 
 //requests animation frame from draw while mouseover
 canvas.addEventListener('mouseover', function(e){
