@@ -10,6 +10,8 @@
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 	<script type="text/javascript" src="centering.js"></script>
 
+	<script type="text/javascript" src = "spotify_en_tools.js"></script>   
+    <script type="text/javascript" src = "simple_spotify.js"></script>
 
 <head>
 <body>
@@ -99,5 +101,16 @@
 			</div>
 		</div> 
 	</div>
+	    <div id='seed' class='centered'>
+        <span> Seed artist:
+            <input title="Artist" type="text"  size=34 id="artist" name="artist" value='God is an Astronaut'/>
+        </span>
+        <button value="go" id="go" name="go"> Go </button>
+         <div id="info"> </div>
+    <div id="all_results"> </div>
+    <div id='footer'> 
+        Powered by <a href="http://the.echonest.com">The Echo Nest</a> and <a href="http://spotify.com">Spotify</a>. 
+    </div>
+    </div>
 </body>
 <html>
