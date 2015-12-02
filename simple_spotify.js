@@ -1,14 +1,12 @@
 jQuery.ajaxSettings.traditional = true; 
 var config = getConfig();
 
-var songList = [];
-
-function fetchArtistPlaylist(artist,  wandering, variety) {
+function fetchArtistPlaylist(artists,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
     $("#all_results").empty();
     info("Creating the playlist ...");
-    console.log(artist);
-    var artists = ['Vampire Weekend', 'Drake'];
+    console.log(artists);
+    //var artists = ['Vampire Weekend', 'Drake'];
     var tracks = "";
     var params = {
     	 
@@ -32,7 +30,7 @@ function fetchArtistPlaylist(artist,  wandering, variety) {
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
-                var title = "Artist radio for " + artist;
+                var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
             }
@@ -57,23 +55,22 @@ function getSongId(songname) {
 }*/
 
 
-function newArtist() {
-    var artist = $("#artist").val();
-    fetchArtistPlaylist(artist, false, .2);
-}
 function info(txt) {
     $("#info").text(txt);
 }
-function initUI() {
-    $("#artist").on('keydown', function(evt) {
-        if (evt.keyCode == 13) {
-            newArtist();
-        }
-    });
-    $("#go").on("click", function() {
-        newArtist();
-    });
-}
+
 $(document).ready(function() {
-    initUI();
+    var data = JSON.parse(localStorage['seed_artists']);
+    console.log(data);
+    var counter = 0;
+    var artists = [];
+    
+    for (var key in data) {
+    	console.log(key);
+    	console.log(counter);
+    	artists[counter] = key;
+    	counter++;
+    } 
+    console.log(artists);
+    fetchArtistPlaylist(artists, false, 1);
 });
