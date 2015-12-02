@@ -8,6 +8,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script type="text/javascript" src ="bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+	<script type="text/javascript" src="centering.js"></script>
+
 
 <head>
 <body>
@@ -71,7 +73,10 @@
 	</div>
 	<div class="col-md-6 col-md-offset-3">
 		<div class="panel panel-default center-block" id="song_panel">
-			<div class="panel-heading" id="list_text">Up next...</div>
+			<script>
+			center();
+			</script>
+			<div class="panel-heading" id="upnext" id="list_text">Up next...</div>
 			<div class="list-group">
 				<button type="button" class="list-group-item" id="list_text">Song Name
 					<span type="button" class="close" id="closebutton" aria-label="Close" class="pull-right"aria-hidden="true" >&times;</span>
