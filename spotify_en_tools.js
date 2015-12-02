@@ -8,7 +8,7 @@ function getConfig() {
 
 /* Tools for making working with the Spotify and Echo Nest APIs easier */
 function getSpotifyPlayButtonForPlaylist(title, playlist) {
-    var embed = '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:PREFEREDTITLE:TRACKS" style="width:640px; height:520px;" frameborder="0" allowtransparency="true"></iframe>';
+    var embed = '<iframe src="https://embed.spotify.com/?uri=spotify:trackset:PREFEREDTITLE:TRACKS" style="width:700px; height:500px;" frameborder="0" allowtransparency="true"></iframe>';
     var tids = [];
     playlist.forEach(function(song) {
         var tid = fidToSpid(song.tracks[0].foreign_id);
