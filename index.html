@@ -11,8 +11,9 @@
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script type="text/javascript" src = "frontend.js"></script> 
-    <script src="centering.js"></script>  
     <script type="text/javascript" src = "frontend.js"></script>
+    <script type="text/javascript" src = "spotify_en_tools.js"></script> 
+    <script src="centering.js"></script>  
 
 </head>
 
@@ -26,7 +27,7 @@
             </div>
 
             <div class="modal-footer">
-            	<button type="button" class="btn btn-primary center-block" class="all_buttons">Log in with Spotify.</button>
+            	<button type="button" class="btn btn-primary center-block" id="all_buttons">Log in with Spotify.</button>
 	                <!-- link to guest page once we make it -->
 	               <p class = "text-center"> or, <a href="#" data-dismiss="modal" class="link">continue as guest</a>. </p>
                    <!-- We need an "onclick" that will display the header class -->
@@ -51,7 +52,6 @@
     <!-- bubble container -->
     <div class="container-fluid" id="bubble_container">
         <canvas id="bubble_cvs" width = "auto" height="auto"></canvas>
-
 
     </div>
 

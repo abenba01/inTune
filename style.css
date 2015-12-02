@@ -1,4 +1,4 @@
-.all_buttons, #getstarted_button{
+#all_buttons, #getstarted_button{
 
 	box-shadow: 2px 2px 2px #888888;
 	border-style: none;
@@ -68,15 +68,18 @@ div.btn-group li.text a{
 
 #song_panel{
 	opacity: 0.7;
-	position: relative;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	border-style: none;
 
 }
 
-#upnext{
-	background-color: #69D2E7;
-	color: #FFFFFF;
-}
+p{
 
+	text-align: center;
+}
 #list_text{
 	color: #000000;
 	border-color: #69D2E7;
