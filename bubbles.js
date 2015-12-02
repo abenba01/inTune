@@ -304,5 +304,7 @@ canvas.addEventListener("click", function(e) {
 	}
 });
 	
-
+function store_footer_bubbles() {
+	localStorage['seed_artists'] = JSON.stringify(footer_bubbles);
+}
 
