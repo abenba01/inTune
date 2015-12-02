@@ -1,7 +1,4 @@
 
-	var today = new Date();
-    var time = today.getTime();
-    var month = today.getMonth();
 	var myLat = 0;
 	var myLng = 0;
 	var address_info = "";
@@ -99,24 +96,42 @@
 						data = request.responseText;
 						results = JSON.parse(data);
 						console.log(results);
-						console.log(today.format("H:MM"));
-						console.log(results['sys'].sunrise + " - " + time);
 						function setMood(){
 							if(results['name'] == 'Medford' && results['weather'][0].main == 'Mist' && time > 0){
 									document.body.style.backgroundImage = "url('" + weather['fog'] + "')";
 							}
 						}
+						function convert_times(){
+							var today = new Date(),	// Convert the passed timestamp to milliseconds
+							my_month = ('0' + (today.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
+							my_hr = ('0' + today.getHours()).slice(-2),
+							my_min = ('0' + today.getMinutes()).slice(-2),
+							my_time_string = my_hr + my_min;
+							console.log(my_time_string);
+
+							var sunrise_time = new Date(results['sys'].sunrise * 1000)
+							rise_hr = ('0' + sunrise_time.getHours()).slice(-2),
+							rise_min = ('0' + sunrise_time.getMinutes()).slice(-2),
+							sunrise_time_string = rise_hr + rise_min;
+							console.log(sunrise_time_string);
+
+							var sunset_time = new Date(results['sys'].sunset * 1000)
+							set_hr = ('0' + sunset_time.getHours()).slice(-2),
+							set_min = ('0' + sunset_time.getMinutes()).slice(-2),
+							sunset_time_string = set_hr + set_min;
+							console.log(sunset_time_string);
+
+							return;
+						}
+						convert_times();
 						setMood();
 					}else if(request.readyState === 4 & request.status !== 200){
 						alert("Whoops, something is wrong with your data!");
 					}
 		}
-	}
+	 }
 
-	
-
-	
-
+getMyLocation();
 
 //https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
 //http://home.openweathermap.org/
