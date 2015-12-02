@@ -65,7 +65,7 @@ function getBandNames() {
 
 }
 
-//getBandNames();
+getBandNames();
 //var band_names = ["1", "2"];
 
 var num_of_bubbles = band_names.length;

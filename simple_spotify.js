@@ -1,6 +1,8 @@
 jQuery.ajaxSettings.traditional = true; 
 var config = getConfig();
 
+var songList = [];
+
 function fetchArtistPlaylist(artist,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
     $("#all_results").empty();
