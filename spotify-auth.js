@@ -33,7 +33,7 @@
 //    /api/token with new token to get back new access token)
 	var client_id = "2577a2b352e34b2f8d877f89c4495d21";
 	var client_secret = "824c3ece961849b58efd3561a572033f";
-	var redirect_uri = "http://localhost:8888/callback" //TODO add later too spotify app info page and find actual page
+	var redirect_uri = "http://localhost:8888/callback"; //TODO add later too spotify app info page and find actual page
 
 
 	var spotify_url_auth = 'https://accounts.spotify.com/authorize';
@@ -62,4 +62,3 @@
     	});
 
 
-}
