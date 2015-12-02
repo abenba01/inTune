@@ -76,11 +76,10 @@ div.btn-group li.text a{
 
 }
 
-#upnext{
-	background-color: #69D2E7;
-	color: #FFFFFF;
-}
+p{
 
+	text-align: center;
+}
 #list_text{
 	color: #000000;
 	border-color: #69D2E7;

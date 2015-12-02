@@ -22,13 +22,13 @@ var footer_bubbles = new Object;
 var num_in_footer = 0;
 
 //variable to store all band names 
-var band_names = [
+/*var band_names = [
 "Nickleback", "The Strokes", "The Killers", "Father John Misty", "Future", 
 "Drake", "Fetty Wap", "Sun Kil Moon", "MGMT", "One Direction", "Miley Cyrus", 
 "The Weeknd", "Adele"
-];
+];*/
 
-var band_names2 = [];
+var band_names = [];
 
 var config = getConfig(); 
 
@@ -41,7 +41,7 @@ function getBandNames() {
     	//'genre'   : ,
         'bucket'  : [ 'id:' + config.spotifySpace],
         'limit'   : true,
-        'results' : 15, 
+        'results' : 25, 
     }) 
         .done(function(data) {
         	console.log(data);
@@ -51,11 +51,12 @@ function getBandNames() {
             	var counter = 0;
             	for (artist of data.response.artists){
             		//console.log(artist.name);	
-            		band_names2[counter] = artist.name;
+            		band_names[counter] = artist.name;
             		counter++;
             	}
-                console.log(band_names2);
-                //makeBubbles();
+                console.log(band_names);
+                num_of_bubbles = band_names.length;
+                makeBubbles();
             }   
 
         })
@@ -68,7 +69,7 @@ function getBandNames() {
 getBandNames();
 //var band_names = ["1", "2"];
 
-var num_of_bubbles = band_names.length;
+var num_of_bubbles;
 
 /*function adds a bubble with the parameters given and random velocities, 
 accellerations, and a radius of 50. All bubbles start "unpopped" and not in 
@@ -79,8 +80,8 @@ function addBubble(name, x_start, y_start) {
 	text: name,
 	x: x_start,
 	y: y_start,
-	vx: getRand(-7,7),
-	vy: getRand(-7,7),
+	vx: getRand(-5,5),
+	vy: getRand(-5,5),
 	ay: getRand(-0.5,0.5),
 	radius: 50,
 	color: "#71D1EA",
@@ -267,12 +268,14 @@ function getRand (max, min) {
 }
 
 //adds bubbles from band names
+function makeBubbles() {
 	for (var i = 0; i < num_of_bubbles; i ++) {
 		var name = band_names[i];
 		bubbles[name] =  addBubble(name, rand_x_in_cvs(), rand_y_in_cvs());
 		console.log(bubbles[name].x, bubbles[name].y);
 		bubbles[name].draw();
 	}
+}
 
 //requests animation frame from draw while mouseover
 canvas.addEventListener('mouseover', function(e){
