@@ -32,6 +32,10 @@ var band_names = [];
 
 var config = getConfig(); 
 
+var genres = ['rock', 'pop', 'electronic', 'alternative rock', 'rap', 'indie rock'];
+var num_genres = 6;
+var num_results_per = 5;
+
 /*
  * PURPOSE: Function fetches 25 top_hottt artist from Echo Nest API. Names and
  *          ids returned by get request. Artist names stored in band_names array
@@ -40,38 +44,49 @@ var config = getConfig();
 function getBandNames() {
 	
 	var url = config.echoNestHost + 'api/v4/artist/top_hottt';
-	$("#all_results").empty();
-	//get request to echo nest api 
-    $.getJSON(url, { 
-    	'api_key' : config.apiKey,
-    	//'genre'   : ,
-        'bucket'  : [ 'id:' + config.spotifySpace],
-        'limit'   : true,
-        'results' : 25, 
-    }) 
-        .done(function(data) {
-        	console.log(data);
-            if (! ('artists' in data.response)) {
-                console.log("Can't find any artists!");
-            } else {
-            	var counter = 0;
-         		//save the name of each artist in array
-            	for (artist of data.response.artists){
-            		//console.log(artist.name);	
-            		band_names[counter] = artist.name;
-            		counter++;
-            	}
-                console.log(band_names);
-                num_of_bubbles = band_names.length;
-                //calls function to create bubbles
-                makeBubbles();
-            }   
+	var artist_count = 0;
+	var counter = 0;
+	//for each artist in list of genres find top 5 artists
+	
+	for (i = 0; i < num_genres; i++) {
+		$("#all_results").empty();
+		//get request to echo nest api 
+	    $.getJSON(url, { 
+	    	'api_key' : config.apiKey,
+	    	'genre'   : genres[i],	//look at next genre
+	        'bucket'  : [ 'id:' + config.spotifySpace],
+	        'limit'   : true,
+	        'results' : num_results_per,	//find 5 artists for each genre, can change
+	    }) 
+	        .done(function(data) {
+	        	
+	            if (! ('artists' in data.response)) {  //|| i < num_genres - 2
+	                console.log("Can't find any artists!");
+	            } else {
+	         		//save the name of each artist in array
+	            	for (artist of data.response.artists){
+	            		band_names[artist_count] = artist.name;
+	            		artist_count++;
+	            	}
+	            }   
 
-        })
-        .error( function() {
-            console.log("Whoops, had some trouble getting band names!");
-        }) ;
-
+	        })
+	        .error( function() {
+	            console.log("Whoops, had some trouble getting band names!");
+	        }) ;
+    }
+    //hacky way to draw bubbles. used because they were being drawn multiple times
+    	$("#all_results").empty();
+	    $.getJSON(url, { 
+	    	'api_key' : config.apiKey,
+	    }) 
+	        .done(function(data) {
+	            num_of_bubbles = band_names.length;
+	            makeBubbles();  
+	        })
+	        .error( function() {
+	            console.log("Having trouble drawing bubbles!");
+	        }) ;
 }
 
 getBandNames();
