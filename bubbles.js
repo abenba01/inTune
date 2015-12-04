@@ -220,7 +220,7 @@ function draw() {
 		//settle in the right place but it doesnt work yet :(
 		} else if (!bubble.placed){
 			console.log("bubble not placed");
-			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (canvas.width *.70) - (100 * num_in_footer)){ 
+			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (footer_canvas.width *.90) - (100 * num_in_footer)){ 
 				//bubble.vx = 0;
 				//bubble.x = footer_canvas.width - (100 * num_in_footer) - 50;
 				num_in_footer++;
