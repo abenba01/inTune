@@ -18,7 +18,17 @@
 
 .link{
 
-	color: #F38630;
+	color: #FFFFFF;
+}
+
+.modal-header{
+
+	background-color: #FCFBE3;
+}
+
+.modal-footer{
+
+	background-color: #F38630; 
 }
 
 #bubble_footer{
