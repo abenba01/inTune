@@ -11,7 +11,10 @@ Music recommendations
 
 What we still need to do:
 
-Playlist saving (via a text file)
+*Playlist saving via MOngo Database
+
+*Changed from previous plan to save text file containing playlist information to client machine
+
 Server-side data persistence
 	- Saving playlist to database with IP address
 		- "Thanks for saving your playlist. Now, whenever you come back to inTune, you can listen to it."
