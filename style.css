@@ -2,18 +2,23 @@
 
 	box-shadow: 2px 2px 2px #888888;
 	border-style: none;
-	background-color: #69D2E7;
+	background-color: #00B4FF;
+
+}
+
+#getstarted_button {
+	margin: 20% 0px;
 }
 
 #h3text{
 
-	color: #F38630;
+	color: #666;
 
 }
 
 #h1text{
 
-	color: #FA6900;
+	color: #00B4FF;
 }
 
 .link{
@@ -23,7 +28,7 @@
 
 .modal-header{
 
-	background-color: #FCFBE3;
+	background-color: #EEE;
 }
 
 .modal-footer{
@@ -33,7 +38,8 @@
 
 #bubble_footer{
 
-	background-color: #FC912D;
+	/*background-color: #EEE;*/
+	background-color: rgba(240, 240, 240, 0.8);
 	position: fixed;
 	bottom: 0px;
 	width: 100%;
@@ -47,22 +53,28 @@
 
 #header{
 
-	opacity: 0.6;
-	color: #FC912D;
+	/*opacity: 0.6;*/
+	color: #FFF;
 	font-size: 20px;
+	background-color: rgba(10,10,10, 0.5);
 
 }
 
 #bubble_container{
-	
-	/*background-color: #f2f2f2; /*a very pretty cream color*/
+	/*
+	background-color: #FAFAFA	; 
+	background-size: 100% auto; 
+	*/
 	padding:0;
 
 }
 
+
 #fullbody{
 
-	background-color: #FCFDE5; /*a very pretty cream color*/
+	background-color: #000; /*a very pretty cream color*/
+	background-image: url("sunny.jpg");
+	background-size: 100% auto;
 
 }
 

@@ -145,8 +145,8 @@ function draw() {
 	//clears both canvases before each redraw
 	main_ctx.clearRect(0,0, canvas.width, canvas.height);
 	footer.clearRect(0,0, footer_canvas.width, footer_canvas.height);
-	main_ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
-	stackBlurCanvasRGBA("bubble_cvs", 0, 0, canvas.width, canvas.height, 100);
+	//main_ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+	//stackBlurCanvasRGBA("bubble_cvs", 0, 0, canvas.width, canvas.height, 100);
 	//draws all bubble in main canvas using member function and then updates their attributes based on velocities
 	for (var key in bubbles) {
 		bubbles[key].draw();
