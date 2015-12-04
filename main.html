@@ -85,10 +85,46 @@
 		        <p>Powered by <a href="http://the.echonest.com" class="link">The Echo Nest</a> and <a href="http://spotify.com" class="link">Spotify</a>. </p>
 		        <button type="button" class="btn btn-primary center-block" id="all_buttons" onclick="alert('Saved!');">Save playlist</button>
 
+		        <br>
+
+		        <p <a href="#" data-dismiss="modal" class="link" onClick = "$('#myModal').modal('show');">What is inTune?</a></p>
+
+
     		</div>
 		</div> 
 
 	</div>
+
+
+<div id="myModal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class = "text-center" id="h3text">What is inTune?</h3>
+            </div>
+
+            <div class="modal-body">
+            	<p>Why do you listen to what you listen to? Because of how you're feeling. You spend countless minutes searching for a playlist to fit your mood, but this becomes difficult when you can't pinpoint how you're feeling.
+            	<br>
+            	inTune takes care of that problem for you. We take external variables&mdash;such as weather, location and time of day&mdash;to determine your mood. We then use this information to make you a customized mix based on your personal music preferences
+            	<br>
+            	Happy listening,
+            	<br>
+            	the inTune team
+
+            	</p>
+                
+            </div>
+
+            <div class="modal-footer">
+            	<button type="button" class="btn btn-primary center-block" id="all_buttons" onClick="$('#my-modal').modal('hide');">Close</button>
+            </div>
+
+
+
+        </div>
+    </div> 
+</div>
 
 </body>
 <html>
