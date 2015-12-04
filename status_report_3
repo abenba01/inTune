@@ -1,0 +1,25 @@
+With about a week remaining before we are set to finish inTune, the project is coming along relatively smoothly, with a few bumps here and there that we have been able to smooth out by working together and using our resources.
+
+What we have accomplished:
+Geolocation
+Front-end framework
+Music recommendations
+*Client-side data persistence
+
+
+*Upon revision, we have decided to replace data/screen scraping with client-side data persistence as it is more consistent with our scope and helps us improve the quality of our project.
+
+What we still need to do:
+
+Playlist saving (via a text file)
+Server-side data persistence
+	- Saving playlist to database with IP address
+		- "Thanks for saving your playlist. Now, whenever you come back to inTune, you can listen to it."
+Push notifications
+	- Revisit alert: you have a saved playlist
+		- "Hi! You have some saved playlists. Want to listen to them?"
+
+
+
+
+
