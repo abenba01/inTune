@@ -32,10 +32,16 @@ var band_names = [];
 
 var config = getConfig(); 
 
+/*
+ * PURPOSE: Function fetches 25 top_hottt artist from Echo Nest API. Names and
+ *          ids returned by get request. Artist names stored in band_names array
+ *          for names in bubbles
+ */
 function getBandNames() {
 	
 	var url = config.echoNestHost + 'api/v4/artist/top_hottt';
 	$("#all_results").empty();
+	//get request to echo nest api 
     $.getJSON(url, { 
     	'api_key' : config.apiKey,
     	//'genre'   : ,
@@ -49,6 +55,7 @@ function getBandNames() {
                 console.log("Can't find any artists!");
             } else {
             	var counter = 0;
+         		//save the name of each artist in array
             	for (artist of data.response.artists){
             		//console.log(artist.name);	
             		band_names[counter] = artist.name;
@@ -56,6 +63,7 @@ function getBandNames() {
             	}
                 console.log(band_names);
                 num_of_bubbles = band_names.length;
+                //calls function to create bubbles
                 makeBubbles();
             }   
 
