@@ -220,7 +220,7 @@ function draw() {
 		//settle in the right place but it doesnt work yet :(
 		} else if (!bubble.placed){
 			console.log("bubble not placed");
-			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (canvas.width *.73) - (100 * num_in_footer)){ 
+			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (canvas.width *.70) - (100 * num_in_footer)){ 
 				//bubble.vx = 0;
 				//bubble.x = footer_canvas.width - (100 * num_in_footer) - 50;
 				num_in_footer++;
@@ -289,16 +289,20 @@ function makeBubbles() {
 		bubbles[name].draw();
 	}
 }
-
+/*
 //requests animation frame from draw while mouseover
 canvas.addEventListener('mouseover', function(e){
 	raf = window.requestAnimationFrame(draw);
+});*/
+$(document).ready( function () {
+	raf = window.requestAnimationFrame(draw);
 });
-
+/*
 //cancels animation while mouseover
 canvas.addEventListener("mouseout",function(e){
 	window.cancelAnimationFrame(raf);
 });
+*/
 
 //checks for click on canvas and if it's on a bubble "pops" the bubble
 canvas.addEventListener("click", function(e) {
