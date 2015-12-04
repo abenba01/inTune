@@ -21,8 +21,6 @@ var text_color = "#00B4FF";
 var bubbles = new Object;
 var footer_bubbles = new Object;
 var num_in_footer = 0;
-var background = new Image();	
-background.src = "sunny.jpg";
 
 //variable to store all band names 
 /*var band_names = [
