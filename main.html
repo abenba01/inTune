@@ -24,10 +24,12 @@
 			   		 Weather <span class="caret"></span>
 			  	</button>
 			  	<ul class="dropdown-menu" id="dropdown">
-			  	  <li class="text"><a href="#">Sunny</a></li>
-			  	  <li class="text"><a href="#">Cloudy</a></li>
-			  	  <li class="text"><a href="#">Rain</a></li>
-			  	  <li class="text"><a href="#">Snow</a></li>
+			  	  <li class="text" id="SUN"><a href="#">Sunny</a></li>
+			  	  <li class="text" id="CLOUD"><a href="#">Cloudy</a></li>
+			  	  <li class="text" id="RAIN"><a href="#">Rain</a></li>
+			  	  <li class="text" id="SNOW"><a href="#">Snow</a></li>
+			  	  <li class="text" id="FOG"><a href="#">Fog</a></li>
+			  	  <li class="text" id="THUNDER"><a href="#">Thunder</a></li>
 			  	  <li role="separator" class="divider"></li>
 			  	  <li class="text"><a href="#">My Location</a></li>
 			 	 </ul>
@@ -42,14 +44,15 @@
 			 	 </button>
 			 	 <ul class="dropdown-menu" id="dropdown">
 			 	 <li class="text" id="USA"><a href="#">USA</a></li>
-			   	 <li class="text"><a href="#">Madrid</a></li>
-			   	 <li class="text"><a href="#">Paris</a></li>
-			   	 <li class="text"><a href="#">Rome</a></li>   
-			  	  <li class="text"><a href="#">Amsterdam</a></li>
+			   	 <li class="text" id="ES"><a href="#">Madrid</a></li>
+			   	 <li class="text" id="FR"><a href="#">Paris</a></li>
+			   	 <li class="text" id="IT"><a href="#">Rome</a></li>   
+			  	 <li class="text" id="AMS"><a href="#">Amsterdam</a></li>
+			  	 <li class="text" id="NYC"><a href="#">New York City</a></li>
+			  	 <li class="text" id="LA"><a href="#">Los Angeles</a></li>
+			  	 <li class="text" id="BOS"><a href="#">Boston</a></li>
 			  	  <li role="separator" class="divider"></li>
-			  	  <li class="text"><a href="#">My Location</a></li>
-			  	  <li role="separator" class="divider"></li> 
-			  	  <li class="text"><a href="#">Search Locations</a></li>
+			  	  <li class="text" id="MyLoc"><a href="#">My Location</a></li>
 			 	 </ul>
 				</div>
 			</div>
@@ -58,14 +61,13 @@
 			<div class="col-md-2 col-md-offset-3">
 				<div class="btn-group">
 				  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="dropdown">
-			   	 Taste <span class="caret"></span>
+			   	 myTunes <span class="caret"></span>
 			  	</button>
 			 	 <ul class="dropdown-menu" id="dropdown">
-			  	  <li class="text"><a href="#">Recent</a></li>
-			 	  <li class="text"><a href="#">Recommended</a></li>
-			  	  <li class="text"><a href="#">Popular</a></li>
+			  	  <li class="text" id="LP"><a href="#">Last Playlist</a></li>
+			  	  <li class="text" id="POP"><a href="#">Popular</a></li>
 			      <li role="separator" class="divider"></li>
-			      <li class="text"><a href="#">Edit Tastes</a></li>
+			      <li class="text" id="RESET"><a href="#">Reset Artists</a></li>
 			 	 </ul>
 				</div>
 			</div>
