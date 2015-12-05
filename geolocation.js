@@ -119,19 +119,20 @@
 				results = JSON.parse(data);
 				console.log(results);
 				myInfo['conditionCode'] = results['weather'][0].id;
+				console.log(myInfo['conditionCode']);
 				myInfo['country'] = results['sys'].country;
 				myInfo['state'] = results['sys'].state;
 				myInfo['localName'] = results['name'];
 				myInfo['sunrise'] = results['sys'].sunrise;
 				myInfo['sunset'] = results['sys'].sunset;
-				convert_times();
+				convertTimes();
 			}else if(request.readyState === 4 && request.status !== 200){
 				alert("Whoops, something is wrong with your data!");
 			}
 		}
 	}
 
-	function convert_times(){
+	function convertTimes(){
 		var today = new Date(),	// Convert the passed timestamp to milliseconds
 		my_month = ('0' + (today.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
 		my_hr = ('0' + today.getHours()).slice(-2),
@@ -152,18 +153,21 @@
 		console.log(sunset_time_string);
 
 		setCondition();
+
 	}
 
 	function setCondition(){
 		//night
+		console.log("Pass 1");
 		if(my_time_string > sunset_time || my_time_string < sunrise_time){
+					console.log("Pass 2");
 			if(myInfo['conditionCode'] >= '500' || myInfo['conditionCode'] < '532'){
 				theWeather['night_rainy'] = true; 
 				moodMeter['target_target_acousticness'] = '.9'; 
 				moodMeter['target_energy'] = '.2';
 				moodMeter['target_danceability'] = '.2';
 				moodMeter['song_type'] = 'acoustic';
-			}
+			} //summer night 
 			else if(my_month > 5 && my_month < 9){
 				theWeather['night'] = true;
 				moodMeter['target_target_acousticness'] = '0'; 
@@ -188,6 +192,7 @@
 				moodMeter['song_type'] = '';
 			}
 			else if(my_month > 11 || my_month < 4){
+						console.log("Pass 3");
 				theWeather['sunny_winter'] = true;
 				moodMeter['target_target_acousticness'] = '.5'; 
 				moodMeter['target_energy'] = '.5';
@@ -259,25 +264,26 @@
 			moodMeter['target_danceability'] = '.1';
 			moodMeter['song_type'] = '';
 		}
+
 		//snow
 	 	else if(myInfo['conditionCode'] >= '600' && myInfo['conditionCode'] <= '622'){
-			theWeather['snow'] = true;
+		    theWeather['snow'] = true;
 			moodMeter['target_target_acousticness'] = '.6'; 
 			moodMeter['target_energy'] = '.4';
 			moodMeter['target_danceability'] = '.6';
 			moodMeter['song_type'] = '';
 		}
 		else{
+			console.log("Pass 2");
 			theWeather['sunny'] = true;
 			moodMeter['target_target_acousticness'] = '0'; 
 			moodMeter['target_energy'] = '.8';
 			moodMeter['target_danceability'] = '.5';
 			moodMeter['song_type'] = '';
 		}
-	}
-		
 		determineLocation();
 
+	}	
 
 	function determineLocation(){
 		if(myInfo['localName'] == 'Medford' || myInfo['localName'] == 'Somerville'){
@@ -550,7 +556,27 @@
 	});
 
 getMyLocation();
-
+	/*
+	$.when(getMyLocation()).then(getWeather());
+	$.when(getWeather()).then(convertTimes());
+	$.when(setCondition()).then(determineLocation());
+	*/
+	console.log (moodMeter['target_target_acousticness'] +  " -- " +
+			moodMeter['target_energy'] + " -- " +
+			moodMeter['target_danceability'] + " -- " +
+			moodMeter['song_type'] + " -- " + 
+			myInfo['conditionCode'] + "--" +
+		theWeather['cloudy'] + "--" +
+		theWeather['sunny'] + "--" +
+		theWeather['sunny_fall'] + "--" +
+		theWeather['night'] + "--" +
+		theWeather['sunny_fall'] + "--" +
+		theWeather['snow'] + "--" +
+		theWeather['night_rainy']+ "--" +
+		theWeather['cloudy_summer'] + "--" +
+		theWeather['cloudy_winter'] + "--" +
+		theWeather['cloudy_fall']+ "--" +
+		theWeather['sunny_snow']);
 
 //https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
 //http://home.openweathermap.org/
