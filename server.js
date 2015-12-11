@@ -5,11 +5,6 @@ var bodyParser = require('body-parser');
 var validator = require('validator'); 
 
 
-app.use(express.static(__dirname));
-
-app.set('port', (process.env.PORT || 5000));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
@@ -18,6 +13,12 @@ var MongoClient = require('mongodb').MongoClient, format = require('util').forma
 var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 	db = databaseConnection;
 });
+
+app.use(express.static(__dirname));
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 // landing page
 app.get('/', function (request, response) {
@@ -46,4 +47,6 @@ app.post('/savePlaylist', function (request, reponse) {
 	});*/
 });
 
+
+	app.listen(process.env.PORT || 5000);
 
