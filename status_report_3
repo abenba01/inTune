@@ -3,21 +3,20 @@ With about a week remaining before we are set to finish inTune, the project is c
 What we have accomplished:
 Geolocation
 Front-end framework
-Music recommendations
+Music recommendations (artists related to selected artists appearing in playlist)
 *Client-side data persistence
-
 
 *Upon revision, we have decided to replace data/screen scraping with client-side data persistence as it is more consistent with our scope and helps us improve the quality of our project.
 
 What we still need to do:
 
-*Playlist saving via MOngo Database
-
-*Changed from previous plan to save text file containing playlist information to client machine
+Playlist saving via Mongo Database
+	-Changed from previous plan to save text file containing playlist information to 	client machine
 
 Server-side data persistence
 	- Saving playlist to database with IP address
-		- "Thanks for saving your playlist. Now, whenever you come back to inTune, you can listen to it."
+		- "Thanks for saving your playlist. Now, whenever you come back to inTune, 		you can listen to it."
+
 Push notifications
 	- Revisit alert: you have a saved playlist
 		- "Hi! You have some saved playlists. Want to listen to them?"

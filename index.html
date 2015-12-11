@@ -13,6 +13,7 @@
     <script type="text/javascript" src = "frontend.js"></script> 
     <script type="text/javascript" src = "frontend.js"></script>
     <script type="text/javascript" src = "spotify_en_tools.js"></script> 
+    <script type="text/javascript" src = "StackBlur.js"></script>
      
 
 </head>
@@ -26,13 +27,11 @@
                 <h1 class="modal-title text-center" id="h1text">Welcome to inTune.</h1> <h3 class = "text-center" id="h3text">Music for your mood </h3>
             </div>
 
-            <div class="modal-footer">
-            	<button type="button" class="btn btn-primary center-block" id="all_buttons">Log in with Spotify.</button>
-	                <!-- link to guest page once we make it -->
-	               <p class = "text-center"> or, <a href="#" data-dismiss="modal" class="link">continue as guest</a>. </p>
-                   <!-- We need an "onclick" that will display the header class -->
-
+            <div class="modal-body">
+            	<p>Pick five artists to get started.</p>
+                <button type="button" class="btn btn-primary center-block" id="all_buttons" onClick="$('#my-modal').modal('hide');">Continue.</button>
             </div>
+
         </div>
     </div> 
 </div>
@@ -41,9 +40,7 @@
     <div class="container-fluid" id="header">
 
         <div class="row">
-
-            <div class="col-md-2">Guest</div>
-            <div class="col-md-4 col-md-offset-4">Tell us what you like.</div>
+            <div class="text-center">Tell us what you like.</div>
 
         </div> 
 

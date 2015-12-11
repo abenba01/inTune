@@ -15,7 +15,8 @@ footer_canvas.width = footer_rect.width;
 var main_ctx = canvas.getContext('2d');
 var rect = canvas.getBoundingClientRect();
 var raf;
-
+var bubble_color = "#FFF";
+var text_color = "#00B4FF";
 //establish key value pair objects for main and footer
 var bubbles = new Object;
 var footer_bubbles = new Object;
@@ -107,7 +108,7 @@ function addBubble(name, x_start, y_start) {
 	vy: getRand(-5,5),
 	ay: getRand(-0.5,0.5),
 	radius: 50,
-	color: "#71D1EA",
+	color: bubble_color,
 	pop: false,
 	placed: false,
 	in_footer: false,
@@ -125,7 +126,10 @@ function addBubble(name, x_start, y_start) {
 		  ctx.arc(this.x, this.y, this.radius, 0, Math.PI*2, true);
 		  ctx.closePath();
 		  ctx.fillStyle = this.color;
+		  ctx.strokeStyle = "#EFEFEF";
+		  //ctx.lineWidth = 3;
 		  ctx.fill();
+		  ctx.stroke();
 	 	 //calculates correct size for text based on leng the of text and 
 	 	 //radius of bubble
 		  var textSize;
@@ -137,7 +141,7 @@ function addBubble(name, x_start, y_start) {
 
 		  }
 		  //fills in text in center of bubble
-		  ctx.fillStyle = "#FDFEFF";
+		  ctx.fillStyle = text_color;
 		  ctx.font =  textSize + "px Arial";
 		  ctx.textAlign = "center";
 		  ctx.fillText(this.text, this.x, this.y + textSize/3);
@@ -154,7 +158,8 @@ function draw() {
 	//clears both canvases before each redraw
 	main_ctx.clearRect(0,0, canvas.width, canvas.height);
 	footer.clearRect(0,0, footer_canvas.width, footer_canvas.height);
-
+	//main_ctx.drawImage(background, 0, 0, canvas.width, canvas.height);
+	//stackBlurCanvasRGBA("bubble_cvs", 0, 0, canvas.width, canvas.height, 100);
 	//draws all bubble in main canvas using member function and then updates their attributes based on velocities
 	for (var key in bubbles) {
 		bubbles[key].draw();
@@ -230,7 +235,7 @@ function draw() {
 		//settle in the right place but it doesnt work yet :(
 		} else if (!bubble.placed){
 			console.log("bubble not placed");
-			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (canvas.width *.73) - (100 * num_in_footer)){ 
+			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (footer_canvas.width *.90) - (100 * num_in_footer)){ 
 				//bubble.vx = 0;
 				//bubble.x = footer_canvas.width - (100 * num_in_footer) - 50;
 				num_in_footer++;
@@ -299,16 +304,20 @@ function makeBubbles() {
 		bubbles[name].draw();
 	}
 }
-
+/*
 //requests animation frame from draw while mouseover
 canvas.addEventListener('mouseover', function(e){
 	raf = window.requestAnimationFrame(draw);
+});*/
+$(document).ready( function () {
+	raf = window.requestAnimationFrame(draw);
 });
-
+/*
 //cancels animation while mouseover
 canvas.addEventListener("mouseout",function(e){
 	window.cancelAnimationFrame(raf);
 });
+*/
 
 //checks for click on canvas and if it's on a bubble "pops" the bubble
 canvas.addEventListener("click", function(e) {
