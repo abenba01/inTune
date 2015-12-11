@@ -1,5 +1,7 @@
 jQuery.ajaxSettings.traditional = true; 
 var config = getConfig();
+var songs;
+
 
 function fetchArtistPlaylist(artists,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
@@ -30,6 +32,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
+                songs = data.response.songs;
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
@@ -53,7 +56,10 @@ function getSongId(songname) {
         }) ;
 
 }*/
-
+function save() {
+    var url = '/savePlaylist'
+    $.post(url, songs);
+}
 
 function info(txt) {
     $("#info").text(txt);
