@@ -57,8 +57,8 @@ function getSongId(songname) {
 
 }*/
 function save() {
-    var url = '/savePlaylist';
-    $.post(url, songs)
+    //var url = '/savePlaylist';
+    $.post('/savePlaylist', songs)
         .done( function (data) {
             localStorage['playlistId'] = data;
             alert("saved")
