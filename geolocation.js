@@ -12,24 +12,23 @@
 	var myInfo = new Object();
 	var moodMeter = new Object();
 	var theWeather = new Object();
-		theWeather['cloudy'] = false;
 		theWeather['sunny'] = false;
+		theWeather['sunny_winter'] = false;
 		theWeather['sunny_fall'] = false;
-		theWeather['night'] = false;
-		theWeather['sunny_fall'] = false;
+		theWeather['sunny_summer'] = false;
+		theWeather['cloudy'] = false;
+		theWeather['fog'] = false;
+		theWeather['thunder'] = false;
 		theWeather['snow'] = false;
-		theWeather['night_rainy'] = false;
-		theWeather['cloudy_summer'] = false;
-		theWeather['cloudy_winter'] = false;
-		theWeather['cloudy_fall'] = false;
-		theWeather['sunny_snow'] = false;
+		theWeather['rain'] = false;
+		theWeather['night'] = false;
+
  		
 	var amsterdam = new Object();
 		amsterdam['rain'] = 'http://i.imgur.com/9vBBFuF.jpg';
-		amsterdam['cloudy_fall'] = 'http://i.imgur.com/9LwtY0h.jpg';
+		amsterdam['cloudy'] = 'http://i.imgur.com/9LwtY0h.jpg';
 		amsterdam['sunny'] = 'http://i.imgur.com/WYwtOIp.jpg';
 		amsterdam['night'] = 'http://i.imgur.com/C3pNmbd.jpg';
-		amsterdam['sunny_fall'] = 'http://i.imgur.com/b3KXPlU.jpg';
 		amsterdam['snow'] = 'http://i.imgur.com/H6rf4nZ.jpg';
 
 	var paris = new Object();
@@ -37,12 +36,10 @@
 		paris['cloudy'] = 'http://i.imgur.com/9Faukej.jpg';
 		paris['night'] = 'http://i.imgur.com/dpTCqFW.jpg';
 		paris['sunny'] = 'http://i.imgur.com/GF8oPu1.jpg';
-		paris['night_rainy'] = 'http://i.imgur.com/vem6MUp.jpg';
 		paris['rain'] = 'http://i.imgur.com/vUEXphf.jpg';
 	
 	var madrid = new Object();
-		madrid['cloudy_summer'] = 'http://i.imgur.com/tUjujf2.jpg';
-		madrid['cloudy_winter'] = 'http://i.imgur.com/yiiU0Fz.jpg';
+		madrid['cloudy'] = 'http://i.imgur.com/yiiU0Fz.jpg';
 		madrid['night'] = 'http://i.imgur.com/CbeAWwn.jpg';
 		madrid['rain'] = 'http://i.imgur.com/RrFjFk3.jpg';
 		madrid['snow'] = 'http://i.imgur.com/YQesmMs.jpg';
@@ -60,21 +57,21 @@
 		losangeles['cloudy'] = 'http://i.imgur.com/xGhFSYj.jpg';
 		losangeles['rain'] = 'http://i.imgur.com/xGhFSYj.jpg';
 		losangeles['night'] = 'http://i.imgur.com/82VQOMV.jpg';
+		losangeles['snow'] = 'http://imgur.com/REP3kfs';
 
 	var boston = new Object();
 		boston['night'] = 'http://i.imgur.com/OEryYmJ.jpg';
 		boston['cloudy'] = 'http://i.imgur.com/G3BykUw.jpg';
 		boston['snow'] = 'http://i.imgur.com/LISyPGY.jpg';
 		boston['sunny'] = 'http://i.imgur.com/urvfsvA.jpg';
-		boston['night_rainy'] = 'http://i.imgur.com/5cSmoq5.jpg';
+		boston['rain'] = 'http://imgur.com/CfiGZ85';
 
 	var tufts = new Object();
-		tufts['sunny_fall'] = 'http://i.imgur.com/CnyPHGt.jpg';
+		tufts['sunny'] = 'http://i.imgur.com/CnyPHGt.jpg';
 		tufts['cloudy'] = 'http://i.imgur.com/yyGX2mf.jpg';
-		tufts['sunny'] ='http://i.imgur.com/MI5ejHs.png';
-		tufts['sunny_winter'] = 'http://i.imgur.com/L7Y8lMi.jpg';
 		tufts['snow'] = 'http://i.imgur.com/adODgxw.jpg';
 		tufts['night'] = 'http://i.imgur.com/EtzGldK.jpg';
+		tufts['rain'] = 'http://i.imgur.com/yyGX2mf.jpg';
 
 	var NYC = new Object();
 		NYC['rain'] = 'http://imgur.com/OcGORMl';
@@ -90,7 +87,6 @@
 		weather['cloudy'] = 'http://i.imgur.com/ej1rNWu.jpg';
 		weather['fog'] = "http://i.imgur.com/R2m1Fmg.jpg";
 		weather['rain'] = 'http://i.imgur.com/reHMzYe.jpg';
-		weather['rain_spring'] = 'http://i.imgur.com/TUXs0db.jpg';
 		weather['snow'] = 'http://i.imgur.com/M7BkXwP.jpg';
 		weather['thunder'] = 'http://i.imgur.com/cCGWH1n.jpg';
 
@@ -113,22 +109,21 @@
    		request.open("GET", requestString, true);
     	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     	request.send(null);
+    	console.log(requestString);
     	request.onreadystatechange = function(){
 			if(request.readyState === 4 && request.status === 200){
 				data = request.responseText;
 				results = JSON.parse(data);
-				console.log(results);
 				myInfo['conditionCode'] = results['weather'][0].id;
-				console.log(myInfo['conditionCode']);
 				myInfo['country'] = results['sys'].country;
 				myInfo['state'] = results['sys'].state;
 				myInfo['localName'] = results['name'];
 				myInfo['sunrise'] = results['sys'].sunrise;
 				myInfo['sunset'] = results['sys'].sunset;
-				convertTimes();
 			}else if(request.readyState === 4 && request.status !== 200){
 				alert("Whoops, something is wrong with your data!");
 			}
+			convertTimes();
 		}
 	}
 
@@ -157,133 +152,113 @@
 	}
 
 	function setCondition(){
-		//night
-		console.log("Pass 1");
-		if(my_time_string > sunset_time || my_time_string < sunrise_time){
-					console.log("Pass 2");
-			if(myInfo['conditionCode'] >= '500' || myInfo['conditionCode'] < '532'){
-				theWeather['night_rainy'] = true; 
-				moodMeter['target_target_acousticness'] = '.9'; 
-				moodMeter['target_energy'] = '.2';
-				moodMeter['target_danceability'] = '.2';
-				moodMeter['song_type'] = 'acoustic';
-			} //summer night 
-			else if(my_month > 5 && my_month < 9){
-				theWeather['night'] = true;
-				moodMeter['target_target_acousticness'] = '0'; 
-				moodMeter['target_energy'] = '.99';
-				moodMeter['target_danceability'] = '.99';
-				moodMeter['song_type'] = '';
-			}else{
-				theWeather['night'] = true;
-				moodMeter['target_target_acousticness'] = '.2'; 
-				moodMeter['target_energy'] = '.9';
-				moodMeter['target_danceability'] = '.7';
-				moodMeter['song_type'] = '';
-			}
-		}
-		//clear skies
-		else if(myInfo['conditionCode'] == '800' || myInfo['conditionCode'] == '801'){
-			if(my_month > 8 && my_month < 12){
-				theWeather['sunny_fall'] = true;
-				moodMeter['target_target_acousticness'] = '.5'; 
-				moodMeter['target_energy'] = '.4';
-				moodMeter['target_danceability'] = '.4';
-				moodMeter['song_type'] = '';
-			}
-			else if(my_month > 11 || my_month < 4){
-						console.log("Pass 3");
-				theWeather['sunny_winter'] = true;
-				moodMeter['target_target_acousticness'] = '.5'; 
-				moodMeter['target_energy'] = '.5';
-				moodMeter['target_danceability'] = '.4';
-				moodMeter['song_type'] = 'christmas';
-			}
-			else if(my_month > 3 && my_month <= 8){
-				theWeather['sunny_summer'] = true;
-				moodMeter['target_target_acousticness'] = '0'; 
-				moodMeter['target_energy'] = '.8';
-				moodMeter['target_danceability'] = '.5';
-				moodMeter['song_type'] = '';
-			}
+		console.log(my_time_string + " -- " + sunset_time_string + " -- " + myInfo['conditionCode']);
+		if(my_time_string > sunset_time_string || my_time_string < sunrise_time_string){
+			setNight();
+			console.log("success");
 		}
 		//cloudy
 		else if(myInfo['conditionCode'] > '801' && myInfo['conditionCode'] < '805'){
-			if(my_month > 8 && my_month < 12){
-				theWeather['cloudy_fall'] = true;
-				moodMeter['target_target_acousticness'] = '.6'; 
-				moodMeter['target_energy'] = '.2';
-				moodMeter['target_danceability'] = '.3';
-				moodMeter['song_type'] = '';
-			}
-			else if(my_month > 11 || my_month < 4){
-				theWeather['cloudy_winter'] = true;
-				moodMeter['target_target_acousticness'] = '.8'; 
-				moodMeter['target_energy'] = '.2';
-				moodMeter['target_danceability'] = '.3';
-				moodMeter['song_type'] = '';
-			}
-			else if(my_month > 3 && my_month <= 8){
-				theWeather['cloudy_summer'] = true;
-				moodMeter['target_target_acousticness'] = '.1'; 
-				moodMeter['target_energy'] = '.5';
-				moodMeter['target_danceability'] = '.5';
-				moodMeter['song_type'] = '';
-			}
+			setCloudy();
 		}
 		//rain
-		else if(myInfo['conditionCode'] >= '500' || myInfo['conditionCode'] < '532'){
-			if(my_month > 2 && my_month < 6){
-				theWeather['rain_spring'] = true;
-				moodMeter['target_target_acousticness'] = '.6'; 
-				moodMeter['target_energy'] = '.4';
-				moodMeter['target_danceability'] = '.4';
-				moodMeter['song_type'] = '';
-			}
-			else{
-				theWeather['rain'] = true;
-				moodMeter['target_target_acousticness'] = '.6'; 
-				moodMeter['target_energy'] = '.4';
-				moodMeter['target_danceability'] = '.4';
-				moodMeter['song_type'] = '';
-			}
+		else if(myInfo['conditionCode'] >= '500' && myInfo['conditionCode'] < '532'){
+			setRain();
 		}
 		//fog
 		else if(myInfo['conditionCode'] == '741'){
-			theWeather['fog'] = true;
-			moodMeter['target_target_acousticness'] = '.9'; 
-			moodMeter['target_energy'] = '0';
-			moodMeter['target_danceability'] = '.2';
-			moodMeter['song_type'] = '';
+			setFog();
 		}
 		//thunder
 		else if(myInfo['conditionCode'] >= '200' && myInfo['conditionCode'] <= '232'){
-			theWeather['thunder'] = true;
-			moodMeter['target_target_acousticness'] = '.6'; 
-			moodMeter['target_energy'] = '.2';
-			moodMeter['target_danceability'] = '.1';
-			moodMeter['song_type'] = '';
+			setThunder();
 		}
-
 		//snow
 	 	else if(myInfo['conditionCode'] >= '600' && myInfo['conditionCode'] <= '622'){
-		    theWeather['snow'] = true;
-			moodMeter['target_target_acousticness'] = '.6'; 
-			moodMeter['target_energy'] = '.4';
-			moodMeter['target_danceability'] = '.6';
-			moodMeter['song_type'] = '';
+		   	setSnow();
 		}
 		else{
-			console.log("Pass 2");
-			theWeather['sunny'] = true;
+			setSunny(); 
+		}
+		determineLocation();
+
+	}	
+
+	function setSunny(){
+		theWeather['sunny'] = true;
+		moodMeter['target_target_acousticness'] = '0'; 
+		moodMeter['target_energy'] = '.8';
+		moodMeter['target_danceability'] = '.5';
+		moodMeter['song_type'] = '';
+	}
+
+	function setSnow(){
+		theWeather['snow'] = true;
+		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_energy'] = '.4';
+		moodMeter['target_danceability'] = '.6';
+		moodMeter['song_type'] = '';
+	}
+	function setThunder(){
+		theWeather['rain'] = true;
+		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_energy'] = '.2';
+		moodMeter['target_danceability'] = '.1';
+		moodMeter['song_type'] = '';
+	}
+	function setFog(){
+		theWeather['fog'] = true;
+		moodMeter['target_target_acousticness'] = '.9'; 
+		moodMeter['target_energy'] = '0';
+		moodMeter['target_danceability'] = '.2';
+		moodMeter['song_type'] = '';
+	}
+	function setRain(){
+		theWeather['rain'] = true;
+		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_energy'] = '.4';
+		moodMeter['target_danceability'] = '.4';
+		moodMeter['song_type'] = '';
+	}
+	function setCloudy(){
+		theWeather['cloudy'] = true;
+		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_energy'] = '.2';
+		moodMeter['target_danceability'] = '.3';
+		moodMeter['song_type'] = '';
+	}
+	function setSunny(){
+		theWeather['sunny'] = true;
+		if(my_month > 8 && my_month < 12){
+			theWeather['sunny_fall'] = true;
+			moodMeter['target_target_acousticness'] = '.5'; 
+			moodMeter['target_energy'] = '.4';
+			moodMeter['target_danceability'] = '.4';
+			moodMeter['song_type'] = '';
+		}
+		if(my_month > 11 || my_month < 4){
+			theWeather['sunny_winter'] = true;
+			moodMeter['target_target_acousticness'] = '.5'; 
+			moodMeter['target_energy'] = '.5';
+			moodMeter['target_danceability'] = '.4';
+			moodMeter['song_type'] = 'christmas';
+		}
+		if(my_month > 3 && my_month <= 8){
+			theWeather['sunny_summer'] = true;
 			moodMeter['target_target_acousticness'] = '0'; 
 			moodMeter['target_energy'] = '.8';
 			moodMeter['target_danceability'] = '.5';
 			moodMeter['song_type'] = '';
 		}
-		determineLocation();
+	}
+	function setNight(){
+		theWeather['night'] = true;
+		moodMeter['target_target_acousticness'] = '.2'; 
+		moodMeter['target_energy'] = '.9';
+		moodMeter['target_danceability'] = '.7';
+		moodMeter['song_type'] = '';
+	}
 
-	}	
 
 	function determineLocation(){
 		if(myInfo['localName'] == 'Medford' || myInfo['localName'] == 'Somerville'){
@@ -337,9 +312,6 @@
 		else if(theWeather['thunder']){
 			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
 		}
-		else if(theWeather['rain_spring']){
-			document.body.style.backgroundImage = "url('" + weather['rain_spring'] + "')";
-		}
 		else{
 			document.body.style.backgroundImage = "url('" + weather['sunny_summer'] + "')";
 		}
@@ -349,11 +321,8 @@
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + tufts['night'] + "')";
 		}
-		else if(theWeather['sunny_fall']){
-			document.body.style.backgroundImage = "url('" + tufts['sunny_fall'] + "')";
-		}
-		else if(theWeather['sunny_winter']){
-			document.body.style.backgroundImage = "url('" + tufts['snow'] + "')";
+		else if(theWeather['rain']){
+			document.body.style.backgroundImage = "url('" + tufts['rain'] + "')";
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + tufts['cloudy'] + "')";
@@ -364,14 +333,29 @@
 		else{
 			document.body.style.backgroundImage = "url('" + tufts['sunny'] + "')";
 		}
+		console.log (moodMeter['target_target_acousticness'] +  " -- " +
+			moodMeter['target_energy'] + " -- " +
+			moodMeter['target_danceability'] + " -- " +
+			moodMeter['song_type'] + " -- " + 
+			myInfo['conditionCode'] + "--" +
+		theWeather['cloudy'] + "--" +
+		theWeather['sunny'] + "--" +
+		theWeather['sunny_fall'] + "--" +
+		theWeather['night'] + "--" +
+		theWeather['sunny_fall'] + "--" +
+		theWeather['snow'] + "--" +
+		theWeather['fog']+ "--" +
+		theWeather['rain']+ "--" +
+		theWeather['thunder']);
 	}
 
-	function setMoodFR(){		
+	function setMoodFR(){	
+		//spotify action here!!!!!!!!!	
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + paris['night'] + "')";
 		}
-		else if(theWeather['night_rainy']){
-				document.body.style.backgroundImage = "url('" + paris['night_rainy'] + "')";
+		else if(theWeather['snow']){
+				document.body.style.backgroundImage = "url('" + paris['snow'] + "')";
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + paris['rain'] + "')";
@@ -388,8 +372,8 @@
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + boston['night'] + "')";
 		}
-		else if(theWeather['night_rainy']){
-				document.body.style.backgroundImage = "url('" + boston['night_rainy'] + "')";
+		else if(theWeather['rain']){
+				document.body.style.backgroundImage = "url('" + boston['rain'] + "')";
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + boston['snow'] + "')";
@@ -411,6 +395,9 @@
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + losangeles['cloudy'] + "')";
+		}
+		else if(theWeather['snow']){
+			document.body.style.backgroundImage = "url('" + losangeles['snow'] + "')";
 		}
 		else{
 			document.body.style.backgroundImage = "url('" + losangeles['sunny'] + "')";
@@ -460,11 +447,8 @@
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + madrid['rain'] + "')";
 		}
-		else if(theWeather['cloudy_winter']){
-			document.body.style.backgroundImage = "url('" + madrid['cloudy_winter'] + "')";
-		}
-		else if(theWeather['cloudy_summer']){
-			document.body.style.backgroundImage = "url('" + madrid['cloudy_summer'] + "')";
+		else if(theWeather['cloudy']){
+			document.body.style.backgroundImage = "url('" + madrid['cloudy'] + "')";
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + madrid['snow'] + "')";
@@ -481,11 +465,8 @@
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + amsterdam['rain'] + "')";
 		}
-		else if(theWeather['cloudy_fall']){
-			document.body.style.backgroundImage = "url('" + amsterdam['cloudy_fall'] + "')";
-		}
-		else if(theWeather['sunny_fall']){
-			document.body.style.backgroundImage = "url('" + amsterdam['sunny_fall'] + "')";
+		else if(theWeather['cloudy']){
+			document.body.style.backgroundImage = "url('" + amsterdam['cloudy'] + "')";
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + amsterdam['snow'] + "')";
@@ -526,21 +507,27 @@
 		})
 		//Weather
 		$('#SUN').on('click', function () {
+			setSunny();
 			document.body.style.backgroundImage = "url('" + weather['sunny_fall'] + "')";
 		})
 		$('#CLOUD').on('click', function () {
+			setCloudy();
 			document.body.style.backgroundImage = "url('" + weather['cloudy'] + "')";
 		})
 		$('#RAIN').on('click', function () {
+			setRain();
 			document.body.style.backgroundImage = "url('" + weather['rain'] + "')";
 		})
 		$('#SNOW').on('click', function () {
+			setSnow();
 			document.body.style.backgroundImage = "url('" + weather['snow'] + "')";
 		})	
 		$('#FOG').on('click', function () {
+			setFog();
 			document.body.style.backgroundImage = "url('" + weather['fog'] + "')";
 		})
 		$('#THUNDER').on('click', function () {
+			setThunder();
 			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
 		})
 		//myTunes
@@ -556,27 +543,12 @@
 	});
 
 getMyLocation();
-	/*
-	$.when(getMyLocation()).then(getWeather());
-	$.when(getWeather()).then(convertTimes());
-	$.when(setCondition()).then(determineLocation());
-	*/
-	console.log (moodMeter['target_target_acousticness'] +  " -- " +
-			moodMeter['target_energy'] + " -- " +
-			moodMeter['target_danceability'] + " -- " +
-			moodMeter['song_type'] + " -- " + 
-			myInfo['conditionCode'] + "--" +
-		theWeather['cloudy'] + "--" +
-		theWeather['sunny'] + "--" +
-		theWeather['sunny_fall'] + "--" +
-		theWeather['night'] + "--" +
-		theWeather['sunny_fall'] + "--" +
-		theWeather['snow'] + "--" +
-		theWeather['night_rainy']+ "--" +
-		theWeather['cloudy_summer'] + "--" +
-		theWeather['cloudy_winter'] + "--" +
-		theWeather['cloudy_fall']+ "--" +
-		theWeather['sunny_snow']);
+
+	
+	//$.when(getMyLocation()).done(getWeather());
+	//$.when(getWeather()).done(convertTimes());
+	//$.when(convertTimes()).done(setCondition());
+	
 
 //https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
 //http://home.openweathermap.org/
