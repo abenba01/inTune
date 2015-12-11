@@ -59,11 +59,11 @@ function getSongId(songname) {
 function save() {
     //var url = '/savePlaylist';
     $.post('/savePlaylist', songs)
-        .done( function (data) {
-            localStorage['playlistId'] = data;
+        .done( function (songdata) {
+            localStorage['playlistId'] = songdata;
             alert("saved")
         })
-        .fail ( alert(data));
+        .fail ( alert(songdata));
 }
 
 function info(txt) {
