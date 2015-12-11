@@ -4,9 +4,9 @@
   "description": "Music for your mood!",
   "main": "bubbles.js",
   "dependencies": {
-    "body-parser": "^1.14.1",
+    "body-parser": "latest",
     "mongodb": "^2.0.49",
-    "validator": "^4.3.0",
+    "validator": "latest",
     "express": "^4.13.3"
   },
   "devDependencies": {},

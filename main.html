@@ -10,7 +10,16 @@
 	<script type="text/javascript" src = "spotify_en_tools.js"></script>   
     <script type="text/javascript" src = "simple_spotify.js"></script>
     <script type="text/javascript" src ="geolocation.js"></script>
+    <script type="text/javascript" src ="notifications.js"></script>
+    <script type="text/javascript" src ="notifications.js"></script>
+    <!--go roost push notification stuff
+	<script src='//cdn.goroost.com/roostjs/8ho1ikaeq6qjh0539w3cgzo7ng5kzjkk' async></script>
 
+	<script>
+    var _roost = _roost || [];
+    _roost.push(['autoprompt', false]);
+    _roost.push([ 'minvisits', 3 ]);
+	</script>-->
 <head>
 <body>
 	
@@ -85,7 +94,7 @@
 
 	    	<div id='footer'> 
 		        <p>Powered by <a href="http://the.echonest.com" class="link">The Echo Nest</a> and <a href="http://spotify.com" class="link">Spotify</a>. </p>
-		        <button type="button" class="btn btn-primary center-block" id="all_buttons" onclick="alert('Saved!');">Save playlist</button>
+		        <button type="button" class="btn btn-primary center-block" id="all_buttons" onclick="save();">Save playlist</button>
 
 		        <br>
 
@@ -121,9 +130,6 @@
             <div class="modal-footer">
             	<button type="button" class="btn btn-primary center-block" id="all_buttons" onClick="$('#my-modal').modal('hide');">Close</button>
             </div>
-
-
-
         </div>
     </div> 
 </div>
