@@ -60,10 +60,10 @@ function save() {
     //var url = '/savePlaylist';
     $.post('/savePlaylist', songs)
         .done( function (songdata) {
-            localStorage['playlistId'] = songdata;
+            localStorage['playlistId'] = songdata.response;
             alert("saved")
         })
-        .fail ( alert(songdata));
+        .fail ( alert(songdata.response));
 }
 
 function info(txt) {
