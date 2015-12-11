@@ -31,9 +31,18 @@ app.get('/main.html', function (request, response) {
 
 app.post('/savePlaylist', function (request, reponse) {
 	console.log(request.body);
-	/*db.collection('playlists', function (error, coll) {
-		var id = coll.insert()
-	});*/
+	songs = request.body;
+	db.collection('playlists', function (error, coll) {
+		var id = coll.insert( {"playlist": songs}, function (err, saved) {
+			if (err) {
+				response.status(500);
+				response.send('Whoops something when wrong')
+			} else {
+				reponse.status(200);
+				reponse.send(id);
+			}
+		});
+	});
 });
 
 
