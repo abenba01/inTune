@@ -1,7 +1,16 @@
 //Hi this is our server
 var express = require('express');
 var app = express();
+var bodyParser = require('body-parser');
+var validator = require('validator'); 
+
+
 app.use(express.static(__dirname));
+
+app.set('port', (process.env.PORT || 5000));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nodemongoexample';
@@ -28,5 +37,3 @@ app.post('/savePlaylist', function (request, reponse) {
 });
 
 
-
-	app.listen(process.env.PORT || 5000);
