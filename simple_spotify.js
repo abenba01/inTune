@@ -58,12 +58,14 @@ function getSongId(songname) {
 }*/
 function save() {
     //var url = '/savePlaylist';
-    $.post('/savePlaylist', songs)
+    /*$.post('/savePlaylist', songs)
         .done( function (songdata) {
             localStorage['playlistId'] = songdata.response;
             alert("saved")
         })
         .fail ( alert(songdata.response));
+        */
+        console.log(songs);
 }
 
 function info(txt) {
