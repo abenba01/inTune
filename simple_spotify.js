@@ -63,7 +63,7 @@ function save_playlist() {
     params = encodeURIComponent(params);
     console.log(params);
     var http = new XMLHttpRequest();
-    var url = 'http://http://quiet-reaches-3588.herokuapp.com/savePlaylist';
+    var url = 'http://quiet-reaches-3588.herokuapp.com/savePlaylist';
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(params);
