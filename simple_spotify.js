@@ -32,7 +32,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
-                songs = data.response.songs;
+                songs = data.response;
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
@@ -58,7 +58,7 @@ function getSongId(songname) {
 }*/
 function save_playlist() {
     //var url = '/savePlaylist';
-    songs = JSON.stringify(songs);
+    //songs = JSON.stringify(songs);
     $.post('/savePlaylist', songs)
         .done( function (data) {
             alert(data.response)
