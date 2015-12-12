@@ -81,6 +81,8 @@
 #dropdown{
 	background-color: #F38630;
 	color: #FFFFFF;
+	border: #F38630;
+	box-shadow: 2px 2px 2px #A9A9A9
 }
 
 
@@ -110,4 +112,10 @@ p{
 	color: #F38630;
 	opacity: 1;
 
+}
+
+#whatisbutton { 
+	background:none;
+	border:none;
+	padding: 0px;
 }
