@@ -67,12 +67,12 @@ function save_playlist() {
     http.open("POST", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     http.send(params);
-    http.onreadystatechange = function(){
+     http.onreadystatechange = function(){
         console.log("change");
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
-            //objectID = http.responseText;
-            //console.log(objectID);
+            //var id = http.responseText;
+            //console.log(id);
             //localStorage['playlist'] = id;
             alert("Successfully saved!");
         }else if(http.readyState === 4 && http.status !== 200){
