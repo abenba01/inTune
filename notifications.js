@@ -18,8 +18,7 @@ function notifyMe() {
 		      icon: theIcon
 		  };
 
-    //var notification = new Notification("inTune", options);
-    spawnNotification('Whaaa, I\'m becoming well-adjusted, pay attention to me!','logo.png','Emogotchi says')
+    var notification = new Notification("inTune", options);
   }
 
   // Otherwise, we need to ask the user for permission
