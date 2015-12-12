@@ -58,6 +58,7 @@ function getSongId(songname) {
 }*/
 function save_playlist() {
     //var url = '/savePlaylist';
+    songs = JSON.stringify(songs);
     $.post('/savePlaylist', songs)
         .done( function (data) {
             alert(data.response)
