@@ -18,7 +18,7 @@ function notifyMe() {
 		      icon: theIcon
 		  };
 
-    var notification = new Notification("inTune", options);
+    var notification = new Notification("icon.png","inTune", options);
   }
 
   // Otherwise, we need to ask the user for permission
