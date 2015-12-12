@@ -34,13 +34,13 @@ app.post('/savePlaylist', function (request, response) {
 	songs = request.body;
 	db.collection('playlists', function (error, coll) {
 		if (!error){
-			var id = coll.insert( {"playlist": songs}, function (err, saved) {
+			id = coll.insert( {"playlist": songs}, function (err, saved) {
 				if (err) {
 					response.status(500);
 					response.send('Whoops something when wrong')
 				} else {
 					response.status(200);
-					response.send(this);
+					response.send(id);
 				}
 			});
 		}
