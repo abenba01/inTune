@@ -118,4 +118,8 @@ p{
 	background:none;
 	border:none;
 	padding: 0px;
+
+body{
+ background-size: 100% auto;
+
 }

@@ -32,7 +32,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
-                songs = data.response.songs;
+                songs = data.response;
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
@@ -56,15 +56,18 @@ function getSongId(songname) {
         }) ;
 
 }*/
-function save() {
+function save_playlist() {
     //var url = '/savePlaylist';
-    /*$.post('/savePlaylist', songs)
-        .done( function (songdata) {
-            localStorage['playlistId'] = songdata.response;
-            alert("saved")
+    //songs = JSON.stringify(songs);
+    $.post('/savePlaylist', songs)
+        .done( function (data) {
+            alert(data.response)
         })
-        .fail ( alert(songdata.response));
-        */
+        .fail ( function(data) {
+            alert("failed");
+        }
+        );
+        
         console.log(songs);
 }
 
