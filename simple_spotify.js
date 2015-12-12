@@ -71,8 +71,8 @@ function save_playlist() {
         console.log("change");
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
-            objectID = http.responseText;
-            console.log(objectID);
+            //objectID = http.responseText;
+            //console.log(objectID);
             //localStorage['playlist'] = id;
             alert("Successfully saved!");
         }else if(http.readyState === 4 && http.status !== 200){
