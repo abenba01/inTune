@@ -10,8 +10,8 @@ function notifyMe() {
    
     //if playlist exists
 
-    var theIcon = new Image();
-    theIcon.src = 'logo.png';
+    //var theIcon = new Image();
+    theIcon = 'logo.png';
     theBody = "You have a saved playlist in myTunes.";
     var options = {
 		      body: theBody,
