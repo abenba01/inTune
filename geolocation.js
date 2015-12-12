@@ -104,7 +104,7 @@
 	}
 				
 	function getWeather(){
- 		request = new XMLHttpRequest();
+ 		var request = new XMLHttpRequest();
  		var requestString = "http://api.openweathermap.org/data/2.5/weather?lat=" + myLat + "&&lon=" + myLng + "&&cluster=yes&&format=json" + "&&APPID=" + openWeatherMapKey;
    		request.open("GET", requestString, true);
     	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

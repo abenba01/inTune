@@ -8,7 +8,7 @@ var validator = require('validator');
 
 
 
-var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/nodemongoexample';
+var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/inTune';
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
 var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 	db = databaseConnection;
@@ -30,22 +30,24 @@ app.get('/main.html', function (request, response) {
 	response.sendFile(__dirname + "/main.html");
 });
 
-app.post('/savePlaylist', function (request, reponse) {
-	console.log(request.body);
-	console.log("test");
+app.post('/savePlaylist', function (request, response) {
+	//console.log(request.body);
+	//console.log("test");
 	songs = request.body;
 	response.send(200);
-	/*db.collection('playlists', function (error, coll) {
-		var id = coll.insert( {"playlist": songs}, function (err, saved) {
-			if (err) {
-				response.status(500);
-				response.send('Whoops something when wrong')
-			} else {
-				reponse.status(200);
-				reponse.send(id);
-			}
-		});
-	});*/
+	db.collection('playlists', function (error, coll) {
+		if (!error){
+			var id = coll.insert( {"playlist": songs}, function (err, saved) {
+				if (err) {
+					response.status(500);
+					response.send('Whoops something when wrong')
+				} else {
+					response.status(200);
+					response.send(id);
+				}
+			});
+		}
+	});
 });
 
 

@@ -15,7 +15,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             'api_key': config.apiKey,
             'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 
             'limit' : true,
-            'variety' : 1, 'results': 50, 'type':'artist-radio',  
+            'variety' : 1, 'results': 20, 'type':'artist-radio',  
         };
         if (tracks != "") {
         	params.track_id = tracks;
@@ -32,7 +32,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
-                songs = data.response;
+                songs = data.response.songs;
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
@@ -58,19 +58,25 @@ function getSongId(songname) {
 }*/
 function save_playlist() {
     //var url = '/savePlaylist';
-    //songs = JSON.stringify(songs);
-    $.post('/savePlaylist', songs)
-        .done( function (data) {
-            alert(data.response)
-        })
-        .fail ( function(data) {
-            alert("failed");
+    console.log("saving");
+    var params = JSON.stringify(songs);
+    params = encodeURIComponent(params);
+    console.log(params);
+    var http = new XMLHttpRequest();
+    var url = 'http://quiet-reaches-3588.herokuapp.com/savePlaylist';
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(params);
+    http.onreadystatechange = function(){
+        console.log("change");
+        console.log(http.readyState, http.status);
+        if(http.readyState === 4 && http.status === 200){
+            alert("success");
+        }else if(http.readyState === 4 && http.status !== 200){
+            alert("Whoops, something is wrong with your data!");
         }
-        );
-        
-        console.log(songs);
+    }
 }
-
 function info(txt) {
     $("#info").text(txt);
 }
