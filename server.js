@@ -32,7 +32,6 @@ app.post('/savePlaylist', function (request, response) {
 	//console.log(request.body);
 	//console.log("test");
 	songs = request.body;
-	response.send(200);
 	db.collection('playlists', function (error, coll) {
 		if (!error){
 			var id = coll.insert( {"playlist": songs}, function (err, saved) {
