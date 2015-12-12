@@ -34,7 +34,7 @@ app.post('/savePlaylist', function (request, response) {
 	songs = request.body;
 	db.collection('playlists', function (error, coll) {
 		if (!error){
-			id = coll.insert( {"playlist": songs}, function (err, saved) {
+			var id = coll.insert( {"playlist": songs}, function (err, saved) {
 				if (err) {
 					response.status(500);
 					response.send('Whoops something when wrong')
