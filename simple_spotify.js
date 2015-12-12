@@ -56,7 +56,7 @@ function getSongId(songname) {
         }) ;
 
 }*/
-function save() {
+function save_playlist() {
     //var url = '/savePlaylist';
     /*$.post('/savePlaylist', songs)
         .done( function (songdata) {
