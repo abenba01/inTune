@@ -123,7 +123,7 @@
 				myInfo['sunset'] = results['sys'].sunset;
 				convertTimes();
 			}else if(request.readyState === 4 && request.status !== 200){
-				alert("Whoops, something is wrong with your data!");
+				alert("Whoops, something is wrong with the weather data!");
 			}
 		}
 	}
@@ -330,23 +330,19 @@
 		else{
 			document.body.style.backgroundImage = "url('" + tufts['sunny'] + "')";
 		}
-		console.log (moodMeter['target_target_acousticness'] +  " -- " +
-			moodMeter['target_energy'] + " -- " +
-			moodMeter['target_danceability'] + " -- " +
-			moodMeter['song_type'] + " -- " + 
-			myInfo['conditionCode'] + "--" +
-		theWeather['cloudy'] + "--" +
-		theWeather['sunny'] + "--" +
-		theWeather['sunny_fall'] + "--" +
-		theWeather['night'] + "--" +
-		theWeather['sunny_fall'] + "--" +
-		theWeather['snow'] + "--" +
-		theWeather['fog']+ "--" +
-		theWeather['rain']+ "--" +
-		theWeather['thunder']+ "--" +
-		sunset_time_string + "--" +
-		sunrise_time_string + "--" +
-		my_time_string);
+	}
+
+	function resetWeather(){
+		theWeather['sunny'] = false;
+		theWeather['sunny_winter'] = false;
+		theWeather['sunny_fall'] = false;
+		theWeather['sunny_summer'] = false;
+		theWeather['cloudy'] = false;
+		theWeather['fog'] = false;
+		theWeather['thunder'] = false;
+		theWeather['snow'] = false;
+		theWeather['rain'] = false;
+		theWeather['night'] = false;
 	}
 
 	function setMoodFR(){	
@@ -407,18 +403,22 @@
 	function setMoodNYC(){		
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + NYC['night'] + "')";
+			console.log("1");
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + NYC['rain'] + "')";
+						console.log("2");
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + NYC['cloudy'] + "')";
+						console.log("3");
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + NYC['snow'] + "')";
 		}
 		else{
 			document.body.style.backgroundImage = "url('" + NYC['sunny'] + "')";
+						console.log("4");
 		}
 	}
 
@@ -494,6 +494,7 @@
 			setMoodNL();
 		})
 		$('#NYC').on('click', function () {
+						console.log("0");
 			setMoodNYC();
 		})
 		$('#LA').on('click', function () {
@@ -507,26 +508,32 @@
 		})
 		//Weather
 		$('#SUN').on('click', function () {
+			resetWeather();
 			setSunny();
 			document.body.style.backgroundImage = "url('" + weather['sunny_fall'] + "')";
 		})
 		$('#CLOUD').on('click', function () {
+			resetWeather();
 			setCloudy();
 			document.body.style.backgroundImage = "url('" + weather['cloudy'] + "')";
 		})
 		$('#RAIN').on('click', function () {
+			resetWeather();
 			setRain();
 			document.body.style.backgroundImage = "url('" + weather['rain'] + "')";
 		})
 		$('#SNOW').on('click', function () {
+			resetWeather();
 			setSnow();
 			document.body.style.backgroundImage = "url('" + weather['snow'] + "')";
 		})	
 		$('#FOG').on('click', function () {
+			resetWeather();
 			setFog();
 			document.body.style.backgroundImage = "url('" + weather['fog'] + "')";
 		})
 		$('#THUNDER').on('click', function () {
+			resetWeather();
 			setThunder();
 			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
 		})
@@ -544,6 +551,25 @@
 
 getMyLocation();
 
+/*
+	console.log (moodMeter['target_target_acousticness'] +  " -- " +
+			moodMeter['target_energy'] + " -- " +
+			moodMeter['target_danceability'] + " -- " +
+			moodMeter['song_type'] + " -- " + 
+			myInfo['conditionCode'] + "--" +
+		theWeather['cloudy'] + "--" +
+		theWeather['sunny'] + "--" +
+		theWeather['sunny_fall'] + "--" +
+		theWeather['night'] + "--" +
+		theWeather['sunny_fall'] + "--" +
+		theWeather['snow'] + "--" +
+		theWeather['fog']+ "--" +
+		theWeather['rain']+ "--" +
+		theWeather['thunder']+ "--" +
+		sunset_time_string + "--" +
+		sunrise_time_string + "--" +
+		my_time_string);
+		*/
 
 //https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
 //http://home.openweathermap.org/
