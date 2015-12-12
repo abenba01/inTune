@@ -9,6 +9,8 @@
 	var sunrise_time_string;
 	var my_time_string;
 	var my_month;
+	var today;
+	var next = false;
 	var myInfo = new Object();
 	var moodMeter = new Object();
 	var theWeather = new Object();
@@ -109,7 +111,6 @@
    		request.open("GET", requestString, true);
     	request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     	request.send(null);
-    	console.log(requestString);
     	request.onreadystatechange = function(){
 			if(request.readyState === 4 && request.status === 200){
 				data = request.responseText;
@@ -120,42 +121,39 @@
 				myInfo['localName'] = results['name'];
 				myInfo['sunrise'] = results['sys'].sunrise;
 				myInfo['sunset'] = results['sys'].sunset;
+				convertTimes();
 			}else if(request.readyState === 4 && request.status !== 200){
 				alert("Whoops, something is wrong with your data!");
 			}
-			convertTimes();
 		}
 	}
 
 	function convertTimes(){
-		var today = new Date(),	// Convert the passed timestamp to milliseconds
+		today = new Date(),	// Convert the passed timestamp to milliseconds
 		my_month = ('0' + (today.getMonth() + 1)).slice(-2),	// Months are zero based. Add leading 0.
 		my_hr = ('0' + today.getHours()).slice(-2),
 		my_min = ('0' + today.getMinutes()).slice(-2),
 		my_time_string = my_hr + my_min;
-		console.log(my_time_string);
 
 		sunrise_time = new Date(myInfo['sunrise'] * 1000)
 		rise_hr = ('0' + sunrise_time.getHours()).slice(-2),
 		rise_min = ('0' + sunrise_time.getMinutes()).slice(-2),
 		sunrise_time_string = rise_hr + rise_min;
-		console.log(sunrise_time_string);
 
 		sunset_time = new Date(myInfo['sunset'] * 1000)
 		set_hr = ('0' + sunset_time.getHours()).slice(-2),
 		set_min = ('0' + sunset_time.getMinutes()).slice(-2),
 		sunset_time_string = set_hr + set_min;
 		console.log(sunset_time_string);
-
-		setCondition();
-
+		next = true; 
+		if(next){
+			setCondition();
+		}
 	}
 
 	function setCondition(){
-		console.log(my_time_string + " -- " + sunset_time_string + " -- " + myInfo['conditionCode']);
 		if(my_time_string > sunset_time_string || my_time_string < sunrise_time_string){
 			setNight();
-			console.log("success");
 		}
 		//cloudy
 		else if(myInfo['conditionCode'] > '801' && myInfo['conditionCode'] < '805'){
@@ -181,7 +179,6 @@
 			setSunny(); 
 		}
 		determineLocation();
-
 	}	
 
 	function setSunny(){
@@ -346,7 +343,10 @@
 		theWeather['snow'] + "--" +
 		theWeather['fog']+ "--" +
 		theWeather['rain']+ "--" +
-		theWeather['thunder']);
+		theWeather['thunder']+ "--" +
+		sunset_time_string + "--" +
+		sunrise_time_string + "--" +
+		my_time_string);
 	}
 
 	function setMoodFR(){	
@@ -544,11 +544,6 @@
 
 getMyLocation();
 
-	
-	//$.when(getMyLocation()).done(getWeather());
-	//$.when(getWeather()).done(convertTimes());
-	//$.when(convertTimes()).done(setCondition());
-	
 
 //https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
 //http://home.openweathermap.org/

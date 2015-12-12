@@ -5,8 +5,8 @@
 <head>
 
 	<title>inTune</title>
-	<link rel="stylesheet" href="style.css" type="text/css" />
 	<link href="bootstrap-3.3.5-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" type="text/css" />
   	<script type="text/javascript" src = "bootstrap-3.3.5-dist/js/bootstrap.min.js"></script>
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
@@ -17,18 +17,18 @@
 
 </head>
 
-<body onLoad = "$('#my-modal').modal('show');" id="fullbody">
+<body onLoad = "$('#my-modal').modal('show');">
 
 <div id="my-modal" class="modal fade">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title text-center" id="h1text">Welcome to inTune.</h1> <h3 class = "text-center" id="h3text">Music for your mood </h3>
+                <h1 class="modal-title text-center">Welcome to inTune.</h1> <h3 class = "text-center">Music for your mood </h3>
             </div>
 
             <div class="modal-body">
             	<p>Pick five artists to get started.</p>
-                <button type="button" class="btn btn-primary center-block" id="all_buttons" onClick="$('#my-modal').modal('hide');">Continue.</button>
+                <button type="button" class="btn btn-primary center-block" class="all_buttons" onClick="$('#my-modal').modal('hide');">Continue.</button>
             </div>
 
         </div>
@@ -39,14 +39,14 @@
     <div class="container-fluid" id="header">
 
         <div class="row">
-            <div class="text-center">Tell us what you like.</div>
+            <div class="text-center" id="textfordarkbg">Tell us what you like.</div>
 
         </div> 
 
     </div>
 
     <!-- bubble container -->
-    <div class="container-fluid" id="bubble_container">
+    <div class="container-fluid">
         <canvas id="bubble_cvs" width = "auto" height="auto"></canvas>
 
     </div>

@@ -1,5 +1,18 @@
-#all_buttons, #getstarted_button{
+@font-face {
+    font-family: 'ralewayregular';
+    src: url('raleway-regular-webfont.eot');
+    src: url('raleway-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('raleway-regular-webfont.woff2') format('woff2'),
+         url('raleway-regular-webfont.woff') format('woff'),
+         url('raleway-regular-webfont.ttf') format('truetype'),
+         url('raleway-regular-webfont.svg#ralewayregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
 
+.btn {
+
+	font-family: 'ralewayregular';
 	box-shadow: 2px 2px 2px #888888;
 	border-style: none;
 	background-color: #00B4FF;
@@ -7,32 +20,33 @@
 }
 
 #getstarted_button {
+	font-family: 'ralewayregular';
 	margin: 20% 0px;
 }
 
-#h3text{
-
+.text-center{
+	font-family: 'ralewayregular';
 	color: #666;
 
 }
 
-#h1text{
-
+.modal-title{
+	font-family: 'ralewayregular';
 	color: #00B4FF;
 }
 
-.link{
-
+.link{	
+	font-family: 'ralewayregular';
 	color: #FFFFFF;
 }
 
 .modal-header{
-
+	font-family: 'ralewayregular';
 	background-color: #EEE;
 }
 
 .modal-footer{
-
+	font-family: 'ralewayregular';
 	background-color: #F38630; 
 }
 
@@ -47,20 +61,21 @@
 }
 
 #footer_cvs {
+	font-family: 'ralewayregular';
 	width: 80%;
 	height: 100%;
 }
 
 #header{
-
 	/*opacity: 0.6;*/
+	font-family: 'ralewayregular';
 	color: #FFF;
 	font-size: 20px;
 	background-color: rgba(10,10,10, 0.5);
 
 }
 
-#bubble_container{
+.container-fluid{
 	/*
 	background-color: #FAFAFA	; 
 	background-size: 100% auto; 
@@ -69,45 +84,54 @@
 
 }
 
+#textfordarkbg{
 
-#fullbody{
-
-	background-color: #000; /*a very pretty cream color*/
-	background-image: url("sunny.jpg");
-	background-size: 100% auto;
-
-}
-
-#dropdown{
-	background-color: #F38630;
 	color: #FFFFFF;
 }
 
 
+.dropdown-toggle, .dropdown-menu{
+	font-family: 'ralewayregular';
+	background-color: #F38630;
+	color: #FFFFFF;
+	border: #F38630;
+	box-shadow: 2px 2px 2px #A9A9A9
+}
+
+
+
 div.btn-group li.text a{
+	font-family: 'ralewayregular';
 	color: #FFFFFF;
 }
 
 #song_panel{
+	font-family: 'ralewayregular';
 	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	border-style: none;
-
 }
 
 p{
+	font-family: 'ralewayregular';
 	text-align: center;
 	color: #000000;
 }
-#list_text{
-	color: #000000;
-	border-color: #69D2E7;
+
+#whatisbutton { 
+	font-family: 'ralewayregular';
+	background:none;
+	border:none;
+	padding: 0px;
+	border-style: none;
+	box-shadow: none;
 }
 
-#closebutton{
-	color: #F38630;
-	opacity: 1;
-
+body{
+	font-family: 'ralewayregular';
+	background-color: #000; 
+	background-image: url("sunny.jpg");
+	background-size: 100% auto;
 }
