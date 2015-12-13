@@ -1,6 +1,6 @@
 jQuery.ajaxSettings.traditional = true; 
 var config = getConfig();
-var songs;
+var embedcode;
 
 
 function fetchArtistPlaylist(artists,  wandering, variety) {
@@ -27,12 +27,10 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
     //var tracks = ['TRTLKZV12E5AC92E11'];
     $.getJSON(url, params) 
         .done(function(data) {
-        	console.log(data.response);
             info("");
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
-                songs = data.response.songs;
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
@@ -59,8 +57,7 @@ function getSongId(songname) {
 function save_playlist() {
     //var url = '/savePlaylist';
     console.log("saving");
-    var params = JSON.stringify(songs);
-    params = encodeURIComponent(params);
+    var params = encodeURIComponent(embedcode);
     console.log(params);
     var http = new XMLHttpRequest();
     var url = 'http://quiet-reaches-3588.herokuapp.com/savePlaylist';
