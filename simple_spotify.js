@@ -2,6 +2,50 @@ jQuery.ajaxSettings.traditional = true;
 var config = getConfig();
 var songs;
 
+       
+function fetchArtistsByLocation(locale) {
+    console.log("fetching artists");
+   var endpoint = 'http://developer.echonest.com/api/v4/'
+    var url = endpoint + 'artist/search';
+    var apiKey = 'NO_API_KEY';
+
+    $("#results").empty();
+    $.getJSON(url, 
+        { 
+            'api_key' : config.apiKey,
+            'artist_location': locale, 
+            'results' : 5,
+            'bucket': [ 'artist_location'],  
+            'sort': 'hotttnesss-desc'
+        },
+        function(data) {
+            if (data.response.status.code == 0) {
+                var artists = data.response.artists;
+                if (artists.length > 0) {
+                    for (var i = 0; i < artists.length; i++) {
+                        var artist = artists[i];
+                        var li = $("<li>");
+                        if ('artist_location' in artist) {
+                            li.text(artist.name + " from " + artist.artist_location.location);
+                            $("#results").append(li);
+               s         } else {
+                            console.log(artist);
+                        }
+                    }
+                } else {
+                        $("#results").text("No results");
+                }
+            } else {
+                alert("Trouble getting artists: " + data.response.status.message);
+            }
+        })
+        .error( 
+            function(data) {
+                alert("query syntax error. Use 'city:', 'region:' and 'country:' qualifiers only");
+            }
+        );  
+}
+
 
 function fetchArtistPlaylist(artists,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
@@ -89,4 +133,34 @@ $(document).ready(function() {
     } 
     console.log(artists);
     fetchArtistPlaylist(artists, false, 1);
+
+        $('#USA').on('click', function () {
+            fetchArtistsByLocation("United States of America");
+            console.log("USA");
+        })
+        $('#ES').on('click', function () {
+            fetchArtistsByLocation("spain");
+        })
+        $('#FR').on('click', function () {
+            fetchArtistsByLocation("france");
+        })
+        $('#IT').on('click', function () {
+            fetchArtistsByLocation("italy");
+        })
+        $('#AMS').on('click', function () {
+            fetchArtistsByLocation("amsterdam");
+        })
+        $('#NYC').on('click', function () {
+            fetchArtistsByLocation("new york city");
+        })
+        $('#LA').on('click', function () {
+            fetchArtistsByLocation("los Angeles");
+        })
+        $('#BOS').on('click', function () {
+            fetchArtistsByLocation("boston");
+        })
+        $('#MyLoc').on('click', function () {
+            //determineLocation();
+
+        })
 });
