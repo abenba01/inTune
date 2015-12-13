@@ -17,7 +17,7 @@ function getSpotifyPlayButtonForPlaylist(title, playlist) {
     var tracks = tids.join(',');
     var tembed = embed.replace('TRACKS', tracks);
     tembed = tembed.replace('PREFEREDTITLE', title);
-    embedcode = embed;
+    embedcode = tembed;
     var li = $("<span>").html(tembed);
     return $("<span>").html(tembed);
 }
