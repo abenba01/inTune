@@ -59,13 +59,14 @@ function getSongId(songname) {
 function save_playlist() {
     //var url = '/savePlaylist';
     console.log("saving");
-    var params = JSON.stringify(songs);
-    params = encodeURIComponent(params);
+    //var params = JSON.stringify(songs);
+    //params = encodeURIComponent(params);
+    var params = songs;
     console.log(params);
     var http = new XMLHttpRequest();
     var url = 'http://quiet-reaches-3588.herokuapp.com/savePlaylist';
     http.open("POST", url, true);
-    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.setRequestHeader("Content-type", "application/json");
     http.send(params);
      http.onreadystatechange = function(){
         console.log("change");
