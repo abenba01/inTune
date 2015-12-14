@@ -31,6 +31,7 @@ app.post('/savePlaylist', function (request, response) {
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	//console.log(request.body);
 	//console.log("test");
+	var inserted = false;
 	songs = request.body;
 	console.log(request);
 	db.collection('playlists', function (error, coll) {
@@ -41,9 +42,14 @@ app.post('/savePlaylist', function (request, response) {
 					response.send('Whoops something when wrong')
 				} else {
 					response.status(200);
-					response.send(this);
+					inserted = true;
+
+					
 				}
 			});
+		if (inserted) {
+			response.send(id);
+		}
 		}
 	});
 });
