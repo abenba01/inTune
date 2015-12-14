@@ -24,13 +24,18 @@ function fetchArtistsByLocation(locale) {
                 if (artists.length > 0) {
                     for (var i = 0; i < artists.length; i++) {
                         var artist = artists[i];
+                        /*
                         var li = $("<li>");
                         if ('artist_location' in artist) {
                             li.text(artist.name + " from " + artist.artist_location.location);
                             $("#results").append(li);
-               s         } else {
+                        } else {
                             console.log(artist);
                         }
+                        */
+
+                        //make new artists playlist using 5 artists returned from echonest call
+                        fetchArtistPlaylist(artists, false, 1);
                     }
                 } else {
                         $("#results").text("No results");
@@ -136,6 +141,7 @@ $(document).ready(function() {
 
         $('#USA').on('click', function () {
             fetchArtistsByLocation("United States of America");
+            //fetchArtistPlaylist(artists, false, 1);
             console.log("USA");
         })
         $('#ES').on('click', function () {
