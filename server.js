@@ -12,7 +12,7 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname));
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
@@ -41,7 +41,7 @@ app.post('/savePlaylist', function (request, response) {
 					response.send('Whoops something when wrong')
 				} else {
 					response.status(200);
-					response.send("Success");
+					response.send(id);
 				}
 			});
 		}
