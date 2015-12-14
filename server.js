@@ -66,7 +66,7 @@ app.get('/getPlaylist', function (request, response) {
 				if (!err) {
 					console.log("found", results);
 					//console.log(results.s.frame);
-					response.send("this probably didn't work");
+					response.send(results[0]['songs']['frame']);
 				} else {
 					console.log(err);
 				}
