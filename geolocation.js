@@ -506,9 +506,9 @@
 		})
 		
 		//myTunes
-		// $('#LP').on('click', function () {
-		// 	//code here
-		// })
+		$('#LP').on('click', function () {
+			loadPlaylist();
+		})
 		// $('#POP').on('click', function () {
 		// 	//code here
 		// })

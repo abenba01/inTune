@@ -90,10 +90,6 @@ function loadPlaylist(){
     console.log("complete");
 }
 
-    $('#LP').on('click', function(){
-        loadPlaylist();
-    });
-
 function info(txt) {
     $("#info").text(txt);
 }
