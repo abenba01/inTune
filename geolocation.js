@@ -59,7 +59,7 @@
 		losangeles['cloudy'] = 'http://i.imgur.com/xGhFSYj.jpg';
 		losangeles['rain'] = 'http://i.imgur.com/xGhFSYj.jpg';
 		losangeles['night'] = 'http://i.imgur.com/82VQOMV.jpg';
-		losangeles['snow'] = 'http://imgur.com/REP3kfs';
+		losangeles['snow'] = 'http://imgur.com/REP3kfs.jpg';
 
 	var boston = new Object();
 		boston['night'] = 'http://i.imgur.com/OEryYmJ.jpg';
