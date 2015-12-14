@@ -9,7 +9,7 @@ function notifyMe() {
     // Create a notification
    
 
-   if (localStorage.getItem("playlist") === null) { //if playlist exists    
+   if (localStorage.getItem("playlist") != null) { //if playlist exists    
 
     theIcon = 'logo.png';
     theBody = "You have a saved playlist in myTunes.";
