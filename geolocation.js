@@ -10,6 +10,7 @@
 	var my_time_string;
 	var my_month;
 	var today;
+	var fetch = false;
 	var next = false;
 	var myInfo = new Object();
 	var moodMeter = new Object();
@@ -24,7 +25,6 @@
 		theWeather['snow'] = false;
 		theWeather['rain'] = false;
 		theWeather['night'] = false;
-	var fetch = false;
  		
 	var amsterdam = new Object();
 		amsterdam['rain'] = 'http://i.imgur.com/9vBBFuF.jpg';
@@ -55,7 +55,12 @@
 		rome['rain'] = 'http://i.imgur.com/BWcdfB0.jpg';
 
 	var losangeles = new Object();
-
+		losangeles['sunny'] = 'http://i.imgur.com/KD15J5H.jpg';
+		losangeles['cloudy'] = 'http://i.imgur.com/xGhFSYj.jpg';
+		losangeles['rain'] = 'http://i.imgur.com/xGhFSYj.jpg';
+		losangeles['night'] = 'http://i.imgur.com/82VQOMV.jpg';
+		losangeles['snow'] = 'http://imgur.com/REP3kfs.jpg';
+	
 	var boston = new Object();
 		boston['night'] = 'http://i.imgur.com/OEryYmJ.jpg';
 		boston['cloudy'] = 'http://i.imgur.com/G3BykUw.jpg';
@@ -170,17 +175,6 @@
 		}
 		determineLocation();
 	}	
-
-	/*
-	function setSunny(){
-		theWeather['sunny'] = true;
-		moodMeter['target_acousticness'] = '0'; 
-		moodMeter['target_energy'] = '.8';
-		moodMeter['target_danceability'] = '.5';
-		moodMeter['song_type'] = '';
-		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
-	}
-	*/
 
 	function setSnow(){
 		theWeather['snow'] = true;
