@@ -87,10 +87,8 @@
 		weather['sunny_fall'] = 'http://i.imgur.com/NZmrFo6.jpg';
 		weather['sunny_summer'] = 'http://i.imgur.com/GHpgWsa.jpg';
 		weather['cloudy'] = 'http://i.imgur.com/ej1rNWu.jpg';
-		weather['fog'] = "http://i.imgur.com/R2m1Fmg.jpg";
 		weather['rain'] = 'http://i.imgur.com/reHMzYe.jpg';
 		weather['snow'] = 'http://i.imgur.com/M7BkXwP.jpg';
-		weather['thunder'] = 'http://i.imgur.com/cCGWH1n.jpg';
 		weather['night'] = 'http://imgur.com/CjuSNnP.jpg';
 
 	function getMyLocation() {
@@ -164,13 +162,9 @@
 		else if(myInfo['conditionCode'] >= '500' && myInfo['conditionCode'] < '532'){
 			setRain();
 		}
-		//fog
-		else if(myInfo['conditionCode'] == '741'){
-			setFog();
-		}
 		//thunder
 		else if(myInfo['conditionCode'] >= '200' && myInfo['conditionCode'] <= '232'){
-			setThunder();
+			setRain();
 		}
 		//snow
 	 	else if(myInfo['conditionCode'] >= '600' && myInfo['conditionCode'] <= '622'){
@@ -195,20 +189,6 @@
 		moodMeter['target_target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.6';
-		moodMeter['song_type'] = '';
-	}
-	function setThunder(){
-		theWeather['rain'] = true;
-		moodMeter['target_target_acousticness'] = '.6'; 
-		moodMeter['target_energy'] = '.2';
-		moodMeter['target_danceability'] = '.1';
-		moodMeter['song_type'] = '';
-	}
-	function setFog(){
-		theWeather['fog'] = true;
-		moodMeter['target_target_acousticness'] = '.9'; 
-		moodMeter['target_energy'] = '0';
-		moodMeter['target_danceability'] = '.2';
 		moodMeter['song_type'] = '';
 	}
 	function setRain(){
@@ -287,6 +267,16 @@
 			setMoodWeather();
 		}
 	}
+		function resetWeather(){
+		theWeather['sunny'] = false;
+		theWeather['sunny_winter'] = false;
+		theWeather['sunny_fall'] = false;
+		theWeather['sunny_summer'] = false;
+		theWeather['cloudy'] = false;
+		theWeather['snow'] = false;
+		theWeather['rain'] = false;
+		theWeather['night'] = false;
+	}
 
 	function setMoodWeather(){
 		if(theWeather['sunny_winter']){
@@ -294,9 +284,6 @@
 		}
 		else if(theWeather['sunny_fall']){
 			document.body.style.backgroundImage = "url('" + weather['sunny_fall'] + "')";
-		}
-		else if(theWeather['fog']){
-			document.body.style.backgroundImage = "url('" + weather['fog'] + "')";
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + weather['cloudy'] + "')";
@@ -306,9 +293,6 @@
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + weather['rain'] + "')";
-		}
-		else if(theWeather['thunder']){
-			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
 		}
 		else{
 			document.body.style.backgroundImage = "url('" + weather['sunny_summer'] + "')";
@@ -331,19 +315,6 @@
 		else{
 			document.body.style.backgroundImage = "url('" + tufts['sunny'] + "')";
 		}
-	}
-
-	function resetWeather(){
-		theWeather['sunny'] = false;
-		theWeather['sunny_winter'] = false;
-		theWeather['sunny_fall'] = false;
-		theWeather['sunny_summer'] = false;
-		theWeather['cloudy'] = false;
-		theWeather['fog'] = false;
-		theWeather['thunder'] = false;
-		theWeather['snow'] = false;
-		theWeather['rain'] = false;
-		theWeather['night'] = false;
 	}
 
 	function setMoodFR(){	
@@ -495,7 +466,6 @@
 			setMoodNL();
 		})
 		$('#NYC').on('click', function () {
-						console.log("0");
 			setMoodNYC();
 		})
 		$('#LA').on('click', function () {
@@ -526,16 +496,6 @@
 			setSnow();
 			document.body.style.backgroundImage = "url('" + weather['snow'] + "')";
 		})	
-		$('#FOG').on('click', function () {
-			resetWeather();
-			setFog();
-			document.body.style.backgroundImage = "url('" + weather['fog'] + "')";
-		})
-		$('#THUNDER').on('click', function () {
-			resetWeather();
-			setThunder();
-			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
-		})
 		$('#NIGHT').on('click', function () {
 			resetWeather();
 			setNight();
