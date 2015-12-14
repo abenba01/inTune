@@ -1,5 +1,6 @@
-Here is our last to do list!!!
+FINAL TO DO LIST
 
-- Load playlist into spotify
+- Fix double playlist?
+- Add padding to buttons on main.html
 - Mobile responsiveness
 - Final README
