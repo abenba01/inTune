@@ -57,7 +57,7 @@ app.get('/getPlaylist', function (request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	var reqId = request.query.id;
-	var o_id = new object_id("566e3325720b2d03007ce4af");
+	var o_id = new object_id(reqId);
 	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
