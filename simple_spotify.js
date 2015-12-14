@@ -1,6 +1,7 @@
 jQuery.ajaxSettings.traditional = true; 
 var config = getConfig();
 var embedcode;
+var iframe;
 
 
 function fetchArtistPlaylist(artists,  wandering, variety) {
@@ -78,7 +79,7 @@ function loadPlaylist(){
     http.onreadystatechange = function(){
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
-            var iframe = http.responseText;
+            iframe = http.responseText;
         }else if(http.readyState === 4 && http.status !== 200){
             alert("Whoops, something is wrong with your data!");
         }
