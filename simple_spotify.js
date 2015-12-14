@@ -57,7 +57,7 @@ function getSongId(songname) {
 function save_playlist() {
     //var url = '/savePlaylist';
     console.log("saving");
-    var params = encodeURIComponent(embedcode);
+    var params = "frame=" + encodeURIComponent(embedcode);
     console.log(params);
     var http = new XMLHttpRequest();
     var url = 'http://quiet-reaches-3588.herokuapp.com/savePlaylist';
