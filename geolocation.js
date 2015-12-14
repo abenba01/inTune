@@ -480,27 +480,43 @@
 			//Location
 		$('#USA').on('click', function () {
 			setMoodWeather();
+			$("#all_results").empty();
+            fetchArtistsByLocation("United States of America");
 		})
 		$('#ES').on('click', function () {
 			setMoodES();
+			$("#all_results").empty();
+            fetchArtistsByLocation("spain");
 		})
 		$('#FR').on('click', function () {
 			setMoodFR();
+			$("#all_results").empty();
+            fetchArtistsByLocation("france");
 		})
 		$('#IT').on('click', function () {
 			setMoodIT();
+			 $("#all_results").empty();
+            fetchArtistsByLocation("italy");
 		})
 		$('#AMS').on('click', function () {
 			setMoodNL();
+			 $("#all_results").empty();
+            fetchArtistsByLocation("netherlands");
 		})
 		$('#NYC').on('click', function () {
 			setMoodNYC();
+			$("#all_results").empty();
+            fetchArtistsByLocation("new york city");
 		})
 		$('#LA').on('click', function () {
 			setMoodLA();
+			 $("#all_results").empty();
+            fetchArtistsByLocation("los Angeles");
 		})
 		$('#BOS').on('click', function () {
 			setMoodBOS();
+			$("#all_results").empty();
+            fetchArtistsByLocation("boston");
 		})
 		$('#MyLoc').on('click', function () {
 			determineLocation();
@@ -510,6 +526,7 @@
 		$('#SUN').on('click', function () {
 			setSunny();
 			document.body.style.backgroundImage = "url('" + weather['sunny_fall'] + "')";
+
 		})
 		$('#CLOUD').on('click', function () {
 			setCloudy();

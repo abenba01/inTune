@@ -25,13 +25,12 @@ function fetchArtistsByLocation(locale) {
                 console.log("new artists");
                 console.log(new_artists);
                 var artist_list = [];
-                
+                localStorage.removeItem('seed_artists');
                 for (var i = 0; i < new_artists.length; i++) {
                          artist_list[i] = new_artists[i].name;
-                        //make new artists playlist using 5 artists returned from echonest call
-                        //$("#all_results").empty();  
                     }
                 console.log(artist_list);
+                localStorage["seed_artists", artist_list]
                 if (new_artists.length > 0) {
                     fetchArtistPlaylist(artist_list, false, 1);
 
@@ -63,12 +62,20 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             'api_key': config.apiKey,
             'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 
             'limit' : true,
-            'variety' : 1, 'results': 50, 'type':'artist-radio',  
+            'variety' : 1, 
+            'results': 50, 
+            'type':'artist-radio',
         };
         if (tracks != "") {
         	params.track_id = tracks;
         } if (artists != "") {
         	params.artist = artists;
+        } if (moodMeter["target_acousticness"] != undefined) {
+            params.target_acousticness = moodMeter["target_acousticness"];
+        } if (moodMeter["target_energy"] != undefined) {
+            params.target_energy = moodMeter["target_energy"];
+        } if (moodMeter["target_danceability"] != undefined) {
+            params.target_danceability = moodMeter['target_danceability'];    
         }
 
 
@@ -138,43 +145,4 @@ $(document).ready(function() {
     console.log(artists);
     fetchArtistPlaylist(artists, false, 1);
 
-        $('#USA').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("United States of America");
-            //fetchArtistPlaylist(artists, false, 1);
-            //console.log("USA");
-        })
-        $('#ES').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("spain");
-            console.log("spain");
-        })
-        $('#FR').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("france");
-        })
-        $('#IT').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("italy");
-        })
-        $('#AMS').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("netherlands");
-        })
-        $('#NYC').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("new york city");
-        })
-        $('#LA').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("los Angeles");
-        })
-        $('#BOS').on('click', function () {
-            $("#all_results").empty();
-            fetchArtistsByLocation("boston");
-        })
-        $('#MyLoc').on('click', function () {
-            //determineLocation();
-
-        })
 });
