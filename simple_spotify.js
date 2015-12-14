@@ -66,7 +66,10 @@ function save_playlist() {
     }
 }
 
- $('#LP').on('click', loadPlaylist());
+
+    $('#LP').on('click', function(){
+        loadPlaylist();
+    });
 
 function loadPlaylist(){
     console.log("loadPlaylist called");
@@ -80,6 +83,7 @@ function loadPlaylist(){
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
             iframe = http.responseText;
+            console.log("success");
         }else if(http.readyState === 4 && http.status !== 200){
             alert("Whoops, something is wrong with your data!");
         }
@@ -87,6 +91,7 @@ function loadPlaylist(){
 
     var newPlaylist = $("<span>").html(iframe);
     $("#all_results").append(newPlaylist);
+    console.log("complete");
 }
 
 
