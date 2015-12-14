@@ -92,7 +92,7 @@
 		weather['night'] = 'http://imgur.com/CjuSNnP.jpg';
 
 	function getMyLocation() {
-		if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+		if (navigator.geolocation) { 
 			navigator.geolocation.getCurrentPosition(function(position) {
 				myLat = position.coords.latitude;
 				myLng = position.coords.longitude;
@@ -231,9 +231,9 @@
 	}
 	function setNight(){
 		theWeather['night'] = true;
-		moodMeter['target_target_acousticness'] = '.2'; 
+		moodMeter['target_target_acousticness'] = '0'; 
 		moodMeter['target_energy'] = '.9';
-		moodMeter['target_danceability'] = '.7';
+		moodMeter['target_danceability'] = '.9';
 		moodMeter['song_type'] = '';
 	}
 
@@ -449,7 +449,7 @@
 	}
 
 	$(document).ready(function () {
-			//Location
+		//Location
 		$('#USA').on('click', function () {
 			setMoodWeather();
 		})
@@ -477,7 +477,6 @@
 		$('#MyLoc').on('click', function () {
 			determineLocation();
 		})
-
 		
 		//Weather
 		$('#SUN').on('click', function () {
@@ -505,6 +504,7 @@
 			setNight();
 			document.body.style.backgroundImage = "url('" + weather['night'] + "')";
 		})
+		
 		//myTunes
 		// $('#LP').on('click', function () {
 		// 	//code here
@@ -518,28 +518,4 @@
 	});
 
 getMyLocation();
-
-/*
-	console.log (moodMeter['target_target_acousticness'] +  " -- " +
-			moodMeter['target_energy'] + " -- " +
-			moodMeter['target_danceability'] + " -- " +
-			moodMeter['song_type'] + " -- " + 
-			myInfo['conditionCode'] + "--" +
-		theWeather['cloudy'] + "--" +
-		theWeather['sunny'] + "--" +
-		theWeather['sunny_fall'] + "--" +
-		theWeather['night'] + "--" +
-		theWeather['sunny_fall'] + "--" +
-		theWeather['snow'] + "--" +
-		theWeather['fog']+ "--" +
-		theWeather['rain']+ "--" +
-		theWeather['thunder']+ "--" +
-		sunset_time_string + "--" +
-		sunrise_time_string + "--" +
-		my_time_string);
-		*/
-
-//https://github.com/google/maps-for-work-samples/blob/master/samples/OpenWeatherMapLayer/index.html
-//http://home.openweathermap.org/
-//https://developers.google.com/maps/documentation/javascript/geocoding
 
