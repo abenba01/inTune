@@ -546,6 +546,8 @@
 		})
 		$('#MyLoc').on('click', function () {
 			determineLocation();
+			$("#all_results").empty();
+            fetchArtistPlaylist(localStorage["original_artists"], false, 1)
 
 		})
 		//Weather
