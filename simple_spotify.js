@@ -87,8 +87,7 @@ function loadPlaylist(){
     }
 
     $("#all_results").empty();
-    newPlaylist = $("<span>").html(iframe);
-    $("#all_results").append($("<span>").html(iframe));
+    document.getElementById("all_results").innerHTML = iframe;
     console.log("complete");
 }
 
