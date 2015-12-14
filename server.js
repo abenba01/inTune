@@ -59,6 +59,7 @@ app.get('/getPlaylist', function (request, response) {
 	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
+			console.log("no error", reqId);
 			coll.find({"_id":reqId}).toArray( function(err, results) {
 				if (!err) {
 					console.log("found", results);
