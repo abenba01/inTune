@@ -56,10 +56,12 @@ app.get('/getPlaylist', function (request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	var reqId = request.query.id;
+	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
 			coll.find({"_id":id}, function(err, results) {
 				if (!err) {
+					console.log("found");
 					response.send(results.frame);
 				}
 			});
