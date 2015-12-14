@@ -59,7 +59,6 @@ function save_playlist() {
             var id = http.responseText;
             console.log(id);
             localStorage['playlist'] = id;
-            var new_id;
             for(var i = 1; i < id.length-1; i++){
                 new_id[i] = id[i];
             }
