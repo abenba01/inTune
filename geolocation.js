@@ -26,7 +26,6 @@
 		theWeather['rain'] = false;
 		theWeather['night'] = false;
 	var fetch = false;
-
  		
 	var amsterdam = new Object();
 		amsterdam['rain'] = 'http://i.imgur.com/9vBBFuF.jpg';
@@ -576,6 +575,7 @@
 			setThunder();
 			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
 		})
+
 		//myTunes
 		// $('#LP').on('click', function () {
 		// 	//code here

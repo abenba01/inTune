@@ -50,7 +50,7 @@ function fetchArtistsByLocation(locale) {
 
 
 //creates a playlist based on specified artists
-function fetchArtistPlaylist(artists,  wandering, variety) {
+function fetchArtistPlaylist(artists, wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
     $("#all_results").empty();
     info("Creating the playlist ...");
