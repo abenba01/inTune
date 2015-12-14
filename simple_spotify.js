@@ -80,14 +80,13 @@ function loadPlaylist(){
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
             iframe = http.responseText;
+            $("#all_results").empty();
+            document.getElementById("all_results").innerHTML = iframe;
             console.log("success", iframe);
         }else if(http.readyState === 4 && http.status !== 200){
             alert("Whoops, something is wrong with your data!");
         }
     }
-
-    $("#all_results").empty();
-    document.getElementById("all_results").innerHTML = iframe;
     console.log("complete");
 }
 
