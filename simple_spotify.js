@@ -59,7 +59,7 @@ function save_playlist() {
             var id = http.responseText;
             console.log(id);
             var j = 0;
-            var new_id = new Object;
+            var new_id = "";
             for(var i = 1; i < id.length-1; i++){
 
                 new_id[j] += id[i];
