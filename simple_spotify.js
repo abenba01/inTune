@@ -71,6 +71,7 @@ function loadPlaylist(){
     console.log("loadPlaylist called");
     var http = new XMLHttpRequest();
     var id = localStorage['playlist'];
+    console.log(id);
     var url = 'http://quiet-reaches-3588.herokuapp.com/getPlaylist' + '?id=' + id;
     http.open("GET", url, true);
     http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
