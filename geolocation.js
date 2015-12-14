@@ -24,7 +24,7 @@
 		theWeather['snow'] = false;
 		theWeather['rain'] = false;
 		theWeather['night'] = false;
-
+	var fetch = false;
  		
 	var amsterdam = new Object();
 		amsterdam['rain'] = 'http://i.imgur.com/9vBBFuF.jpg';
@@ -55,11 +55,6 @@
 		rome['rain'] = 'http://i.imgur.com/BWcdfB0.jpg';
 
 	var losangeles = new Object();
-		losangeles['sunny'] = 'http://i.imgur.com/KD15J5H.jpg';
-		losangeles['cloudy'] = 'http://i.imgur.com/xGhFSYj.jpg';
-		losangeles['rain'] = 'http://i.imgur.com/xGhFSYj.jpg';
-		losangeles['night'] = 'http://i.imgur.com/82VQOMV.jpg';
-		losangeles['snow'] = 'http://imgur.com/REP3kfs.jpg';
 
 	var boston = new Object();
 		boston['night'] = 'http://i.imgur.com/OEryYmJ.jpg';
@@ -176,13 +171,16 @@
 		determineLocation();
 	}	
 
+	/*
 	function setSunny(){
 		theWeather['sunny'] = true;
 		moodMeter['target_acousticness'] = '0'; 
 		moodMeter['target_energy'] = '.8';
 		moodMeter['target_danceability'] = '.5';
 		moodMeter['song_type'] = '';
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
 	}
+	*/
 
 	function setSnow(){
 		theWeather['snow'] = true;
@@ -190,13 +188,20 @@
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.6';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
+
 	function setRain(){
 		theWeather['rain'] = true;
 		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.4';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setCloudy(){
 		theWeather['cloudy'] = true;
@@ -204,6 +209,9 @@
 		moodMeter['target_energy'] = '.2';
 		moodMeter['target_danceability'] = '.3';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setSunny(){
 		theWeather['sunny'] = true;
@@ -228,6 +236,9 @@
 			moodMeter['target_danceability'] = '.5';
 			moodMeter['song_type'] = '';
 		}
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setNight(){
 		theWeather['night'] = true;
@@ -235,6 +246,9 @@
 		moodMeter['target_energy'] = '.9';
 		moodMeter['target_danceability'] = '.9';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 
 
@@ -452,30 +466,48 @@
 		//Location
 		$('#USA').on('click', function () {
 			setMoodWeather();
+			$("#all_results").empty();
+            fetchArtistsByLocation("United States of America");
 		})
 		$('#ES').on('click', function () {
 			setMoodES();
+			$("#all_results").empty();
+            fetchArtistsByLocation("spain");
 		})
 		$('#FR').on('click', function () {
 			setMoodFR();
+			$("#all_results").empty();
+            fetchArtistsByLocation("france");
 		})
 		$('#IT').on('click', function () {
 			setMoodIT();
+			 $("#all_results").empty();
+            fetchArtistsByLocation("italy");
 		})
 		$('#AMS').on('click', function () {
 			setMoodNL();
+			 $("#all_results").empty();
+            fetchArtistsByLocation("netherlands");
 		})
 		$('#NYC').on('click', function () {
 			setMoodNYC();
+			$("#all_results").empty();
+            fetchArtistsByLocation("new york city");
 		})
 		$('#LA').on('click', function () {
 			setMoodLA();
+			 $("#all_results").empty();
+            fetchArtistsByLocation("los Angeles");
 		})
 		$('#BOS').on('click', function () {
 			setMoodBOS();
+			$("#all_results").empty();
+            fetchArtistsByLocation("boston");
 		})
 		$('#MyLoc').on('click', function () {
 			determineLocation();
+			$("#all_results").empty();
+            fetchArtistPlaylist(localStorage["original_artists"], false, 1)
 
 		})
 		
@@ -484,6 +516,7 @@
 			resetWeather();
 			setSunny();
 			document.body.style.backgroundImage = "url('" + weather['sunny_fall'] + "')";
+
 		})
 		$('#CLOUD').on('click', function () {
 			resetWeather();
@@ -505,7 +538,7 @@
 			setNight();
 			document.body.style.backgroundImage = "url('" + weather['night'] + "')";
 		})
-		
+
 		//myTunes
 		$('#LP').on('click', function () {
 			loadPlaylist();
@@ -513,47 +546,6 @@
 		
 	});
 
-function fetchArtistsByLocation(locale) {
-    var endpoint = 'http://developer.echonest.com/api/v4/'
-    var url = endpoint + 'artist/search';
-    var apiKey = 'NO_API_KEY';
-
-    $("#results").empty();
-    $.getJSON(url, 
-        { 
-            'api_key' : apiKey,
-            'artist_location': locale, 
-            'results' : 5,
-            'bucket': [ 'artist_location'],  
-            'sort': 'hotttnesss-desc'
-        },
-        function(data) {
-            if (data.response.status.code == 0) {
-                var artists = data.response.artists;
-                if (artists.length > 0) {
-                    for (var i = 0; i < artists.length; i++) {
-                        var artist = artists[i];
-                        var li = $("<li>");
-                        if ('artist_location' in artist) {
-                            li.text(artist.name + " from " + artist.artist_location.location);
-                            $("#results").append(li);
-                        } else {
-                            console.log(artist);
-                        }
-                    }
-                } else {
-                        $("#results").text("No results");
-                }
-            } else {
-                alert("Trouble getting artists: " + data.response.status.message);
-            }
-        })
-        .error( 
-            function(data) {
-                alert("query syntax error. Use 'city:', 'region:' and 'country:' qualifiers only");
-            }
-        );
-}
 
 
 getMyLocation();

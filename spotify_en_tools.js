@@ -57,7 +57,7 @@ function getSpotifyPlayer(inPlaylist, callback) {
             .error( function() {
                 info("Whoops, had some trouble getting that playlist");
             }) ;
-    }
+     }
 
     function filterSongs(songs) {
         var out = [];
