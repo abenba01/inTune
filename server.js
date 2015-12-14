@@ -41,7 +41,7 @@ app.post('/savePlaylist', function (request, response) {
 					response.send('Whoops something when wrong')
 				} else {
 					response.status(200);
-					response.send("Success");
+					response.send(id);
 				}
 			});
 		}
