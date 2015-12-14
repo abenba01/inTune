@@ -540,7 +540,5 @@
 		
 	});
 
-
-
 getMyLocation();
 
