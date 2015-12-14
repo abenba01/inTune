@@ -76,11 +76,11 @@
 		tufts['rain'] = 'http://i.imgur.com/yyGX2mf.jpg';
 
 	var NYC = new Object();
-		NYC['rain'] = 'http://imgur.com/OcGORMl';
-		NYC['sunny'] = 'http://imgur.com/rVme7A9';
-		NYC['snow'] = 'http://imgur.com/A3bBHUU';
-		NYC['cloudy'] = 'http://imgur.com/3Y0tbbO';
-		NYC['night'] = 'http://imgur.com/EiGCyVq';
+		NYC['rain'] = 'http://imgur.com/OcGORMl.jpg';
+		NYC['sunny'] = 'http://imgur.com/rVme7A9.jpg';
+		NYC['snow'] = 'http://imgur.com/A3bBHUU.jpg';
+		NYC['cloudy'] = 'http://imgur.com/3Y0tbbO.jpg';
+		NYC['night'] = 'http://imgur.com/EiGCyVq.jpg';
 
 	var weather = new Object();
 		weather['sunny_winter'] = 'http://i.imgur.com/4GJPfen.jpg';
@@ -442,7 +442,7 @@
 
 	function setMoodES(){		
 		if(theWeather['night']){
-			document.body.style.backgroundImage = "url('" + madird['night'] + "')";
+			document.body.style.backgroundImage = "url('" + madrid['night'] + "')";
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + madrid['rain'] + "')";
