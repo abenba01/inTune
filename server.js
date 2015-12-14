@@ -59,10 +59,9 @@ app.get('/getPlaylist', function (request, response) {
 	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
-			coll.find({"_id":{"$oid": reqId}}, function(err, results) {
+			coll.find({"_id":reqId}}.toArray( function(err, results) {
 				if (!err) {
-					console.log("found");
-					console.log(results.s);
+					console.log("found", results);
 					//console.log(results.s.frame);
 					response.send("this probably didn't work");
 				} 
