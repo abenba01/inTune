@@ -67,10 +67,6 @@ function save_playlist() {
 }
 
 
-    $('#LP').on('click', function(){
-        loadPlaylist();
-    });
-
 function loadPlaylist(){
     console.log("loadPlaylist called");
     var http = new XMLHttpRequest();
@@ -94,6 +90,9 @@ function loadPlaylist(){
     console.log("complete");
 }
 
+    $('#LP').on('click', function(){
+        loadPlaylist();
+    });
 
 function info(txt) {
     $("#info").text(txt);
