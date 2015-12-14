@@ -88,7 +88,7 @@ function loadPlaylist(){
 
     $("#all_results").empty();
     newPlaylist = $("<span>").html(iframe);
-    $("#all_results").append(newPlaylist);
+    $("#all_results").append($("<span>").html(iframe));
     console.log("complete");
 }
 
