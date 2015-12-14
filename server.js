@@ -62,7 +62,8 @@ app.get('/getPlaylist', function (request, response) {
 			coll.find({"_id":{"$oid": reqId}}, function(err, results) {
 				if (!err) {
 					console.log("found");
-					response.send(results.songs.frame);
+					console.log(results);
+					response.send(results.frame);
 				}
 			});
 		}
