@@ -60,7 +60,7 @@ function save_playlist() {
             console.log(id);
             localStorage['playlist'] = id;
             var new_id;
-            for(i = 1, i < id.length-1, i++){
+            for(var i = 1; i < id.length-1; i++){
                 new_id[i] = id[i];
             }
             id = new_id;
