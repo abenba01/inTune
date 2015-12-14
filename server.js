@@ -35,21 +35,20 @@ app.post('/savePlaylist', function (request, response) {
 	songs = request.body;
 	console.log(request);
 	db.collection('playlists', function (error, coll) {
-		if (!error){
+		if (!error) {
 			var id = coll.insert( {"playlist": songs}, function (err, saved) {
 				if (err) {
 					response.status(500);
 					response.send('Whoops something when wrong')
 				} else {
 					response.status(200);
-					inserted = true;
-
-					
+					coll.find({"playlist":songs}).toArray( function (err, results) {
+						if (!err) {
+							response.send(results[0]._id);
+						}						
+					});				
 				}
 			});
-		if (inserted) {
-			response.send(id);
-		}
 		}
 	});
 });
