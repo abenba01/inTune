@@ -30,7 +30,7 @@ function fetchArtistsByLocation(locale) {
                          artist_list[i] = new_artists[i].name;
                     }
                 console.log(artist_list);
-                localStorage["seed_artists", artist_list]
+                localStorage.setItem("seed_artists", artist_list);
                 if (new_artists.length > 0) {
                     fetchArtistPlaylist(artist_list, false, 1);
 
