@@ -65,7 +65,10 @@ function save_playlist() {
     }
 }
 
- $('#LP').on('click', function loadPlaylist () {
+ $('#LP').on('click', loadPlaylist());
+
+function loadPlaylist(){
+    console.log("loadPlaylist called");
     var http = new XMLHttpRequest();
     var id = localStorage['playlist'];
     var url = 'http://quiet-reaches-3588.herokuapp.com/getPlaylist' + '?id=' + id;
@@ -83,7 +86,8 @@ function save_playlist() {
 
     var newPlaylist = $("<span>").html(iframe);
     $("#all_results").append(newPlaylist);
- })
+}
+
 
 function info(txt) {
     $("#info").text(txt);
