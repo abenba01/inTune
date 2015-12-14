@@ -59,7 +59,7 @@ app.get('/getPlaylist', function (request, response) {
 	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
-			coll.find({"_id":id}, function(err, results) {
+			coll.find({"_id":{"$oid": id}}, function(err, results) {
 				if (!err) {
 					console.log("found");
 					response.send(results.frame);
