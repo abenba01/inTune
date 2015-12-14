@@ -22,24 +22,18 @@ function fetchArtistsByLocation(locale) {
             console.log("DATA" + data);
             if (data.response.status.code == 0) {
                 var new_artists = data.response.artists;
-
-                if (new_artists.length > 0) {
-                    /*
-                    for (var i = 0; i < artists.length; i++) {
-                        var artist = artists[i];
-                        var list = [];
-                        if ('artist_location' in artist) {
-                            list[i] = artist.name;
-                           // $("#results").append(li);
-                        } else {
-                            console.log(artist);
-                        }
+                console.log("new artists");
+                console.log(new_artists);
+                var artist_list = [];
+                
+                for (var i = 0; i < new_artists.length; i++) {
+                         artist_list[i] = new_artists[i].name;
                         //make new artists playlist using 5 artists returned from echonest call
                         //$("#all_results").empty();  
                     }
-                    */
-                    //localStorage['seed_artists'] = list;
-                    fetchArtistPlaylist(new_artists, false, 1);
+                console.log(artist_list);
+                if (new_artists.length > 0) {
+                    fetchArtistPlaylist(artist_list, false, 1);
 
                 } else {
                         $("#results").text("No results");
