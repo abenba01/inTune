@@ -2,7 +2,7 @@ jQuery.ajaxSettings.traditional = true;
 var config = getConfig();
 var embedcode;
 var iframe;
-
+var newPlaylist;
 
 function fetchArtistPlaylist(artists,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
@@ -87,7 +87,7 @@ function loadPlaylist(){
     }
 
     $("#all_results").empty();
-    var newPlaylist = $("<span>").html(iframe);
+    newPlaylist = $("<span>").html(iframe);
     $("#all_results").append(newPlaylist);
     console.log("complete");
 }
