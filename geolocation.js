@@ -474,6 +474,10 @@
 		$('#BOS').on('click', function () {
 			setMoodBOS();
 		})
+		$('#MyLoc').on('click', function () {
+			determineLocation();
+		})
+
 		
 		//Weather
 		$('#SUN').on('click', function () {
