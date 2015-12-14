@@ -2,7 +2,7 @@ jQuery.ajaxSettings.traditional = true;
 var config = getConfig();
 var embedcode;
 var iframe;
-
+var newPlaylist;
 
 function fetchArtistPlaylist(artists,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
@@ -57,7 +57,7 @@ function save_playlist() {
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
             var id = http.responseText;
-            console.log("id from post is: " + id);
+            console.log(id);
             localStorage['playlist'] = id;
             var new_id;
             for(i = 1, i < id.length-1, i++){
@@ -85,14 +85,13 @@ function loadPlaylist(){
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
             iframe = http.responseText;
-            console.log("success");
+            $("#all_results").empty();
+            document.getElementById("all_results").innerHTML = iframe;
+            console.log("success", iframe);
         }else if(http.readyState === 4 && http.status !== 200){
             alert("Whoops, something is wrong with your data!");
         }
     }
-
-    var newPlaylist = $("<span>").html(iframe);
-    $("#all_results").append(newPlaylist);
     console.log("complete");
 }
 
