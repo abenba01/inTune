@@ -59,12 +59,12 @@ function save_playlist() {
             var id = http.responseText;
             console.log(id);
             var j = 0;
-            var new_id = "";
-            for(var i = 1; i < id.length-1; i++){
+            var new_id = id.substring(1, id.length-1);
+            /*for(var i = 1; i < id.length-1; i++){
 
                 new_id[j] += id[i];
                 j++;
-            }
+            }*/
             localStorage['playlist'] = new_id;
             alert("Successfully saved!");
         }else if(http.readyState === 4 && http.status !== 200){
