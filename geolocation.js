@@ -1,4 +1,4 @@
-	
+
 	var myLat = 0;
 	var myLng = 0;
 	var address_info = "";
@@ -59,7 +59,7 @@
 		losangeles['cloudy'] = 'http://i.imgur.com/xGhFSYj.jpg';
 		losangeles['rain'] = 'http://i.imgur.com/xGhFSYj.jpg';
 		losangeles['night'] = 'http://i.imgur.com/82VQOMV.jpg';
-		losangeles['snow'] = 'http://imgur.com/REP3kfs';
+		losangeles['snow'] = 'http://imgur.com/REP3kfs.jpg';
 
 	var boston = new Object();
 		boston['night'] = 'http://i.imgur.com/OEryYmJ.jpg';
@@ -91,6 +91,7 @@
 		weather['rain'] = 'http://i.imgur.com/reHMzYe.jpg';
 		weather['snow'] = 'http://i.imgur.com/M7BkXwP.jpg';
 		weather['thunder'] = 'http://i.imgur.com/cCGWH1n.jpg';
+		weather['night'] = 'http://imgur.com/CjuSNnP.jpg';
 
 	function getMyLocation() {
 		if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
@@ -144,6 +145,7 @@
 		set_hr = ('0' + sunset_time.getHours()).slice(-2),
 		set_min = ('0' + sunset_time.getMinutes()).slice(-2),
 		sunset_time_string = set_hr + set_min;
+		console.log(sunset_time_string);
 		next = true; 
 		if(next){
 			setCondition();
@@ -402,18 +404,22 @@
 	function setMoodNYC(){		
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + NYC['night'] + "')";
+			console.log("1");
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + NYC['rain'] + "')";
+						console.log("2");
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + NYC['cloudy'] + "')";
+						console.log("3");
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + NYC['snow'] + "')";
 		}
 		else{
 			document.body.style.backgroundImage = "url('" + NYC['sunny'] + "')";
+						console.log("4");
 		}
 	}
 
@@ -489,6 +495,7 @@
 			setMoodNL();
 		})
 		$('#NYC').on('click', function () {
+						console.log("0");
 			setMoodNYC();
 		})
 		$('#LA').on('click', function () {
@@ -528,6 +535,11 @@
 			resetWeather();
 			setThunder();
 			document.body.style.backgroundImage = "url('" + weather['thunder'] + "')";
+		})
+		$('#NIGHT').on('click', function () {
+			resetWeather();
+			setNight();
+			document.body.style.backgroundImage = "url('" + weather['night'] + "')";
 		})
 		//myTunes
 		// $('#LP').on('click', function () {
