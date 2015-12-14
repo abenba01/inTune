@@ -7,18 +7,17 @@ function notifyMe() {
   // Check whether notification permissions have already been granted
   else if (Notification.permission === "granted") {
     // Create a notification
-   
 
    if (localStorage.getItem("playlist") != null) { //if playlist exists    
 
-    theIcon = 'logo.png';
-    theBody = "You have a saved playlist in myTunes.";
-    var options = {
-		      body: theBody,
-		      icon: theIcon
-		  };
+      theIcon = 'logo.png';
+      theBody = "You have a saved playlist in myTunes.";
+      var options = {
+  		      body: theBody,
+  		      icon: theIcon
+  		  };
 
-    var notification = new Notification("inTune", options);
+      var notification = new Notification("inTune", options);
     }
   }
 
