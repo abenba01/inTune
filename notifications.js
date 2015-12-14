@@ -8,7 +8,8 @@ function notifyMe() {
   else if (Notification.permission === "granted") {
     // Create a notification
    
-    //if playlist exists
+
+   if (localStorage.getItem("playlist") === null) { //if playlist exists    
 
     theIcon = 'logo.png';
     theBody = "You have a saved playlist in myTunes.";
@@ -18,6 +19,7 @@ function notifyMe() {
 		  };
 
     var notification = new Notification("inTune", options);
+    }
   }
 
   // Ask the user for permission
