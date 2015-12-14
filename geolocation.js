@@ -25,6 +25,7 @@
 		theWeather['snow'] = false;
 		theWeather['rain'] = false;
 		theWeather['night'] = false;
+	var fetch = false;
 
  		
 	var amsterdam = new Object();
@@ -182,13 +183,16 @@
 		determineLocation();
 	}	
 
+	/*
 	function setSunny(){
 		theWeather['sunny'] = true;
 		moodMeter['target_target_acousticness'] = '0'; 
 		moodMeter['target_energy'] = '.8';
 		moodMeter['target_danceability'] = '.5';
 		moodMeter['song_type'] = '';
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
 	}
+	*/
 
 	function setSnow(){
 		theWeather['snow'] = true;
@@ -196,6 +200,9 @@
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.6';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setThunder(){
 		theWeather['rain'] = true;
@@ -203,6 +210,9 @@
 		moodMeter['target_energy'] = '.2';
 		moodMeter['target_danceability'] = '.1';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setFog(){
 		theWeather['fog'] = true;
@@ -210,6 +220,9 @@
 		moodMeter['target_energy'] = '0';
 		moodMeter['target_danceability'] = '.2';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setRain(){
 		theWeather['rain'] = true;
@@ -217,6 +230,9 @@
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.4';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setCloudy(){
 		theWeather['cloudy'] = true;
@@ -224,6 +240,9 @@
 		moodMeter['target_energy'] = '.2';
 		moodMeter['target_danceability'] = '.3';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setSunny(){
 		theWeather['sunny'] = true;
@@ -248,6 +267,9 @@
 			moodMeter['target_danceability'] = '.5';
 			moodMeter['song_type'] = '';
 		}
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 	function setNight(){
 		theWeather['night'] = true;
@@ -255,6 +277,9 @@
 		moodMeter['target_energy'] = '.9';
 		moodMeter['target_danceability'] = '.7';
 		moodMeter['song_type'] = '';
+		$("#all_results").empty();
+		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
+
 	}
 
 
