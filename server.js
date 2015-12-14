@@ -12,7 +12,7 @@ var db = MongoClient.connect(mongoUri, function(error, databaseConnection) {
 
 app.use(express.static(__dirname));
 
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
