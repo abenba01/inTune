@@ -3,6 +3,7 @@ var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
 var validator = require('validator'); 
+var object_id = require('mongodb').ObjectId;
 
 var mongoUri = process.env.MONGOLAB_URI || process.env.MONGOHQ_URL || 'mongodb://localhost/inTune';
 var MongoClient = require('mongodb').MongoClient, format = require('util').format;
@@ -56,11 +57,12 @@ app.get('/getPlaylist', function (request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	var reqId = request.query.id;
+	var o_id = new object_id("566e3325720b2d03007ce4af");
 	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
 			console.log("no error", reqId);
-			coll.find({"_id": ObjectId("566e3325720b2d03007ce4af")}, function(err, results) {
+			coll.find({"_id": o_id}, function(err, results) {
 				if (!err) {
 					console.log("found", results);
 					//console.log(results.s.frame);
