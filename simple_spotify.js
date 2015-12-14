@@ -5,9 +5,9 @@ var songs;
        
 function fetchArtistsByLocation(locale) {
     console.log("fetching artists");
-   var endpoint = 'http://developer.echonest.com/api/v4/'
+    var endpoint = 'http://developer.echonest.com/api/v4/'
     var url = endpoint + 'artist/search';
-    var apiKey = 'NO_API_KEY';
+    //var apiKey = 'NO_API_KEY';
 
     $("#results").empty();
     $.getJSON(url, 
@@ -22,9 +22,9 @@ function fetchArtistsByLocation(locale) {
             if (data.response.status.code == 0) {
                 var artists = data.response.artists;
                 if (artists.length > 0) {
+                    /*
                     for (var i = 0; i < artists.length; i++) {
                         var artist = artists[i];
-                        /*
                         var li = $("<li>");
                         if ('artist_location' in artist) {
                             li.text(artist.name + " from " + artist.artist_location.location);
@@ -32,26 +32,26 @@ function fetchArtistsByLocation(locale) {
                         } else {
                             console.log(artist);
                         }
-                        */
-
                         //make new artists playlist using 5 artists returned from echonest call
-                        fetchArtistPlaylist(artists, false, 1);
-                    }
+                        //$("#all_results").empty();  
+                    }*/
+                    fetchArtistPlaylist(artists, false, 1);
                 } else {
                         $("#results").text("No results");
                 }
             } else {
-                alert("Trouble getting artists: " + data.response.status.message);
+                console.log("Trouble getting artists: " + data.response.status.message);
             }
         })
         .error( 
             function(data) {
-                alert("query syntax error. Use 'city:', 'region:' and 'country:' qualifiers only");
+                console.log("query syntax error. Use 'city:', 'region:' and 'country:' qualifiers only");
             }
         );  
 }
 
 
+//creates a playlist based on specified artists
 function fetchArtistPlaylist(artists,  wandering, variety) {
     var url = config.echoNestHost + 'api/v4/playlist/static';
     $("#all_results").empty();
@@ -140,29 +140,37 @@ $(document).ready(function() {
     fetchArtistPlaylist(artists, false, 1);
 
         $('#USA').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("United States of America");
             //fetchArtistPlaylist(artists, false, 1);
             console.log("USA");
         })
         $('#ES').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("spain");
         })
         $('#FR').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("france");
         })
         $('#IT').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("italy");
         })
         $('#AMS').on('click', function () {
-            fetchArtistsByLocation("amsterdam");
+            $("#all_results").empty();
+            fetchArtistsByLocation("netherlands");
         })
         $('#NYC').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("new york city");
         })
         $('#LA').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("los Angeles");
         })
         $('#BOS').on('click', function () {
+            $("#all_results").empty();
             fetchArtistsByLocation("boston");
         })
         $('#MyLoc').on('click', function () {
