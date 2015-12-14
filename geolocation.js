@@ -1,3 +1,4 @@
+
 	
 	var myLat = 0;
 	var myLng = 0;
