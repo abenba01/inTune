@@ -132,7 +132,6 @@ function info(txt) {
 
 $(document).ready(function() {
     var data = JSON.parse(localStorage['seed_artists']);
-    localStorage.setItem("original_artists", localStorage['seed_artists']);
     console.log(data);
     var counter = 0;
     var artists = [];
@@ -145,5 +144,5 @@ $(document).ready(function() {
     } 
     console.log(artists);
     fetchArtistPlaylist(artists, false, 1);
-
+    localStorage.setItem("original_artists", localStorage['seed_artists']);
 });
