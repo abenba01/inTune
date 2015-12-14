@@ -509,12 +509,7 @@
 		$('#LP').on('click', function () {
 			loadPlaylist();
 		})
-		// $('#POP').on('click', function () {
-		// 	//code here
-		// })
-		// $('#RESET').on('click', function () {
-		// 	//code here
-		// })
+		
 	});
 
 getMyLocation();
