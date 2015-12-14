@@ -4,7 +4,7 @@ var songs;
 
        
 function fetchArtistsByLocation(locale) {
-    console.log("fetching artists");
+    console.log(locale);
     var endpoint = 'http://developer.echonest.com/api/v4/'
     var url = endpoint + 'artist/search';
     //var apiKey = 'NO_API_KEY';
@@ -12,30 +12,35 @@ function fetchArtistsByLocation(locale) {
     $("#results").empty();
     $.getJSON(url, 
         { 
-            'api_key' : config.apiKey,
+            'api_key' : "ZSB4FV0A9YETOVCG1",
             'artist_location': locale, 
             'results' : 5,
             'bucket': [ 'artist_location'],  
             'sort': 'hotttnesss-desc'
         },
         function(data) {
+            console.log("DATA" + data);
             if (data.response.status.code == 0) {
-                var artists = data.response.artists;
-                if (artists.length > 0) {
+                var new_artists = data.response.artists;
+
+                if (new_artists.length > 0) {
                     /*
                     for (var i = 0; i < artists.length; i++) {
                         var artist = artists[i];
-                        var li = $("<li>");
+                        var list = [];
                         if ('artist_location' in artist) {
-                            li.text(artist.name + " from " + artist.artist_location.location);
-                            $("#results").append(li);
+                            list[i] = artist.name;
+                           // $("#results").append(li);
                         } else {
                             console.log(artist);
                         }
                         //make new artists playlist using 5 artists returned from echonest call
                         //$("#all_results").empty();  
-                    }*/
-                    fetchArtistPlaylist(artists, false, 1);
+                    }
+                    */
+                    //localStorage['seed_artists'] = list;
+                    fetchArtistPlaylist(new_artists, false, 1);
+
                 } else {
                         $("#results").text("No results");
                 }
@@ -143,11 +148,12 @@ $(document).ready(function() {
             $("#all_results").empty();
             fetchArtistsByLocation("United States of America");
             //fetchArtistPlaylist(artists, false, 1);
-            console.log("USA");
+            //console.log("USA");
         })
         $('#ES').on('click', function () {
             $("#all_results").empty();
             fetchArtistsByLocation("spain");
+            console.log("spain");
         })
         $('#FR').on('click', function () {
             $("#all_results").empty();

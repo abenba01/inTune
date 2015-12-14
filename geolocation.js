@@ -543,47 +543,6 @@
 		// })
 	});
 
-function fetchArtistsByLocation(locale) {
-    var endpoint = 'http://developer.echonest.com/api/v4/'
-    var url = endpoint + 'artist/search';
-    var apiKey = 'NO_API_KEY';
-
-    $("#results").empty();
-    $.getJSON(url, 
-        { 
-            'api_key' : apiKey,
-            'artist_location': locale, 
-            'results' : 5,
-            'bucket': [ 'artist_location'],  
-            'sort': 'hotttnesss-desc'
-        },
-        function(data) {
-            if (data.response.status.code == 0) {
-                var artists = data.response.artists;
-                if (artists.length > 0) {
-                    for (var i = 0; i < artists.length; i++) {
-                        var artist = artists[i];
-                        var li = $("<li>");
-                        if ('artist_location' in artist) {
-                            li.text(artist.name + " from " + artist.artist_location.location);
-                            $("#results").append(li);
-                        } else {
-                            console.log(artist);
-                        }
-                    }
-                } else {
-                        $("#results").text("No results");
-                }
-            } else {
-                alert("Trouble getting artists: " + data.response.status.message);
-            }
-        })
-        .error( 
-            function(data) {
-                alert("query syntax error. Use 'city:', 'region:' and 'country:' qualifiers only");
-            }
-        );
-}
 
 
 getMyLocation();
