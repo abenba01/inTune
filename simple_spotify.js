@@ -57,7 +57,7 @@ function save_playlist() {
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
             var id = http.responseText;
-            console.log("id from post is: " + id);
+            console.log(id);
             localStorage['playlist'] = id;
             alert("Successfully saved!");
         }else if(http.readyState === 4 && http.status !== 200){
@@ -80,12 +80,13 @@ function loadPlaylist(){
         console.log(http.readyState, http.status);
         if(http.readyState === 4 && http.status === 200){
             iframe = http.responseText;
-            console.log("success");
+            console.log("success", iframe);
         }else if(http.readyState === 4 && http.status !== 200){
             alert("Whoops, something is wrong with your data!");
         }
     }
 
+    $("#all_results").empty();
     var newPlaylist = $("<span>").html(iframe);
     $("#all_results").append(newPlaylist);
     console.log("complete");
