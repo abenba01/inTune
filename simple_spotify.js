@@ -40,20 +40,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             info("Whoops, had some trouble getting that playlist");
         }) ;
 }
-/*
-function getSongId(songname) {
-	var url = config.echoNestHost + 'api/v4/playlist/static';
-    $.getJSON(url, { 
-            'api_key': config.apiKey,
-            'title': songname
-        .done(function(data) {
-        	console.log(data);
-        })
-        .error( function() {
-            console.log("whoops");
-        }) ;
 
-}*/
 function save_playlist() {
     //var url = '/savePlaylist';
     console.log("saving");
@@ -77,6 +64,27 @@ function save_playlist() {
         }
     }
 }
+
+ $('#LP').on('click', function loadPlaylist () {
+    var http = new XMLHttpRequest();
+    var id = localStorage['playlist'];
+    var url = 'http://quiet-reaches-3588.herokuapp.com/getPlaylist' + '?id=' + id;
+    http.open("GET", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(null);
+    http.onreadystatechange = function(){
+        console.log(http.readyState, http.status);
+        if(http.readyState === 4 && http.status === 200){
+            var iframe = http.responseText;
+        }else if(http.readyState === 4 && http.status !== 200){
+            alert("Whoops, something is wrong with your data!");
+        }
+    }
+
+    var newPlaylist = $("<span>").html(iframe);
+    $("#all_results").append(newPlaylist);
+ })
+
 function info(txt) {
     $("#info").text(txt);
 }
@@ -96,3 +104,6 @@ $(document).ready(function() {
     console.log(artists);
     fetchArtistPlaylist(artists, false, 1);
 });
+
+
+
