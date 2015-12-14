@@ -66,7 +66,7 @@
 		boston['cloudy'] = 'http://i.imgur.com/G3BykUw.jpg';
 		boston['snow'] = 'http://i.imgur.com/LISyPGY.jpg';
 		boston['sunny'] = 'http://i.imgur.com/urvfsvA.jpg';
-		boston['rain'] = 'http://imgur.com/CfiGZ85';
+		boston['rain'] = 'http://imgur.com/CfiGZ85.jpg';
 
 	var tufts = new Object();
 		tufts['sunny'] = 'http://i.imgur.com/CnyPHGt.jpg';
@@ -144,7 +144,6 @@
 		set_hr = ('0' + sunset_time.getHours()).slice(-2),
 		set_min = ('0' + sunset_time.getMinutes()).slice(-2),
 		sunset_time_string = set_hr + set_min;
-		console.log(sunset_time_string);
 		next = true; 
 		if(next){
 			setCondition();
@@ -403,22 +402,18 @@
 	function setMoodNYC(){		
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + NYC['night'] + "')";
-			console.log("1");
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + NYC['rain'] + "')";
-						console.log("2");
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + NYC['cloudy'] + "')";
-						console.log("3");
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + NYC['snow'] + "')";
 		}
 		else{
 			document.body.style.backgroundImage = "url('" + NYC['sunny'] + "')";
-						console.log("4");
 		}
 	}
 
@@ -494,7 +489,6 @@
 			setMoodNL();
 		})
 		$('#NYC').on('click', function () {
-						console.log("0");
 			setMoodNYC();
 		})
 		$('#LA').on('click', function () {
