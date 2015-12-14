@@ -178,7 +178,7 @@
 
 	function setSunny(){
 		theWeather['sunny'] = true;
-		moodMeter['target_target_acousticness'] = '0'; 
+		moodMeter['target_acousticness'] = '0'; 
 		moodMeter['target_energy'] = '.8';
 		moodMeter['target_danceability'] = '.5';
 		moodMeter['song_type'] = '';
@@ -186,21 +186,21 @@
 
 	function setSnow(){
 		theWeather['snow'] = true;
-		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.6';
 		moodMeter['song_type'] = '';
 	}
 	function setRain(){
 		theWeather['rain'] = true;
-		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.4';
 		moodMeter['song_type'] = '';
 	}
 	function setCloudy(){
 		theWeather['cloudy'] = true;
-		moodMeter['target_target_acousticness'] = '.6'; 
+		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.2';
 		moodMeter['target_danceability'] = '.3';
 		moodMeter['song_type'] = '';
@@ -209,21 +209,21 @@
 		theWeather['sunny'] = true;
 		if(my_month > 8 && my_month < 12){
 			theWeather['sunny_fall'] = true;
-			moodMeter['target_target_acousticness'] = '.5'; 
+			moodMeter['target_acousticness'] = '.5'; 
 			moodMeter['target_energy'] = '.4';
 			moodMeter['target_danceability'] = '.4';
 			moodMeter['song_type'] = '';
 		}
 		if(my_month > 11 || my_month < 4){
 			theWeather['sunny_winter'] = true;
-			moodMeter['target_target_acousticness'] = '.5'; 
+			moodMeter['target_acousticness'] = '.5'; 
 			moodMeter['target_energy'] = '.5';
 			moodMeter['target_danceability'] = '.4';
 			moodMeter['song_type'] = 'christmas';
 		}
 		if(my_month > 3 && my_month <= 8){
 			theWeather['sunny_summer'] = true;
-			moodMeter['target_target_acousticness'] = '0'; 
+			moodMeter['target_acousticness'] = '0'; 
 			moodMeter['target_energy'] = '.8';
 			moodMeter['target_danceability'] = '.5';
 			moodMeter['song_type'] = '';
@@ -231,7 +231,7 @@
 	}
 	function setNight(){
 		theWeather['night'] = true;
-		moodMeter['target_target_acousticness'] = '0'; 
+		moodMeter['target_acousticness'] = '0'; 
 		moodMeter['target_energy'] = '.9';
 		moodMeter['target_danceability'] = '.9';
 		moodMeter['song_type'] = '';
