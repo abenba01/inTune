@@ -65,7 +65,9 @@ app.get('/getPlaylist', function (request, response) {
 					console.log("found", results);
 					//console.log(results.s.frame);
 					response.send("this probably didn't work");
-				} 
+				} else {
+					console.log(err);
+				}
 			});
 		}
 	});
