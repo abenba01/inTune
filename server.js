@@ -36,13 +36,13 @@ app.post('/savePlaylist', function (request, response) {
 	console.log(request);
 	db.collection('playlists', function (error, coll) {
 		if (!error) {
-			var id = coll.insert( {"playlist": songs}, function (err, saved) {
+			var id = coll.insert( {songs}, function (err, saved) {
 				if (err) {
 					response.status(500);
 					response.send('Whoops something when wrong')
 				} else {
 					response.status(200);
-					coll.find({"playlist":songs}).toArray( function (err, results) {
+					coll.find({songs}).toArray( function (err, results) {
 						if (!err) {
 							response.send(results[0]._id);
 						}						
@@ -53,6 +53,18 @@ app.post('/savePlaylist', function (request, response) {
 	});
 });
 
+app.get('/getPlaylist', function (request, response) {
+	var reqId = request.query.id;
+	db.collection('playlists', function(error, coll){
+		if (!error) {
+			coll.find({"_id":id}, function(err, results) {
+				if (!err) {
+					response.send(results.frame);
+				}
+			});
+		}
+	});
 
+});
 	app.listen(process.env.PORT || 5000);
 
