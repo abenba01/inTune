@@ -1,6 +1,7 @@
 jQuery.ajaxSettings.traditional = true; 
 var config = getConfig();
-var songs;
+var embedcode;
+var iframe;
 
        
 function fetchArtistsByLocation(locale) {
@@ -59,7 +60,7 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             'api_key': config.apiKey,
             'bucket': [ 'id:' + config.spotifySpace, 'tracks'], 
             'limit' : true,
-            'variety' : 1, 'results': 50, 'type':'artist-radio',  
+            'variety' : 1, 'results': 20, 'type':'artist-radio',  
         };
         if (tracks != "") {
         	params.track_id = tracks;
@@ -71,12 +72,10 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
     //var tracks = ['TRTLKZV12E5AC92E11'];
     $.getJSON(url, params) 
         .done(function(data) {
-        	console.log(data.response);
             info("");
             if (! ('songs' in data.response)) {
                 info("Can't find that artist");
             } else {
-                songs = data.response;
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
                 $("#all_results").append(spotifyPlayButton);
@@ -86,33 +85,54 @@ function fetchArtistPlaylist(artists,  wandering, variety) {
             info("Whoops, had some trouble getting that playlist");
         }) ;
 }
-/*
-function getSongId(songname) {
-	var url = config.echoNestHost + 'api/v4/playlist/static';
-    $.getJSON(url, { 
-            'api_key': config.apiKey,
-            'title': songname
-        .done(function(data) {
-        	console.log(data);
-        })
-        .error( function() {
-            console.log("whoops");
-        }) ;
 
-}*/
 function save_playlist() {
     //var url = '/savePlaylist';
-    //songs = JSON.stringify(songs);
-    $.post('/savePlaylist', songs)
-        .done( function (data) {
-            alert(data.response)
-        })
-        .fail ( function(data) {
-            alert("failed");
+    console.log("saving");
+    var params = "frame=" + encodeURIComponent(embedcode);
+    console.log(params);
+    var http = new XMLHttpRequest();
+    var url = 'http://quiet-reaches-3588.herokuapp.com/savePlaylist';
+    http.open("POST", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(params);
+     http.onreadystatechange = function(){
+        console.log("change");
+        console.log(http.readyState, http.status);
+        if(http.readyState === 4 && http.status === 200){
+            var id = http.responseText;
+            console.log("id from post is: " + id);
+            localStorage['playlist'] = id;
+            alert("Successfully saved!");
+        }else if(http.readyState === 4 && http.status !== 200){
+            alert("Whoops, something is wrong with your data!");
         }
-        );
-        
-        console.log(songs);
+    }
+}
+
+
+function loadPlaylist(){
+    console.log("loadPlaylist called");
+    var http = new XMLHttpRequest();
+    var id = localStorage['playlist'];
+    console.log(id);
+    var url = 'http://quiet-reaches-3588.herokuapp.com/getPlaylist' + '?id=' + id;
+    http.open("GET", url, true);
+    http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    http.send(null);
+    http.onreadystatechange = function(){
+        console.log(http.readyState, http.status);
+        if(http.readyState === 4 && http.status === 200){
+            iframe = http.responseText;
+            console.log("success");
+        }else if(http.readyState === 4 && http.status !== 200){
+            alert("Whoops, something is wrong with your data!");
+        }
+    }
+
+    var newPlaylist = $("<span>").html(iframe);
+    $("#all_results").append(newPlaylist);
+    console.log("complete");
 }
 
 function info(txt) {
@@ -134,33 +154,6 @@ $(document).ready(function() {
     console.log(artists);
     fetchArtistPlaylist(artists, false, 1);
 
-        $('#USA').on('click', function () {
-            fetchArtistsByLocation("United States of America");
-            console.log("USA");
-        })
-        $('#ES').on('click', function () {
-            fetchArtistsByLocation("spain");
-        })
-        $('#FR').on('click', function () {
-            fetchArtistsByLocation("france");
-        })
-        $('#IT').on('click', function () {
-            fetchArtistsByLocation("italy");
-        })
-        $('#AMS').on('click', function () {
-            fetchArtistsByLocation("amsterdam");
-        })
-        $('#NYC').on('click', function () {
-            fetchArtistsByLocation("new york city");
-        })
-        $('#LA').on('click', function () {
-            fetchArtistsByLocation("los Angeles");
-        })
-        $('#BOS').on('click', function () {
-            fetchArtistsByLocation("boston");
-        })
-        $('#MyLoc').on('click', function () {
-            //determineLocation();
-
-        })
 });
+
+
