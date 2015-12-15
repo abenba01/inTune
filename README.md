@@ -13,19 +13,19 @@ Many music platforms are aimed at addressing what music you should listen to and
 List of Features
 ------
 
--Geolocation: determines user's location to adjust music to fit the time of day, time of year, season, and weather of the given location.
+- *Geolocation:* determines user's location to adjust music to fit the time of day, time of year, season, and weather of the given location.
 
--Client-side data persistence: uses name of playlist and originaly selected artists in localstorage
+- Client-side data persistence: uses name of playlist and originaly selected artists in localstorage
 
--Push notifications: notifies user if s/he has a saved playlist upon return to the site
+- Push notifications: notifies user if s/he has a saved playlist upon return to the site
 
--Front-end framework: enables user to intuitively interact with the web app
+- Front-end framework: enables user to intuitively interact with the web app
 
--Server-side data persistence: enables users to save a playlist via MongoDB
+- Server-side data persistence: enables users to save a playlist via MongoDB
 
--Streaming music: uses Spotify to play music
+- Streaming music: uses Spotify to play music
 
--Music recommendations: creates playlist with artists similar to those selected by the user. Takes into account acousticness, danceability, and energy scores based on weather
+- Music recommendations: creates playlist with artists similar to those selected by the user. Takes into account acousticness, danceability, and energy scores based on weather
 
 Scope
 ------
