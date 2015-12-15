@@ -17,16 +17,25 @@ function notifyMe() {
   		      icon: theIcon
   		  };
 
-      var notification = new Notification("inTune", options);
+      var notification = new Notification("inTune", options); //create notification
     }
   }
 
   // Ask the user for permission
   else if (Notification.permission !== 'denied') {
     Notification.requestPermission(function (permission) {
-      // If the user accepts, let's create a notification
+      //enabled notifications
       if (permission === "granted") {
-        var notification = new Notification("You've enabled push notifications!");
+        
+        theIcon = 'logo.png';
+        theBody = "You've enabled push notifications!'";
+        var options = {
+            body: theBody,
+            icon: theIcon
+        };
+
+      var notification = new Notification("inTune", options); //create notification
+
       }
     });
   }

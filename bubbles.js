@@ -1,4 +1,6 @@
-//This file animates and fills the bubbles on index
+/*
+ * Creates bubbles that bounce for index page and stores seed srtists chosen by client 
+ */
 
 jQuery.ajaxSettings.traditional = true; 
 //Establish canvas and context for main and footer
@@ -22,6 +24,7 @@ var text_color = "#00B4FF";
 var bubbles = new Object;
 var footer_bubbles = new Object;
 var num_in_footer = 0;
+//variable to store all band names 
 var band_names = [];
 var config = getConfig(); 
 var genres = ['rock', 'pop', 'electronic', 'alternative rock', 'rap', 'indie rock'];
@@ -52,7 +55,7 @@ function getBandNames() {
 	    }) 
 	        .done(function(data) {
 	        	
-	            if (! ('artists' in data.response)) {  //|| i < num_genres - 2
+	            if (! ('artists' in data.response)) {  //
 	                console.log("Can't find any artists!");
 	            } else {
 	         		//save the name of each artist in array
@@ -195,8 +198,6 @@ function draw() {
 		} else if (!bubble.placed){
 			console.log("bubble not placed");
 			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (footer_canvas.width *.90) - (100 * num_in_footer)){ 
-				//bubble.vx = 0;
-				//bubble.x = footer_canvas.width - (100 * num_in_footer) - 50;
 				num_in_footer++;
 				bubble.placed = true;
 			}
@@ -263,11 +264,9 @@ function makeBubbles() {
 	}
 }
 
-
 $(document).ready( function () {
 	raf = window.requestAnimationFrame(draw);
 });
-
 
 //checks for click on canvas and if it's on a bubble "pops" the bubble
 canvas.addEventListener("click", function(e) {

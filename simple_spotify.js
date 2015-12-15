@@ -93,7 +93,9 @@ function fetchArtistPlaylist(artists, wandering, variety) {
             } else {
                 var title = "inTune Radio ";
                 var spotifyPlayButton = getSpotifyPlayButtonForPlaylist(title, data.response.songs);
-                $("#all_results").append(spotifyPlayButton);
+                //$("#all_results").append(spotifyPlayButton);
+                //$("#all_results").html = spotifyPlayButton;
+                document.getElementById("all_results").innerHTML = spotifyPlayButton;
             }
         })
         .error( function() {
