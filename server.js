@@ -60,7 +60,7 @@ app.get('/getPlaylist', function (request, response) {
 	var o_id = new object_id(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
-			coll.find({"_id": o_id}, function(){}).toArray( function(err, results) {
+			coll.find({"_id": o_id}, console.log()).toArray( function(err, results) {
 				if (!err) {
 					response.send(results[0]['songs']['frame']);
 				} else {
