@@ -1,5 +1,6 @@
-jQuery.ajaxSettings.traditional = true; 
+//This file animates and fills the bubbles on index
 
+jQuery.ajaxSettings.traditional = true; 
 //Establish canvas and context for main and footer
 var canvas = document.getElementById('bubble_cvs');
 var footer_canvas = document.getElementById('footer_cvs');
@@ -21,18 +22,8 @@ var text_color = "#00B4FF";
 var bubbles = new Object;
 var footer_bubbles = new Object;
 var num_in_footer = 0;
-
-//variable to store all band names 
-/*var band_names = [
-"Nickleback", "The Strokes", "The Killers", "Father John Misty", "Future", 
-"Drake", "Fetty Wap", "Sun Kil Moon", "MGMT", "One Direction", "Miley Cyrus", 
-"The Weeknd", "Adele"
-];*/
-
 var band_names = [];
-
 var config = getConfig(); 
-
 var genres = ['rock', 'pop', 'electronic', 'alternative rock', 'rap', 'indie rock'];
 var num_genres = 6;
 var num_results_per = 5;
@@ -91,7 +82,6 @@ function getBandNames() {
 }
 
 getBandNames();
-//var band_names = ["1", "2"];
 
 var num_of_bubbles;
 
@@ -179,10 +169,6 @@ function draw() {
 		bubble.x += bubble.vx;
 		bubble.y += bubble.vy;
 
-		//if uncommeted this code give bubbles gravity
-		/*bubble.vy *= 0.99;
-		bubble.vy += bubble.ay;*/
-
 		//bubbles bounce back with equal momentum if they hit a wall 
 		if (bubble.y + bubble.vy + bubble.radius > canvas.height || bubble.y - bubble.radius + bubble.vy < 0) {
 			bubble.vy = -bubble.vy;
@@ -190,33 +176,6 @@ function draw() {
 		if (bubble.x + bubble.vx + bubble.radius > rect.right || bubble.x - bubble.radius + bubble.vx < 0) {
 			bubble.vx = -bubble.vx;
 		}	
-
-		//collision with other bubbles doesn't work great. needs to start with //bubbles that don't overlap
-		/*
-		for(var other_key in bubbles) {
-			var o_bubble = bubbles[other_key];
-			if (key == other_key) {continue;}
-			var next_y_u = bubble.y + bubble.vy - bubble.radius;
-			var next_y_d = bubble.y + bubble.vy + bubble.radius;
-			var next_x_l = bubble.x + bubble.vx - bubble.radius;
-			var next_x_r = bubble.x + bubble.vx + bubble.radius;
-			if (next_x_r <= (o_bubble.x + o_bubble.radius) && 
-				next_x_r >= (o_bubble.x -o_bubble.radius)  && 
-				next_y_d <= (o_bubble.y +o_bubble.radius) && 
-				next_y_d >= (o_bubble.y -o_bubble.radius)) {
-				bubble.vy = -bubble.vy;
-				bubble.vx = -bubble.vx;
-			}
-			if (next_x_l <= (o_bubble.x + o_bubble.radius) && 
-				next_x_l >= (o_bubble.x -o_bubble.radius)  && 
-				next_y_u <= (o_bubble.y +o_bubble.radius) && 
-				next_y_u >= (o_bubble.y -o_bubble.radius)) {
-				bubble.vy = -bubble.vy;
-				bubble.vx = -bubble.vx;
-			}
-		}
-		*/
-
 
 	}
 
@@ -270,7 +229,6 @@ function push_to_footer(key) {
 
 }
 
-
 //gets a random x value within main canvas
 function rand_x_in_cvs () {
 	var min = rect.left +100;
@@ -304,20 +262,12 @@ function makeBubbles() {
 		bubbles[name].draw();
 	}
 }
-/*
-//requests animation frame from draw while mouseover
-canvas.addEventListener('mouseover', function(e){
-	raf = window.requestAnimationFrame(draw);
-});*/
+
+
 $(document).ready( function () {
 	raf = window.requestAnimationFrame(draw);
 });
-/*
-//cancels animation while mouseover
-canvas.addEventListener("mouseout",function(e){
-	window.cancelAnimationFrame(raf);
-});
-*/
+
 
 //checks for click on canvas and if it's on a bubble "pops" the bubble
 canvas.addEventListener("click", function(e) {
