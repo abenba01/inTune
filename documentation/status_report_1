@@ -1,0 +1,22 @@
+STATUS REPORT #1
+
+Accomplished this week
+-General HTML and CSS work on index and main pages
+	-This work included utilizing in large part, the bootstrap documentation
+	-A grid system and buttons were set up using this documentation
+	-The landing page was created with the grid system and a modal 
+
+Challenges
+-Getting elements to be centered took a great deal of time, and is why we implemented the grid system
+-Utilizing git in an organized and professional manner was more difficult than expected when working with four people. We often needed to fix errors caused by not pulling, faulty commits and other accidental deletions
+
+Goals
+-For next week we have delegated the following tasks for completion:
+	-Spotify authorization
+	-Music genre bubbles on landing page
+	-Geolocation
+	-Weather scraping
+	-Begin server side development with heroku 
+	
+#Comments By Ming
+* Forget the design and style for now, get the important thing accomplished first --namely Spotify authorization.
