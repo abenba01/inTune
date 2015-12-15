@@ -28,7 +28,7 @@ function notifyMe() {
       if (permission === "granted") {
         
         theIcon = 'logo.png';
-        theBody = "You've enabled push notifications!'";
+        theBody = "You've enabled push notifications!";
         var options = {
             body: theBody,
             icon: theIcon

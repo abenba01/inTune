@@ -36,6 +36,9 @@ Scope
 - Ths app does not enable users to search for artists, genres, albums, etc. to fit their preferences.
 - This app does not include certain weather conditions (e.g., foggy).
 - This app does not allow users to choose a location other than their own from a predetermined list of locations.
+- This app does not take user's location on mobile.
+- This app does not send push notifications on mobile.
+
 
 Known Limitations
 ------
