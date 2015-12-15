@@ -76,10 +76,7 @@
 }
 
 .container-fluid{
-	/*
-	background-color: #FAFAFA	; 
-	background-size: 100% auto; 
-	*/
+
 	padding:0;
 
 }
@@ -97,7 +94,6 @@
 	border: #F38630;
 	box-shadow: 2px 2px 2px #A9A9A9
 }
-
 
 
 div.btn-group li.text a{

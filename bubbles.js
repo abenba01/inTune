@@ -3,7 +3,6 @@
  */
 
 jQuery.ajaxSettings.traditional = true; 
-
 //Establish canvas and context for main and footer
 var canvas = document.getElementById('bubble_cvs');
 var footer_canvas = document.getElementById('footer_cvs');
@@ -25,12 +24,9 @@ var text_color = "#00B4FF";
 var bubbles = new Object;
 var footer_bubbles = new Object;
 var num_in_footer = 0;
-
 //variable to store all band names 
 var band_names = [];
-
 var config = getConfig(); 
-
 var genres = ['rock', 'pop', 'electronic', 'alternative rock', 'rap', 'indie rock'];
 var num_genres = 6;
 var num_results_per = 5;
@@ -89,7 +85,6 @@ function getBandNames() {
 }
 
 getBandNames();
-
 
 var num_of_bubbles;
 
@@ -177,10 +172,6 @@ function draw() {
 		bubble.x += bubble.vx;
 		bubble.y += bubble.vy;
 
-		//if uncommeted this code give bubbles gravity
-		/*bubble.vy *= 0.99;
-		bubble.vy += bubble.ay;*/
-
 		//bubbles bounce back with equal momentum if they hit a wall 
 		if (bubble.y + bubble.vy + bubble.radius > canvas.height || bubble.y - bubble.radius + bubble.vy < 0) {
 			bubble.vy = -bubble.vy;
@@ -238,7 +229,6 @@ function push_to_footer(key) {
 	footer_bubbles[key].draw();
 
 }
-
 
 //gets a random x value within main canvas
 function rand_x_in_cvs () {
