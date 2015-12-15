@@ -1,3 +1,7 @@
+/*
+ * Creates bubbles that bounce for index page and stores seed srtists chosen by client 
+ */
+
 jQuery.ajaxSettings.traditional = true; 
 
 //Establish canvas and context for main and footer
@@ -23,12 +27,6 @@ var footer_bubbles = new Object;
 var num_in_footer = 0;
 
 //variable to store all band names 
-/*var band_names = [
-"Nickleback", "The Strokes", "The Killers", "Father John Misty", "Future", 
-"Drake", "Fetty Wap", "Sun Kil Moon", "MGMT", "One Direction", "Miley Cyrus", 
-"The Weeknd", "Adele"
-];*/
-
 var band_names = [];
 
 var config = getConfig(); 
@@ -61,7 +59,7 @@ function getBandNames() {
 	    }) 
 	        .done(function(data) {
 	        	
-	            if (! ('artists' in data.response)) {  //|| i < num_genres - 2
+	            if (! ('artists' in data.response)) {  //
 	                console.log("Can't find any artists!");
 	            } else {
 	         		//save the name of each artist in array
@@ -91,7 +89,7 @@ function getBandNames() {
 }
 
 getBandNames();
-//var band_names = ["1", "2"];
+
 
 var num_of_bubbles;
 
@@ -191,33 +189,6 @@ function draw() {
 			bubble.vx = -bubble.vx;
 		}	
 
-		//collision with other bubbles doesn't work great. needs to start with //bubbles that don't overlap
-		/*
-		for(var other_key in bubbles) {
-			var o_bubble = bubbles[other_key];
-			if (key == other_key) {continue;}
-			var next_y_u = bubble.y + bubble.vy - bubble.radius;
-			var next_y_d = bubble.y + bubble.vy + bubble.radius;
-			var next_x_l = bubble.x + bubble.vx - bubble.radius;
-			var next_x_r = bubble.x + bubble.vx + bubble.radius;
-			if (next_x_r <= (o_bubble.x + o_bubble.radius) && 
-				next_x_r >= (o_bubble.x -o_bubble.radius)  && 
-				next_y_d <= (o_bubble.y +o_bubble.radius) && 
-				next_y_d >= (o_bubble.y -o_bubble.radius)) {
-				bubble.vy = -bubble.vy;
-				bubble.vx = -bubble.vx;
-			}
-			if (next_x_l <= (o_bubble.x + o_bubble.radius) && 
-				next_x_l >= (o_bubble.x -o_bubble.radius)  && 
-				next_y_u <= (o_bubble.y +o_bubble.radius) && 
-				next_y_u >= (o_bubble.y -o_bubble.radius)) {
-				bubble.vy = -bubble.vy;
-				bubble.vx = -bubble.vx;
-			}
-		}
-		*/
-
-
 	}
 
 	//draws bubbles in footer and then udpates attributes based on required 
@@ -236,8 +207,6 @@ function draw() {
 		} else if (!bubble.placed){
 			console.log("bubble not placed");
 			if (bubble.vx < 2 && bubble.vx > -2 && bubble.x > (footer_canvas.width *.90) - (100 * num_in_footer)){ 
-				//bubble.vx = 0;
-				//bubble.x = footer_canvas.width - (100 * num_in_footer) - 50;
 				num_in_footer++;
 				bubble.placed = true;
 			}
@@ -304,20 +273,10 @@ function makeBubbles() {
 		bubbles[name].draw();
 	}
 }
-/*
-//requests animation frame from draw while mouseover
-canvas.addEventListener('mouseover', function(e){
-	raf = window.requestAnimationFrame(draw);
-});*/
+
 $(document).ready( function () {
 	raf = window.requestAnimationFrame(draw);
 });
-/*
-//cancels animation while mouseover
-canvas.addEventListener("mouseout",function(e){
-	window.cancelAnimationFrame(raf);
-});
-*/
 
 //checks for click on canvas and if it's on a bubble "pops" the bubble
 canvas.addEventListener("click", function(e) {
