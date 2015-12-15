@@ -121,12 +121,7 @@ div.btn-group li.text a{
 	transform: translate(-50%, -50%);
 	border-style: none;
 }
-@media handheld {
-	iframe {
-		height: 200px!important;
-		width: 200px!important;
-	}
-}
+
 
 
 @media (max-height: 675px) and (min-height: 601px)  {
@@ -136,12 +131,23 @@ div.btn-group li.text a{
 }
 @media (max-height: 600px) and (min-height: 501px)  {
 	iframe  {
-		height: 350px !important;
+		height: 325px !important;
 	}
 }
-@media (max-height: 501px)  {	
+@media (max-height: 500px)  and (min-height: 401px) {	
 	iframe  {
 		height: 300px !important;
+	}
+}
+@media (max-height: 400px) {	
+	iframe  {
+		height: 80px !important;
+		width: 250px !important;
+	}
+}
+@media (max-width: 600px)  and (min-with: 450px) {	
+	iframe  {
+		width: 400px !important;
 	}
 }
 
