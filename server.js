@@ -27,11 +27,10 @@ app.get('/main.html', function (request, response) {
 	response.sendFile(__dirname + "/main.html");
 });
 
+// save playlist
 app.post('/savePlaylist', function (request, response) {
 		response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-	//console.log(request.body);
-	//console.log("test");
 	var inserted = false;
 	songs = request.body;
 	db.collection('playlists', function (error, coll) {
@@ -53,27 +52,26 @@ app.post('/savePlaylist', function (request, response) {
 	});
 });
 
+// load saved playlist
 app.get('/getPlaylist', function (request, response) {
 	response.header("Access-Control-Allow-Origin", "*");
     response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
 	var reqId = request.query.id;
 	var o_id = new object_id(reqId);
-	console.log(reqId);
 	db.collection('playlists', function(error, coll){
 		if (!error) {
-			console.log("no error", reqId);
-			coll.find({"_id": o_id}, console.log("finding")).toArray( function(err, results) {
+			coll.find({"_id": o_id}, function(){};).toArray( function(err, results) {
 				if (!err) {
-					console.log("found", results);
-					//console.log(results.s.frame);
 					response.send(results[0]['songs']['frame']);
 				} else {
-					console.log(err);
+					alert(err);
 				}
 			});
 		}
 	});
 
 });
-	app.listen(process.env.PORT || 5000);
+
+// enables us to run app locally on port 5000
+	app.listen(process.env.PORT || 5000); 
 
