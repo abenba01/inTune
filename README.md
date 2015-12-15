@@ -1,7 +1,4 @@
-Project Title
-------
-
-inTune: Music for your Mood 
+#inTune: Music for your Mood 
 
 Problem 
 ------
@@ -30,6 +27,22 @@ List of Features
 
 -Music recommendations: creates playlist with artists similar to those selected by the user. Takes into account acousticness, danceability, and energy scores based on weather
 
+Scope
+------
+
+- This app should not be used to get accurate weather forecasts of locations.
+- This app enables users to save only one playlist.
+- This app does not enable users to remove artists added to the list.
+- Ths app does not enable users to search for artists, genres, albums, etc. to fit their preferences.
+- This app does not include certain weather conditions (e.g., foggy).
+- This app does not allow users to choose a location other than their own from a predetermined list of locations.
+
+Known Limitations
+------
+
+- Users might click on two bubbles at once if they overlap.
+- The index.html page and its contents are not responsive to changes in window size without a refresh
+
 Data Collection
 ------
 
@@ -38,7 +51,9 @@ inTune collects music preferences specified by user input. The app uses geolocat
 Algorithms
 ------
 
-inTune uses a custom made state of the art music filtering algorithm. The algorithm uses affective information such as geolocation, weather, and time data to determine the levels of acousticness, danceability, and energy of the songs suggested songs. This information is then combined with the users input of prefered artists and a customized mix is generated
+inTune uses a custom made state of the art music filtering algorithm. The algorithm uses affective information such as geolocation, weather, and time data to determine the levels of acousticness, danceability, and energy of the songs suggested songs. This information is then combined with the users input of prefered artists and a customized mix is generated.
+
+Users can also change the location and weather if they desire an experience different from that provided by their current location and weather.
 
 Comments by Ming (from original project proposal)
 ------
