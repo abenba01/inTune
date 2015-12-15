@@ -30,14 +30,14 @@ List of Features
 Scope
 ------
 
+- This app only plays music if the user signs in to Spotify.
+- This app only considers the first five artists that the user selects during playlist creation (i.e., any artist selected after the fifth one will be disregarded).
+- Ths app does not enable users to search for artists, genres, albums, etc. to fit their preferences.
 - This app should not be used to get accurate weather forecasts of locations.
 - This app enables users to save only one playlist.
-- This app does not enable users to remove artists added to the list.
-- Ths app does not enable users to search for artists, genres, albums, etc. to fit their preferences.
 - This app does not include certain weather conditions (e.g., foggy).
-- This app does not allow users to choose a location other than their own from a predetermined list of locations.
-- This app does not take user's location on mobile.
-- This app does not send push notifications on mobile.
+- This app does not allow users to choose a location not listed in the predetermined list of locations. However, the app will still work if the user is in a location that is not in the list.
+- This app's mobile functionality is different than its computer functionality (i.e., it does not send push notifications or consider the user's location).
 
 
 Known Limitations
@@ -45,6 +45,7 @@ Known Limitations
 
 - Users might click on two bubbles at once if they overlap.
 - The index.html page and its contents are not responsive to changes in window size without a refresh.
+- Users cannot remove artists added to the list of bubbles (unless they refresh the page).
 
 Data Collection
 ------
