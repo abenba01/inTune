@@ -1,4 +1,4 @@
-
+// This file contains the algorithm for weather and location
 	var myLat = 0;
 	var myLng = 0;
 	var address_info = "";
@@ -143,7 +143,6 @@
 		set_hr = ('0' + sunset_time.getHours()).slice(-2),
 		set_min = ('0' + sunset_time.getMinutes()).slice(-2),
 		sunset_time_string = set_hr + set_min;
-		console.log(sunset_time_string);
 		next = true; 
 		if(next){
 			setCondition();
@@ -181,7 +180,6 @@
 		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.6';
-		moodMeter['song_type'] = '';
 		$("#all_results").empty();
 		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
 
@@ -192,7 +190,6 @@
 		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.4';
 		moodMeter['target_danceability'] = '.4';
-		moodMeter['song_type'] = '';
 		$("#all_results").empty();
 		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
 
@@ -202,7 +199,6 @@
 		moodMeter['target_acousticness'] = '.6'; 
 		moodMeter['target_energy'] = '.2';
 		moodMeter['target_danceability'] = '.3';
-		moodMeter['song_type'] = '';
 		$("#all_results").empty();
 		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
 
@@ -214,21 +210,18 @@
 			moodMeter['target_acousticness'] = '.5'; 
 			moodMeter['target_energy'] = '.4';
 			moodMeter['target_danceability'] = '.4';
-			moodMeter['song_type'] = '';
 		}
 		if(my_month > 11 || my_month < 4){
 			theWeather['sunny_winter'] = true;
 			moodMeter['target_acousticness'] = '.5'; 
 			moodMeter['target_energy'] = '.5';
 			moodMeter['target_danceability'] = '.4';
-			moodMeter['song_type'] = 'christmas';
 		}
 		if(my_month > 3 && my_month <= 8){
 			theWeather['sunny_summer'] = true;
 			moodMeter['target_acousticness'] = '0'; 
 			moodMeter['target_energy'] = '.8';
 			moodMeter['target_danceability'] = '.5';
-			moodMeter['song_type'] = '';
 		}
 		$("#all_results").empty();
 		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
@@ -239,12 +232,10 @@
 		moodMeter['target_acousticness'] = '0'; 
 		moodMeter['target_energy'] = '.9';
 		moodMeter['target_danceability'] = '.9';
-		moodMeter['song_type'] = '';
 		$("#all_results").empty();
 		fetchArtistPlaylist(localStorage["seed_artists"], false, 1);
 
 	}
-
 
 	function determineLocation(){
 		if(myInfo['localName'] == 'Medford' || myInfo['localName'] == 'Somerville'){
@@ -286,7 +277,7 @@
 		theWeather['night'] = false;
 	}
 
-	function setMoodWeather(){
+	function setMoodWeather(){ //sets mood based on weather
 		if(theWeather['sunny_winter']){
 			document.body.style.backgroundImage = "url('" + weather['sunny_winter'] + "')";
 		}
@@ -307,7 +298,7 @@
 		}
 	}
 
-	function setMoodTufts(){
+	function setMoodTufts(){ //sets mood for Tufts
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + tufts['night'] + "')";
 		}
@@ -325,8 +316,7 @@
 		}
 	}
 
-	function setMoodFR(){	
-		//spotify action here!!!!!!!!!	
+	function setMoodFR(){ //sets mood for France
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + paris['night'] + "')";
 		}
@@ -344,7 +334,7 @@
 		}
 	}
 
-	function setMoodBOS(){		
+	function setMoodBOS(){ // sets mood for Boston
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + boston['night'] + "')";
 		}
@@ -362,7 +352,7 @@
 		}
 	}
 
-	function setMoodLA(){		
+	function setMoodLA(){ //sets mood for Los Angeles	
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + losangeles['night'] + "')";
 		}
@@ -380,29 +370,25 @@
 		}
 	}
 
-	function setMoodNYC(){		
+	function setMoodNYC(){ // sets mood for NYC	
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + NYC['night'] + "')";
-			console.log("1");
 		}
 		else if(theWeather['rain']){
 			document.body.style.backgroundImage = "url('" + NYC['rain'] + "')";
-						console.log("2");
 		}
 		else if(theWeather['cloudy']){
 			document.body.style.backgroundImage = "url('" + NYC['cloudy'] + "')";
-						console.log("3");
 		}
 		else if(theWeather['snow']){
 			document.body.style.backgroundImage = "url('" + NYC['snow'] + "')";
 		}
 		else{
 			document.body.style.backgroundImage = "url('" + NYC['sunny'] + "')";
-						console.log("4");
 		}
 	}
 
-	function setMoodIT(){		
+	function setMoodIT(){ // sets mood for Italy	
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + rome['night'] + "')";
 		}
@@ -420,7 +406,7 @@
 		}
 	}
 
-	function setMoodES(){		
+	function setMoodES(){ // sets mood for Spain
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + madrid['night'] + "')";
 		}
@@ -438,7 +424,7 @@
 		}
 	}
 
-	function setMoodNL(){		
+	function setMoodNL(){ // sets mood for Netherlands
 		if(theWeather['night']){
 			document.body.style.backgroundImage = "url('" + amsterdam['night'] + "')";
 		}
@@ -458,8 +444,9 @@
 
 	$(document).ready(function () {
 		//Location
-		$('#USA').on('click', function () {
-			setMoodWeather();
+		///On click, set mood for country/city, clear artists, get new artists based on location
+		$('#USA').on('click', function () { // default if no location provided
+			setMoodWeather(); 
 			$("#all_results").empty();
             fetchArtistsByLocation("United States of America");
 		})
@@ -498,7 +485,7 @@
 			$("#all_results").empty();
             fetchArtistsByLocation("boston");
 		})
-		$('#MyLoc').on('click', function () {
+		$('#MyLoc').on('click', function () { // make playlist based on original seed artists
 			determineLocation();
 			$("#all_results").empty();
             fetchArtistPlaylist(localStorage["original_artists"], false, 1)
@@ -506,6 +493,7 @@
 		})
 		
 		//Weather
+		//On click, reset weather, set to selected weather, change background image
 		$('#SUN').on('click', function () {
 			resetWeather();
 			setSunny();
@@ -534,7 +522,7 @@
 		})
 
 		//myTunes
-		$('#LP').on('click', function () {
+		$('#LP').on('click', function () { // loads saved playlist
 			loadPlaylist();
 		})
 		
