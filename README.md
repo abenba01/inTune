@@ -16,11 +16,11 @@ Many music platforms are aimed at addressing what music you should listen to and
 List of Features
 ------
 
--Geolocation: determines user's location to adjust music to fit the time of day, season, and weather of the user's location.
+-Geolocation: determines user's location to adjust music to fit the time of day, time of year, season, and weather of the given location.
 
 -Client-side data persistence: uses name of playlist and originaly selected artists in localstorage
 
--Push notifications: notifies user if s/he has a saved playlist
+-Push notifications: notifies user if s/he has a saved playlist upon return to the site
 
 -Front-end framework: enables user to intuitively interact with the web app
 
@@ -28,18 +28,17 @@ List of Features
 
 -Streaming music: uses Spotify to play music
 
--Music recommendations: creates playlist with artists similar to those selected by the user
+-Music recommendations: creates playlist with artists similar to those selected by the user. Takes into account acousticness, danceability, and energy scores based on weather
 
 Data Collection
 ------
 
-inTune collects music preferences specified by user input. The app uses geolocation, weather data, and time of day to determine the user's mood and provide music based off of this calculated mood.
+inTune collects music preferences specified by user input. The app uses geolocation, weather data, and time of day to determine the user's mood and provide music based off of this calculated mood. The app also collects the users saved playlists. 
 
 Algorithms
 ------
 
-A music filtering algorithm that incorporates user input with existing data from Spotify. Algorithm will also incorporate the geolocation, weather, and time data to determine the user's mood.
-
+inTune uses a custom made state of the art music filtering algorithm. The algorithm uses affective information such as geolocation, weather, and time data to determine the levels of acousticness, danceability, and energy of the songs suggested songs. This information is then combined with the users input of prefered artists and a customized mix is generated
 
 Comments by Ming (from original project proposal)
 ------
