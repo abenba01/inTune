@@ -278,7 +278,10 @@
 	}
 
 	function setMoodWeather(){ //sets mood based on weather
-		if(theWeather['sunny_winter']){
+		if(theWeather['night']){
+			document.body.style.backgroundImage = "url('" + weather['night'] + "')";
+		}
+		else if(theWeather['sunny_winter']){
 			document.body.style.backgroundImage = "url('" + weather['sunny_winter'] + "')";
 		}
 		else if(theWeather['sunny_fall']){
