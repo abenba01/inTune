@@ -1,7 +1,4 @@
-Project Title
-------
-
-inTune: Music for your Mood 
+#inTune: Music for your Mood 
 
 Problem 
 ------
@@ -11,24 +8,40 @@ Why do we listen to what we listen to? Because of how we're feeling. Oftentimes 
 Solution
 ------
 
-Many music platforms are aimed at addressing what music you should listen to and how you listen to it. inTune goes to the root of the problem: why are you feeling the way you're feeling? Oftentimes we don't recognize the many factors that affect our mood such as weather, location and time of day. inTune takes into account these external variables and makes you a customized mix based on your personal music preferences. inTune translates how you feel to what you listen to without explicitly having to search for a particular “mood” of music.
+Many music platforms are aimed at addressing what music you should listen to and how you listen to it. inTune goes to the root of the problem: *why* are you feeling the way you're feeling? Oftentimes we don't recognize the many factors that affect our mood such as weather, location and time of day. inTune takes into account these external variables and makes you a customized mix based on your personal music preferences. inTune translates how you feel to what you listen to without explicitly having to search for a particular “mood” of music.
 
 List of Features
 ------
 
--Geolocation: determines user's location to adjust music to fit the time of day, time of year, season, and weather of the given location.
+- **Geolocation:** determines user's location to adjust music to fit the time of day, time of year, season, and weather of the given location.
 
--Client-side data persistence: uses name of playlist and originaly selected artists in localstorage
+- **Client-side data persistence:** uses name of playlist and originaly selected artists in localstorage
 
--Push notifications: notifies user if s/he has a saved playlist upon return to the site
+- **Push notifications:** notifies user if s/he has a saved playlist upon return to the site
 
--Front-end framework: enables user to intuitively interact with the web app
+- **Front-end framework:** enables user to intuitively interact with the web app
 
--Server-side data persistence: enables users to save a playlist via MongoDB
+- **Server-side data persistence:** enables users to save a playlist via MongoDB
 
--Streaming music: uses Spotify to play music
+- **Streaming music:** uses Spotify to play music
 
--Music recommendations: creates playlist with artists similar to those selected by the user. Takes into account acousticness, danceability, and energy scores based on weather
+- **Music recommendations:** creates playlist with artists similar to those selected by the user. Takes into account acousticness, danceability, and energy scores based on weather
+
+Scope
+------
+
+- This app should not be used to get accurate weather forecasts of locations.
+- This app enables users to save only one playlist.
+- This app does not enable users to remove artists added to the list.
+- Ths app does not enable users to search for artists, genres, albums, etc. to fit their preferences.
+- This app does not include certain weather conditions (e.g., foggy).
+- This app does not allow users to choose a location other than their own from a predetermined list of locations.
+
+Known Limitations
+------
+
+- Users might click on two bubbles at once if they overlap.
+- The index.html page and its contents are not responsive to changes in window size without a refresh.
 
 Data Collection
 ------
@@ -38,7 +51,9 @@ inTune collects music preferences specified by user input. The app uses geolocat
 Algorithms
 ------
 
-inTune uses a custom made state of the art music filtering algorithm. The algorithm uses affective information such as geolocation, weather, and time data to determine the levels of acousticness, danceability, and energy of the songs suggested songs. This information is then combined with the users input of prefered artists and a customized mix is generated
+inTune uses a custom made state of the art music filtering algorithm. The algorithm uses affective information such as geolocation, weather, and time data to determine the levels of acousticness, danceability, and energy of the songs suggested songs. This information is then combined with the users input of prefered artists and a customized mix is generated.
+
+Users can also change the location and weather if they desire an experience different from that provided by their current location and weather.
 
 Comments by Ming (from original project proposal)
 ------
