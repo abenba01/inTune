@@ -1,3 +1,5 @@
+//code to handle embedded Spotify player
+
 function getConfig() {
     return {
         apiKey: "ECLJI0GPBJVEXSZDT",
@@ -44,12 +46,10 @@ function getSpotifyPlayer(inPlaylist, callback) {
 
         $.getJSON("https://api.spotify.com/v1/tracks/", { 'ids': tids.join(',')}) 
             .done(function(data) {
-                console.log('sptracks', tids, data);
                 data.tracks.forEach(function(track, i) {
                     inPlaylist[i].spotifyTrackInfo = track;
                 });
 
-                console.log('inPlaylist', inPlaylist);
                 playlist = filterSongs(inPlaylist);
                 showCurSong(false);
                 callback(player);
@@ -85,7 +85,6 @@ function getSpotifyPlayer(inPlaylist, callback) {
         }
     }
 
-
     function getBestImage(images, maxWidth) {
         var best = images[0];
         images.reverse().forEach(
@@ -118,7 +117,6 @@ function getSpotifyPlayer(inPlaylist, callback) {
     }
 
     function togglePausePlay() {
-        console.log('tpp', audio.get(0).paused);
         if (audio.get(0).paused) {
             audio.get(0).play();
         } else {
@@ -153,7 +151,6 @@ function getSpotifyPlayer(inPlaylist, callback) {
         });
 
         audio.on('ended', function() {
-            console.log('ended');
             nextSong();
         });
 
@@ -182,7 +179,6 @@ function getSpotifyPlayer(inPlaylist, callback) {
         main.append(controls);
     
         main.bind('destroyed', function() {
-            console.log('player destroyed');
             audio.pause();
         });
         return main;
